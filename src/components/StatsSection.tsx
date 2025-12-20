@@ -28,7 +28,7 @@ export function StatsSection() {
         </ScrollAnimate>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-4 gap-2 sm:gap-4 md:gap-6 max-w-5xl mx-auto">
           {stats.map((stat, index) => (
             <ScrollAnimate
               key={index}
@@ -37,14 +37,14 @@ export function StatsSection() {
               y={40}
             >
               <motion.div
-                className="bg-card rounded-2xl p-6 md:p-8 text-center shadow-lg border border-border hover:shadow-xl transition-shadow duration-300 h-full min-h-[140px] md:min-h-[180px] flex flex-col items-center justify-center aspect-square"
+                className="bg-card rounded-lg sm:rounded-xl md:rounded-2xl p-2 sm:p-4 md:p-6 text-center shadow-lg border border-border hover:shadow-xl transition-shadow duration-300 h-full min-h-[80px] sm:min-h-[120px] md:min-h-[160px] flex flex-col items-center justify-center aspect-square"
                 whileHover={{ y: -5, scale: 1.02 }}
                 transition={{ duration: 0.2 }}
               >
-                <span className="block text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-2 md:mb-3">
+                <span className="block text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold text-primary mb-1 md:mb-2">
                   {stat.value}
                 </span>
-                <span className="block text-muted-foreground text-xs sm:text-sm md:text-base leading-tight">
+                <span className="block text-muted-foreground text-[10px] sm:text-xs md:text-sm leading-tight">
                   {stat.label}
                 </span>
               </motion.div>
