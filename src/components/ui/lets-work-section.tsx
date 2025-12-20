@@ -45,10 +45,10 @@ export function LetsWorkTogether() {
             className="text-center"
           >
             <span className="text-sm text-muted-foreground tracking-widest uppercase mb-4 block">
-              Perfect
+              Perfecto
             </span>
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-8">
-              Let's talk
+              Hablemos
             </h2>
           </motion.div>
 
@@ -73,7 +73,7 @@ export function LetsWorkTogether() {
             <div className="flex items-center gap-3 px-6 py-3 rounded-full border border-border bg-card/50 backdrop-blur-sm hover:bg-card transition-all">
               <Calendar className="w-5 h-5 text-primary" />
               <span className="text-foreground font-medium">
-                Book a call
+                Agendar llamada
               </span>
               <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
             </div>
@@ -84,7 +84,7 @@ export function LetsWorkTogether() {
 
           {/* Subtle subtext */}
           <p className="mt-6 text-sm text-muted-foreground">
-            15 min intro call
+            Llamada de 15 min
           </p>
         </motion.div>
 
