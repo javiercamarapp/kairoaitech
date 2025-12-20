@@ -60,22 +60,22 @@ export function HeroSection() {
               <div className="relative py-6 md:w-[calc(100%-11rem)]">
                 <InfiniteSlider speedOnHover={20} speed={40} gap={112}>
                   <div className="flex">
-                    <img className="mx-auto h-12 w-fit grayscale brightness-0" src={logoTaquitos} alt="Taquitos Logo" height="48" width="auto" />
+                    <img className="mx-auto h-12 w-fit" src={logoTaquitos} alt="Taquitos Logo" height="48" width="auto" />
                   </div>
                   <div className="flex">
-                    <img className="mx-auto h-12 w-fit grayscale brightness-0" src={logoAmerica} alt="Club América Logo" height="48" width="auto" />
+                    <img className="mx-auto h-12 w-fit" src={logoAmerica} alt="Club América Logo" height="48" width="auto" />
                   </div>
                   <div className="flex">
-                    <img className="mx-auto h-12 w-fit grayscale brightness-0" src={logoMonterrey} alt="Monterrey Logo" height="48" width="auto" />
+                    <img className="mx-auto h-12 w-fit" src={logoMonterrey} alt="Monterrey Logo" height="48" width="auto" />
                   </div>
                   <div className="flex">
-                    <img className="mx-auto h-12 w-fit grayscale brightness-0" src={logoKing} alt="King Logo" height="48" width="auto" />
+                    <img className="mx-auto h-12 w-fit" src={logoKing} alt="King Logo" height="48" width="auto" />
                   </div>
                   <div className="flex">
-                    <img className="mx-auto h-12 w-fit grayscale brightness-0" src={logoParadise} alt="Paradise Logo" height="48" width="auto" />
+                    <img className="mx-auto h-12 w-fit" src={logoParadise} alt="Paradise Logo" height="48" width="auto" />
                   </div>
                   <div className="flex">
-                    <img className="mx-auto h-12 w-fit grayscale brightness-0" src={logoDropin} alt="Dropin Logo" height="48" width="auto" />
+                    <img className="mx-auto h-12 w-fit" src={logoDropin} alt="Dropin Logo" height="48" width="auto" />
                   </div>
                 </InfiniteSlider>
 
