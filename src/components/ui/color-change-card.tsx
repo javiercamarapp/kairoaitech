@@ -31,7 +31,7 @@ const ColorChangeCards = () => {
     <section className="bg-background px-2 py-8 md:px-4 md:py-12">
       {/* Mobile: Infinite Carousel */}
       <div className="md:hidden">
-        <InfiniteSlider speed={40} gap={16} speedOnHover={60}>
+        <InfiniteSlider speed={120} gap={16} speedOnHover={150}>
           {cards.map((card, index) => (
             <Card
               key={index}
@@ -45,7 +45,7 @@ const ColorChangeCards = () => {
       
       {/* Desktop: Image Rectangle Carousel */}
       <div className="hidden md:block">
-        <InfiniteSlider speed={30} gap={24} speedOnHover={50}>
+        <InfiniteSlider speed={100} gap={24} speedOnHover={130}>
           {cards.map((card, index) => (
             <RectangleCard
               key={index}
