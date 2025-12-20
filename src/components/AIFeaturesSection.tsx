@@ -31,7 +31,7 @@ export function AIFeaturesSection() {
   return (
     <section className="relative bg-black -mt-24">
       {/* Gradient fade from background to black */}
-      <div className="h-32 bg-gradient-to-b from-black via-black/50 to-background" />
+      <div className="h-32 bg-gradient-to-b from-background via-background/50 to-black" />
       
       <div className="pb-24">
         <FeatureSteps 
