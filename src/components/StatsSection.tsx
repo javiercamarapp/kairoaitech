@@ -37,7 +37,7 @@ export function StatsSection() {
               y={40}
             >
               <motion.div
-                className="bg-card rounded-2xl p-6 md:p-8 text-center shadow-lg border border-border hover:shadow-xl transition-shadow duration-300"
+                className="bg-card rounded-2xl p-6 md:p-8 text-center shadow-lg border border-border hover:shadow-xl transition-shadow duration-300 h-full min-h-[140px] md:min-h-[180px] flex flex-col items-center justify-center aspect-square"
                 whileHover={{ y: -5, scale: 1.02 }}
                 transition={{ duration: 0.2 }}
               >
