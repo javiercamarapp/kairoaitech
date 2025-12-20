@@ -164,7 +164,7 @@ export function HeroSection() {
           </div>
           
           {/* Search Bar */}
-          <ScrollAnimate className="py-6 px-3" delay={0.3} duration={0.7} y={30}>
+          <ScrollAnimate className="py-6 px-3 relative z-[100]" delay={0.3} duration={0.7} y={30}>
             <AnimatedSearchBar placeholder="Busca tu negocio..." />
           </ScrollAnimate>
         </motion.section>
