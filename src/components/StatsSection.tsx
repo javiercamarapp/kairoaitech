@@ -6,7 +6,6 @@ const stats = [
   { value: "+3", label: "Años de experiencia" },
   { value: "+43", label: "Profesionales a tu Disposición" },
   { value: "+130", label: "Clientes Satisfechos" },
-  { value: "+13", label: "Mentorías, Consultorías y Cursos" },
   { value: "+23", label: "Países con casos de Éxito" },
 ];
 
@@ -29,7 +28,7 @@ export function StatsSection() {
         </ScrollAnimate>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-5xl mx-auto">
           {stats.map((stat, index) => (
             <ScrollAnimate
               key={index}
