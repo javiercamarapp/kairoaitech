@@ -12,6 +12,7 @@ import { AnimatedSearchBar } from '@/components/AnimatedSearchBar';
 import { AIBenefitsSection } from '@/components/AIBenefitsSection';
 import { BusinessShowcaseSection } from '@/components/BusinessShowcaseSection';
 import { ProcessSection } from '@/components/ProcessSection';
+import ColorChangeCards from '@/components/ui/color-change-card';
 import logoImage from '@/assets/logo.png';
 import logoTaquitos from '@/assets/logos/taquitos.png';
 import logoAmerica from '@/assets/logos/america.png';
@@ -179,6 +180,9 @@ export function HeroSection() {
         
         {/* Process Section */}
         <ProcessSection />
+        
+        {/* Color Change Cards Section */}
+        <ColorChangeCards />
       </main>
     </>;
 }
