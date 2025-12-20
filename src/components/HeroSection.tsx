@@ -129,7 +129,7 @@ const HeroHeader = () => {
                 <ul className="flex gap-8 text-sm text-primary-foreground border-primary-foreground">
                   {menuItems.map((item, index) => <li key={index}>
                       <Link to={item.href} className="block text-muted-foreground duration-150 hover:text-accent-foreground active:-translate-y-1 transition-all">
-                        <span className="text-primary-foreground">{item.name}</span>
+                        <span className="text-primary-foreground underline-link">{item.name}</span>
                       </Link>
                     </li>)}
                 </ul>
@@ -141,7 +141,7 @@ const HeroHeader = () => {
                 <ul className="space-y-6 text-base">
                   {menuItems.map((item, index) => <li key={index}>
                       <Link to={item.href} className="block text-muted-foreground duration-150 hover:text-accent-foreground active:-translate-y-1 transition-all">
-                        <span>{item.name}</span>
+                        <span className="underline-link">{item.name}</span>
                       </Link>
                     </li>)}
                 </ul>
