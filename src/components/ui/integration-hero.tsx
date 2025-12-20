@@ -34,10 +34,6 @@ export default function IntegrationHero() {
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center px-4">
-        <span className="mb-3 md:mb-4 inline-flex items-center gap-1.5 md:gap-2 rounded-full bg-primary/10 px-3 py-1 md:px-4 md:py-1.5 text-xs md:text-sm font-medium text-primary">
-          ⚡ Integraciones
-        </span>
-        
         <h2 className="mb-3 md:mb-4 text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
           Intégrate con tus herramientas favoritas
         </h2>
