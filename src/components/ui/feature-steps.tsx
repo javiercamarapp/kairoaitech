@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { BlurTextEffect } from "@/components/ui/blur-text-effect"
+import { SectionHeader } from "@/components/ui/section-header"
 
 interface Feature {
   step: string
@@ -14,6 +15,7 @@ interface FeatureStepsProps {
   features: Feature[]
   className?: string
   title?: string
+  subtitle?: string
   autoPlayInterval?: number
   imageHeight?: string
 }
@@ -22,6 +24,7 @@ export function FeatureSteps({
   features,
   className,
   title = "How to get Started",
+  subtitle,
   autoPlayInterval = 4000,
   imageHeight = "h-[400px]",
 }: FeatureStepsProps) {
@@ -47,11 +50,10 @@ export function FeatureSteps({
   return (
     <div className={cn("pt-0 pb-8 px-8 md:pt-0 md:pb-12 md:px-12", className)}>
       <div className="max-w-7xl mx-auto w-full">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-10 text-center text-foreground">
-          <BlurTextEffect delay={0} stagger={0.02}>
-            {title}
-          </BlurTextEffect>
-        </h2>
+        <SectionHeader 
+          title={title} 
+          subtitle={subtitle}
+        />
 
         {/* Mobile Carousel - Auto-play only, no controls */}
         <div className="md:hidden">

@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { motion } from "motion/react";
-import { BlurTextEffect } from "@/components/ui/blur-text-effect";
+import { SectionHeader } from "@/components/ui/section-header";
 import { ScrollAnimate } from "@/components/ui/scroll-animate";
 import {
   CardHoverReveal,
@@ -120,19 +120,10 @@ export function BusinessShowcaseSection() {
     <section className="relative bg-background overflow-hidden">
       <div className="px-4 md:px-6 lg:px-12">
         <div className="max-w-7xl mx-auto w-full">
-          {/* Section Title */}
-          <ScrollAnimate className="text-center mb-10 md:mb-12" delay={0.1} duration={0.7}>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 md:mb-6 px-2">
-              <BlurTextEffect delay={0.2} stagger={0.02}>
-                Negocios que pueden implementar IA
-              </BlurTextEffect>
-            </h2>
-            <p className="text-sm md:text-lg text-muted-foreground max-w-3xl mx-auto px-4">
-              <BlurTextEffect delay={0.5} stagger={0.01}>
-                Descubre cómo diferentes industrias están transformando sus operaciones con inteligencia artificial
-              </BlurTextEffect>
-            </p>
-          </ScrollAnimate>
+          <SectionHeader
+            title="Negocios que pueden implementar IA"
+            subtitle="Descubre cómo diferentes industrias están transformando sus operaciones con inteligencia artificial"
+          />
         </div>
       </div>
 
