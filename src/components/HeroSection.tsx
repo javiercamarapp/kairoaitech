@@ -10,7 +10,7 @@ import { TextLoopReveal } from '@/components/ui/text-loop-reveal';
 import { AnimatedSearchBar } from '@/components/AnimatedSearchBar';
 import { AIBenefitsSection } from '@/components/AIBenefitsSection';
 import logoImage from '@/assets/logo.png';
-import logoTaquitos from '@/assets/logos/taquitos.avif';
+import logoTaquitos from '@/assets/logos/taquitos.png';
 import logoAmerica from '@/assets/logos/america.png';
 import logoMonterrey from '@/assets/logos/monterrey.png';
 import logoKing from '@/assets/logos/king.png';
