@@ -147,12 +147,12 @@ const HeroHeader = () => {
                 </ul>
               </div>
               <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
-                <Button asChild variant="outline" size="sm">
+                <Button asChild variant="outline" size="sm" className="active:-translate-y-1 transition-all duration-150">
                   <Link to="#">
                     <span>Login</span>
                   </Link>
                 </Button>
-                <Button asChild size="sm" className="bg-black text-white hover:bg-black/90">
+                <Button asChild size="sm" className="bg-black text-white hover:bg-black/90 active:-translate-y-1 transition-all duration-150">
                   <Link to="#">
                     <span>Sign Up</span>
                   </Link>
