@@ -5,7 +5,7 @@ import { InfiniteSlider } from '@/components/ui/infinite-slider';
 import { ProgressiveBlur } from '@/components/ui/progressive-blur';
 import { cn } from '@/lib/utils';
 import { Menu, X, ChevronRight } from 'lucide-react';
-import { useScroll, useTransform, motion } from 'motion/react';
+import { useScroll, motion } from 'motion/react';
 import { TextLoopReveal } from '@/components/ui/text-loop-reveal';
 import logoImage from '@/assets/logo.png';
 import logoTaquitos from '@/assets/logos/taquitos.avif';
@@ -17,14 +17,11 @@ import logoDropin from '@/assets/logos/dropin.png';
 import logoPolloLoco from '@/assets/logos/polloloco.png';
 
 export function HeroSection() {
-  const { scrollY } = useScroll();
-  const videoY = useTransform(scrollY, [0, 500], [0, 150]);
-  const videoScale = useTransform(scrollY, [0, 500], [1, 1.1]);
   const videoRef = React.useRef<HTMLVideoElement | null>(null);
   const [videoLoaded, setVideoLoaded] = React.useState(false);
 
   React.useEffect(() => {
-    // Ensure autoplay starts ASAP across browsers.
+    // Start playback ASAP; if autoplay is blocked, the poster/first frame still shows.
     const v = videoRef.current;
     if (!v) return;
     v.muted = true;
@@ -75,27 +72,25 @@ export function HeroSection() {
               </div>
             </div>
             <div className="aspect-[2/3] absolute inset-1 overflow-hidden rounded-3xl border border-border/10 sm:aspect-video lg:rounded-[3rem]">
-              {/* Background color while video loads */}
+              {/* Fallback background */}
               <div className="absolute inset-0 bg-zinc-900" />
-              {/* Video with parallax */}
-              <motion.video 
+              {/* Video (absolute to avoid layout/stacking issues on mobile) */}
+              <video 
                 ref={videoRef}
                 autoPlay 
                 loop 
                 muted 
                 playsInline
                 preload="auto"
-                poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9'%3E%3Crect width='16' height='9' fill='%230a0a0a'/%3E%3C/svg%3E"
                 onLoadedData={() => setVideoLoaded(true)}
                 onCanPlay={() => setVideoLoaded(true)}
-                className="size-full object-cover object-[55%_center] sm:object-center" 
+                onTimeUpdate={(e) => {
+                  const v = e.currentTarget;
+                  if (!videoLoaded && v.currentTime > 0) setVideoLoaded(true);
+                }}
+                className="absolute inset-0 h-full w-full object-cover object-[55%_center] sm:object-center"
                 src="/videos/hero-background.mp4"
-                style={{ y: videoY, scale: videoScale }}
               />
-              {/* Subtle veil while loading to avoid flash */}
-              {!videoLoaded && (
-                <div className="absolute inset-0 bg-zinc-900/40" />
-              )}
               {/* Bottom fade for text readability */}
               <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background to-transparent" />
             </div>
