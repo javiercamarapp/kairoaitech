@@ -30,7 +30,7 @@ const aiBenefits = [
 
 export function AIBenefitsSection() {
   return (
-    <section className="py-16 md:py-24 bg-background">
+    <section className="bg-background">
       <FeatureSteps
         features={aiBenefits}
         title="¿Por qué implementar IA en tu empresa?"
