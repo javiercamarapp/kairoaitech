@@ -2,6 +2,7 @@ import React from "react"
 import { FeatureSteps } from "@/components/ui/feature-steps"
 import automationImage from "@/assets/automation.png"
 import analyticsImage from "@/assets/analytics.png"
+import support247Image from "@/assets/support247.png"
 
 const aiBenefits = [
   {
@@ -20,7 +21,7 @@ const aiBenefits = [
     step: "Paso 3",
     title: "Atención 24/7",
     content: "Chatbots y asistentes virtuales que nunca duermen. Atiende a tus clientes en cualquier momento, en múltiples idiomas, con respuestas precisas y personalizadas.",
-    image: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?q=80&w=2006&auto=format&fit=crop"
+    image: support247Image
   },
   {
     step: "Paso 4",
