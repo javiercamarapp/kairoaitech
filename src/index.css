@@ -103,3 +103,18 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .underline-link {
+    @apply relative;
+  }
+  
+  .underline-link::after {
+    content: '';
+    @apply absolute w-full scale-x-0 h-0.5 bottom-0 left-0 bg-primary-foreground origin-bottom-right transition-transform duration-300;
+  }
+  
+  .underline-link:hover::after {
+    @apply scale-x-100 origin-bottom-left;
+  }
+}
