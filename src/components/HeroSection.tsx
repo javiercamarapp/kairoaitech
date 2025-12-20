@@ -48,16 +48,13 @@ export function HeroSection() {
             </div>
           </div>
         </section>
-        <section className="bg-background pb-2">
+        <section className="bg-background">
           <div className="group relative m-auto max-w-7xl px-6">
             <div className="flex flex-col items-center md:flex-row">
               <div className="md:max-w-44 md:border-r md:pr-6">
-                <p className="text-end text-sm text-muted-foreground">Empresas con las que hemos trabajado 
-   
-
- </p>
+                <p className="text-end text-sm text-muted-foreground">Empresas con las que hemos trabajado</p>
               </div>
-              <div className="relative py-6 md:w-[calc(100%-11rem)]">
+              <div className="relative md:w-[calc(100%-11rem)]">
                 <InfiniteSlider speedOnHover={20} speed={40} gap={48}>
                   <div className="flex items-center justify-center h-16 w-32">
                     <img className="max-h-12 max-w-full object-contain" src={logoTaquitos} alt="Taquitos Logo" />
