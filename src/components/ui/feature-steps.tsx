@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
+import { BlurText } from "@/components/ui/blur-text"
 
 interface Feature {
   step: string
@@ -26,6 +27,7 @@ export function FeatureSteps({
 }: FeatureStepsProps) {
   const [currentFeature, setCurrentFeature] = useState(0)
   const [progress, setProgress] = useState(0)
+  const [textKey, setTextKey] = useState(0)
 
   // Auto-play on all devices
   useEffect(() => {
@@ -34,6 +36,7 @@ export function FeatureSteps({
         setProgress((prev) => prev + 100 / (autoPlayInterval / 100))
       } else {
         setCurrentFeature((prev) => (prev + 1) % features.length)
+        setTextKey((prev) => prev + 1)
         setProgress(0)
       }
     }, 100)
@@ -53,10 +56,10 @@ export function FeatureSteps({
           <AnimatePresence mode="wait">
             <motion.div
               key={currentFeature}
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 }}
-              transition={{ duration: 0.3 }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.4 }}
               className="flex flex-col gap-4"
             >
               {/* Image */}
@@ -69,14 +72,24 @@ export function FeatureSteps({
                 <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
               </div>
 
-              {/* Content - Only title, no number */}
+              {/* Content with BlurText effect */}
               <div className="text-center px-4">
-                <h3 className="text-xl font-semibold text-primary mb-3">
-                  {features[currentFeature].title || features[currentFeature].step}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {features[currentFeature].content}
-                </p>
+                <BlurText
+                  key={`title-${textKey}`}
+                  text={features[currentFeature].title || features[currentFeature].step}
+                  className="text-xl font-semibold text-primary mb-3 justify-center"
+                  delay={50}
+                  animateBy="words"
+                  direction="top"
+                />
+                <BlurText
+                  key={`content-${textKey}`}
+                  text={features[currentFeature].content}
+                  className="text-sm text-muted-foreground leading-relaxed justify-center"
+                  delay={30}
+                  animateBy="words"
+                  direction="bottom"
+                />
               </div>
             </motion.div>
           </AnimatePresence>
