@@ -1,5 +1,5 @@
-import React, { useRef, useState, useEffect } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import React, { useRef } from "react";
+import { motion } from "motion/react";
 import { SectionHeader } from "@/components/ui/section-header";
 import { ScrollAnimate } from "@/components/ui/scroll-animate";
 import {
@@ -8,8 +8,9 @@ import {
   CardHoverRevealMain,
 } from "@/components/ui/reveal-on-hover";
 import { Badge } from "@/components/ui/badge";
-import { Bot, MessageSquare, Zap, Brain, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import ColorChangeCards from "@/components/ui/color-change-card";
+import { InfiniteSlider } from "@/components/ui/infinite-slider";
 
 // Import business images
 import restaurantImg from "@/assets/businesses/restaurant.png";
@@ -118,52 +119,28 @@ const businesses: Business[] = [
 
 const solutionCards = [
   { 
-    icon: Bot, 
     title: "Chatbots Inteligentes", 
-    description: "Asistentes virtuales que entienden el contexto, responden preguntas complejas y aprenden de cada interacción para ofrecer respuestas cada vez más precisas.",
+    description: "Asistentes virtuales que entienden el contexto y aprenden de cada interacción.",
+    imgSrc: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?q=80&w=800&auto=format&fit=crop"
   },
   { 
-    icon: MessageSquare, 
     title: "Atención al Cliente 24/7", 
-    description: "Nunca pierdas una oportunidad de venta. Nuestros sistemas de IA atienden consultas, resuelven dudas y guían a tus clientes en cualquier momento del día.",
+    description: "Sistemas de IA que atienden consultas en cualquier momento del día.",
+    imgSrc: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop"
   },
   { 
-    icon: Zap, 
     title: "Automatización de Procesos", 
-    description: "Elimina tareas repetitivas y libera a tu equipo para lo que realmente importa. Desde facturación hasta gestión de inventarios, la IA hace el trabajo pesado.",
+    description: "Elimina tareas repetitivas con automatización inteligente.",
+    imgSrc: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=800&auto=format&fit=crop"
   },
   { 
-    icon: Brain, 
     title: "Análisis Predictivo", 
-    description: "Anticipa tendencias, identifica patrones de compra y toma decisiones basadas en datos. La IA analiza millones de puntos de información en segundos.",
+    description: "Anticipa tendencias y toma decisiones basadas en datos.",
+    imgSrc: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop"
   },
 ];
 
 function SolutionsCarousel({ robotHandImg }: { robotHandImg: string }) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setDirection(1);
-      setCurrentIndex((prev) => (prev + 1) % solutionCards.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const goToNext = () => {
-    setDirection(1);
-    setCurrentIndex((prev) => (prev + 1) % solutionCards.length);
-  };
-
-  const goToPrev = () => {
-    setDirection(-1);
-    setCurrentIndex((prev) => (prev - 1 + solutionCards.length) % solutionCards.length);
-  };
-
-  const currentCard = solutionCards[currentIndex];
-  const IconComponent = currentCard.icon;
-
   return (
     <div className="flex flex-row items-center gap-2 sm:gap-4 md:gap-6 lg:gap-8 mb-8 md:mb-12">
       {/* Robot Hand Image */}
@@ -183,41 +160,53 @@ function SolutionsCarousel({ robotHandImg }: { robotHandImg: string }) {
         />
       </motion.div>
 
-      {/* Carousel Card */}
-      <div className="flex-1 max-w-[260px] sm:max-w-sm md:max-w-xl lg:max-w-2xl pr-2 sm:pr-4 md:pr-0">
-        <div className="relative h-[115px] sm:h-[130px] md:h-[240px] lg:h-[260px]">
-          <AnimatePresence mode="wait" custom={direction}>
+      {/* Rectangle Image Carousel */}
+      <div className="flex-1 overflow-hidden pr-2 sm:pr-4 md:pr-0">
+        <InfiniteSlider speed={80} gap={16} speedOnHover={120}>
+          {solutionCards.map((card, index) => (
             <motion.div
-              key={currentIndex}
-              custom={direction}
-              initial={{ opacity: 0, x: direction > 0 ? 100 : -100, scale: 0.9 }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
-              exit={{ opacity: 0, x: direction > 0 ? -100 : 100, scale: 0.9 }}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="absolute inset-0 p-2.5 sm:p-3 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-3xl bg-gradient-to-br from-zinc-800/90 to-zinc-900/95 backdrop-blur-md border border-zinc-700/50 shadow-2xl"
+              key={index}
+              whileHover="hover"
+              className="group relative h-32 sm:h-40 md:h-56 lg:h-64 w-48 sm:w-56 md:w-80 lg:w-96 flex-shrink-0 overflow-hidden rounded-xl md:rounded-2xl bg-zinc-900"
             >
-              <div className="flex flex-col md:flex-row md:items-start gap-1 sm:gap-1.5 md:gap-4 h-full">
-                <div className="flex items-center gap-2 md:block">
-                  <div className="p-1 sm:p-1.5 md:p-3 rounded-md md:rounded-xl bg-zinc-700/50 border border-zinc-600/30 flex-shrink-0">
-                    <IconComponent className="w-3 h-3 sm:w-4 sm:h-4 md:w-7 md:h-7 lg:w-8 lg:h-8 text-white" />
-                  </div>
-                  <h3 className="text-[10px] sm:text-xs md:hidden font-bold text-white">
-                    {currentCard.title}
+              <motion.div
+                className="absolute inset-0"
+                initial={{ scale: 1 }}
+                variants={{
+                  hover: { scale: 1.05 },
+                }}
+                transition={{ duration: 0.4 }}
+              >
+                <img
+                  src={card.imgSrc}
+                  alt={card.title}
+                  className="h-full w-full object-cover opacity-70 transition-opacity duration-300 group-hover:opacity-50"
+                />
+              </motion.div>
+
+              <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-zinc-950/90 via-zinc-950/40 to-transparent p-3 sm:p-4 md:p-5">
+                <div className="flex items-center justify-between gap-2">
+                  <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-white">
+                    {card.title}
                   </h3>
+                  <motion.div
+                    className="flex h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm"
+                    variants={{
+                      hover: { scale: 1.1, backgroundColor: "rgba(255,255,255,0.2)" },
+                    }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 text-white" />
+                  </motion.div>
                 </div>
-                <div className="flex-1 min-w-0 flex flex-col overflow-hidden">
-                  <h3 className="hidden md:block text-xl lg:text-2xl font-bold text-white mb-3">
-                    {currentCard.title}
-                  </h3>
-                  <p className="text-[8px] sm:text-[9px] md:text-sm lg:text-base text-zinc-300 leading-tight sm:leading-snug md:leading-relaxed flex-1 line-clamp-4 sm:line-clamp-5 md:line-clamp-none">
-                    {currentCard.description}
-                  </p>
-                </div>
+
+                <p className="mt-1 sm:mt-2 text-[10px] sm:text-xs md:text-sm text-zinc-300 line-clamp-2">
+                  {card.description}
+                </p>
               </div>
             </motion.div>
-          </AnimatePresence>
-        </div>
-
+          ))}
+        </InfiniteSlider>
       </div>
     </div>
   );
