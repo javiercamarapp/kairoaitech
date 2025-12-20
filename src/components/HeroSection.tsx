@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 import { Menu, X, ChevronRight } from 'lucide-react';
 import { useScroll, motion } from 'motion/react';
 import { BlurTextEffect } from '@/components/ui/blur-text-effect';
+import { ScrollAnimate } from '@/components/ui/scroll-animate';
 import { AnimatedSearchBar } from '@/components/AnimatedSearchBar';
 import { AIBenefitsSection } from '@/components/AIBenefitsSection';
 import logoImage from '@/assets/logo.png';
@@ -84,11 +85,11 @@ export function HeroSection() {
                       </BlurTextEffect>
                     </p>
 
-                    <motion.div 
+                    <ScrollAnimate 
                       className="mt-12 sm:mt-12 flex flex-col items-center justify-center gap-2 sm:flex-row lg:justify-start"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: 1.5 }}
+                      delay={0.8}
+                      duration={0.7}
+                      y={40}
                     >
                       <Button asChild size="lg" className="h-12 rounded-full pl-5 pr-3 text-base bg-black text-white hover:bg-black/90 active:-translate-y-1 transition-all duration-150">
                         <Link to="#link">
@@ -101,7 +102,7 @@ export function HeroSection() {
                           <span className="text-nowrap text-gray-300 font-medium sm:font-normal sm:text-primary-foreground">Ver soluciones</span>
                         </Link>
                       </Button>
-                    </motion.div>
+                    </ScrollAnimate>
                   </div>
                 </div>
               </div>
