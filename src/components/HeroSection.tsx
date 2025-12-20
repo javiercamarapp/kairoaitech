@@ -51,7 +51,7 @@ export function HeroSection() {
                 loop
                 muted
                 playsInline
-                className="size-full object-cover object-[20%_center] sm:object-center"
+                className="size-full object-cover object-[45%_center] sm:object-center"
                 src="/videos/hero-background.mp4"
               />
               {/* Bottom fade for text readability */}
