@@ -77,7 +77,7 @@ CardSticky.displayName = "CardSticky";
 
 export function ProcessSection() {
   return (
-    <section className="relative bg-background py-16 md:py-24">
+    <section className="relative bg-zinc-100 py-16 md:py-24">
       <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-12">
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-16">
           {/* Left Column - Header */}
@@ -89,14 +89,14 @@ export function ProcessSection() {
             </ScrollAnimate>
             
             <ScrollAnimate delay={0.2} duration={0.6} y={30}>
-              <h2 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+              <h2 className="mt-4 text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl lg:text-5xl">
                 Planificando tu{" "}
                 <span className="text-primary">viaje de transformación</span>
               </h2>
             </ScrollAnimate>
             
             <ScrollAnimate delay={0.3} duration={0.6} y={30}>
-              <p className="mt-6 text-base text-muted-foreground md:text-lg">
+              <p className="mt-6 text-base text-zinc-600 md:text-lg">
                 Nuestro proceso comienza con una inmersión profunda en tu visión. 
                 En la fase de Descubrimiento, mantenemos conversaciones significativas 
                 para comprender tu identidad de marca, objetivos y la esencia que deseas transmitir.
@@ -109,40 +109,38 @@ export function ProcessSection() {
             {PROCESS_PHASES.map((phase, index) => (
               <div
                 key={phase.id}
-                className="sticky mb-6"
+                className="sticky mb-4"
                 style={{ 
-                  top: `${80 + index * 24}px`, 
+                  top: `${60 + index * 16}px`, 
                   zIndex: index + 1 
                 }}
               >
                 <motion.div
-                  initial={{ opacity: 0, y: 60, scale: 0.92 }}
+                  initial={{ opacity: 0, y: 80, scale: 0.9 }}
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 0.05 }}
-                  viewport={{ once: true, margin: "-80px" }}
-                  className="rounded-2xl border border-zinc-700/50 bg-gradient-to-br from-zinc-800 to-zinc-900 p-5 shadow-2xl backdrop-blur-md md:p-6"
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  className="rounded-2xl border border-zinc-200 bg-gradient-to-b from-white to-zinc-50 p-6 md:p-8"
                   style={{
-                    boxShadow: `0 ${10 + index * 5}px ${30 + index * 10}px -10px rgba(0,0,0,0.5)`
+                    boxShadow: `0 4px 20px -4px rgba(0,0,0,0.1), 0 ${8 + index * 2}px ${24 + index * 4}px -8px rgba(0,0,0,0.08)`
                   }}
                 >
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex-1">
-                      <h3 className="text-lg font-semibold text-white md:text-xl">
-                        {phase.title}
-                      </h3>
-                    </div>
-                    <span className="flex-shrink-0 text-3xl font-bold text-zinc-600 md:text-4xl">
+                  <div className="flex items-center justify-between gap-4 mb-4">
+                    <h3 className="text-xl font-bold text-zinc-900 md:text-2xl">
+                      {phase.title}
+                    </h3>
+                    <span className="flex-shrink-0 text-3xl font-bold text-primary md:text-4xl">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                   </div>
-                  <p className="mt-3 text-sm text-zinc-300 md:text-base">
+                  <p className="text-sm text-zinc-500 md:text-base leading-relaxed">
                     {phase.description}
                   </p>
                 </motion.div>
               </div>
             ))}
             {/* Spacer for last card visibility */}
-            <div className="h-60 md:h-80" />
+            <div className="h-48 md:h-64" />
           </div>
         </div>
       </div>
