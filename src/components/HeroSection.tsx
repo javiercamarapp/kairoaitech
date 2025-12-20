@@ -266,7 +266,7 @@ const Logo = ({ className }: { className?: string }) => {
     <img
       src={logoImage}
       alt="Logo"
-      className={cn('h-8 w-auto', className)}
+      className={cn('h-6 w-auto sm:h-8', className)}
     />
   );
 };
