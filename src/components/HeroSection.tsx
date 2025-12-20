@@ -27,7 +27,12 @@ export function HeroSection() {
                 <h1 className="mt-8 max-w-2xl text-balance text-5xl font-bold md:text-6xl lg:mt-16 xl:text-7xl text-primary-foreground mx-auto lg:mx-0">
                   <TextLoopReveal text="Empieza a ahorrar dentro de tu empresa usando AI" />
                 </h1>
-                <p className="mt-8 max-w-2xl text-balance text-lg text-secondary">Construimos soluciones impulsadas por IA que automatizan, escalan y transforman la forma en que las empresas operan.</p>
+                <p className="mt-8 max-w-2xl text-balance text-lg text-secondary">
+                  <TextLoopReveal 
+                    text="Construimos soluciones impulsadas por IA que automatizan, escalan y transforman la forma en que las empresas operan." 
+                    wordDelay={0.08}
+                  />
+                </p>
 
                 <div className="mt-8 sm:mt-12 flex flex-col items-center justify-center gap-2 sm:flex-row lg:justify-start">
                   <Button asChild size="lg" className="h-12 rounded-full pl-5 pr-3 text-base bg-black text-white hover:bg-black/90 active:-translate-y-1 transition-all duration-150">
