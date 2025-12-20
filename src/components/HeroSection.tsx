@@ -126,7 +126,7 @@ const HeroHeader = () => {
               </button>
 
               <div className="hidden lg:block">
-                <ul className="flex gap-8 text-sm">
+                <ul className="flex gap-8 text-sm text-primary-foreground">
                   {menuItems.map((item, index) => <li key={index}>
                       <Link to={item.href} className="block text-muted-foreground duration-150 hover:text-accent-foreground">
                         <span>{item.name}</span>
