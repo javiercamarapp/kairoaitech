@@ -15,7 +15,6 @@ import logoKing from '@/assets/logos/king.png';
 import logoParadise from '@/assets/logos/paradise.png';
 import logoDropin from '@/assets/logos/dropin.png';
 import logoPolloLoco from '@/assets/logos/polloloco.png';
-import heroRobot from '@/assets/hero-robot.png';
 
 export function HeroSection() {
   const { scrollY } = useScroll();
@@ -127,22 +126,6 @@ export function HeroSection() {
                 <ProgressiveBlur className="pointer-events-none absolute right-0 top-0 h-full w-20" direction="right" blurIntensity={1} />
               </motion.div>
             </div>
-          </div>
-        </motion.section>
-        
-        {/* Hero Robot Image */}
-        <motion.section 
-          className="bg-background py-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 2.6 }}
-        >
-          <div className="max-w-7xl mx-auto px-6">
-            <img 
-              src={heroRobot} 
-              alt="Robot hand" 
-              className="w-full h-auto object-contain"
-            />
           </div>
         </motion.section>
       </main>
