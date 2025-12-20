@@ -44,13 +44,13 @@ export function HeroSection() {
               </div>
             </div>
             <div className="aspect-[2/3] absolute inset-1 overflow-hidden rounded-3xl border border-border/10 sm:aspect-video lg:rounded-[3rem]">
-              <video
+            <video
                 autoPlay
                 loop
                 muted
                 playsInline
-                className="size-full object-cover opacity-50 invert dark:opacity-35 dark:invert-0 dark:lg:opacity-75"
-                src="https://ik.imagekit.io/lrigu76hy/tailark/dna-video.mp4?updatedAt=1745736251477"
+                className="size-full object-cover opacity-50 dark:opacity-75"
+                src="/videos/hero-background.mp4"
               />
             </div>
           </div>
