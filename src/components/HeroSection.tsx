@@ -160,9 +160,13 @@ export function HeroSection() {
             </div>
           </div>
           
-          {/* Search Bar */}
-          <div className="py-6 px-3">
-            <AnimatedSearchBar placeholder="Busca tu negocio..." />
+          {/* Search Bar with gradient fade to black */}
+          <div className="relative">
+            <div className="py-6 px-3 pb-16">
+              <AnimatedSearchBar placeholder="Busca tu negocio..." />
+            </div>
+            {/* Gradient fade to black section */}
+            <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent via-black/50 to-black pointer-events-none" />
           </div>
         </motion.section>
       </main>
