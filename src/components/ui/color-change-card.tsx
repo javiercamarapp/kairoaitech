@@ -69,7 +69,7 @@ const Card = ({ heading, description, imgSrc }: CardProps) => {
   return (
     <motion.div
       whileHover="hover"
-      className="group relative h-80 w-72 md:h-96 md:w-full flex-shrink-0 overflow-hidden rounded-2xl bg-zinc-900"
+      className="group relative h-72 w-64 md:h-96 md:w-full flex-shrink-0 overflow-hidden rounded-2xl bg-zinc-900"
     >
       <motion.div
         className="absolute inset-0"
@@ -93,8 +93,8 @@ const Card = ({ heading, description, imgSrc }: CardProps) => {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <div className="flex items-center justify-between">
-            <h3 className="overflow-hidden text-2xl font-bold text-white md:text-3xl">
+          <div className="flex items-center justify-between gap-2">
+            <h3 className="text-lg font-bold text-white md:text-3xl whitespace-nowrap">
               {heading.split("").map((letter, index) => (
                 <AnimatedLetter key={index} letter={letter} />
               ))}
