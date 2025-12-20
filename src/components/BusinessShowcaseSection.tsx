@@ -217,39 +217,6 @@ function SolutionsCarousel({ robotHandImg }: { robotHandImg: string }) {
           </AnimatePresence>
         </div>
 
-        {/* Controls */}
-        <div className="flex items-center justify-between mt-2 sm:mt-3 md:mt-4">
-          <div className="flex gap-1 sm:gap-1.5 md:gap-2">
-            {solutionCards.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => {
-                  setDirection(idx > currentIndex ? 1 : -1);
-                  setCurrentIndex(idx);
-                }}
-                className={`h-1.5 sm:h-2 md:h-2.5 rounded-full transition-all duration-300 ${
-                  idx === currentIndex 
-                    ? "bg-white w-4 sm:w-5 md:w-8" 
-                    : "bg-zinc-600 hover:bg-zinc-500 w-1.5 sm:w-2 md:w-2.5"
-                }`}
-              />
-            ))}
-          </div>
-          <div className="flex gap-1 sm:gap-1.5 md:gap-2">
-            <button
-              onClick={goToPrev}
-              className="p-1 sm:p-1.5 md:p-2 rounded-full bg-zinc-800 border border-zinc-700 hover:bg-zinc-700 transition-colors"
-            >
-              <ChevronLeft className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 text-white" />
-            </button>
-            <button
-              onClick={goToNext}
-              className="p-1 sm:p-1.5 md:p-2 rounded-full bg-zinc-800 border border-zinc-700 hover:bg-zinc-700 transition-colors"
-            >
-              <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 text-white" />
-            </button>
-          </div>
-        </div>
       </div>
     </div>
   );
