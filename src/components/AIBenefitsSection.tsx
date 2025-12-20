@@ -3,6 +3,7 @@ import { FeatureSteps } from "@/components/ui/feature-steps"
 import automationImage from "@/assets/automation.png"
 import analyticsImage from "@/assets/analytics.png"
 import support247Image from "@/assets/support247.png"
+import costReductionImage from "@/assets/cost-reduction.png"
 
 const aiBenefits = [
   {
@@ -27,7 +28,7 @@ const aiBenefits = [
     step: "Paso 4",
     title: "Reducción de Costos",
     content: "Empresas que implementan IA reportan ahorros del 25-40% en costos operativos. Desde optimización de inventarios hasta eficiencia energética, la IA encuentra oportunidades de ahorro ocultas.",
-    image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=2071&auto=format&fit=crop"
+    image: costReductionImage
   }
 ]
 
