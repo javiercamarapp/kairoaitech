@@ -10,6 +10,7 @@ import { BlurTextEffect } from '@/components/ui/blur-text-effect';
 import { ScrollAnimate } from '@/components/ui/scroll-animate';
 import { AnimatedSearchBar } from '@/components/AnimatedSearchBar';
 import { AIBenefitsSection } from '@/components/AIBenefitsSection';
+import { BusinessShowcaseSection } from '@/components/BusinessShowcaseSection';
 import logoImage from '@/assets/logo.png';
 import logoTaquitos from '@/assets/logos/taquitos.png';
 import logoAmerica from '@/assets/logos/america.png';
@@ -171,6 +172,9 @@ export function HeroSection() {
         
         {/* AI Benefits Section */}
         <AIBenefitsSection />
+        
+        {/* Business Showcase Section */}
+        <BusinessShowcaseSection />
       </main>
     </>;
 }
