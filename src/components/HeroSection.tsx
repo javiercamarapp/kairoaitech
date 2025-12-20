@@ -54,7 +54,7 @@ export function HeroSection() {
                 src="/videos/hero-background.mp4"
               />
               {/* Bottom fade for text readability */}
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
             </div>
           </div>
         </section>
