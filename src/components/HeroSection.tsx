@@ -20,6 +20,7 @@ export function HeroSection() {
   const { scrollY } = useScroll();
   const videoY = useTransform(scrollY, [0, 500], [0, 150]);
   const videoScale = useTransform(scrollY, [0, 500], [1, 1.1]);
+  const [videoLoaded, setVideoLoaded] = React.useState(false);
 
   return <>
       <HeroHeader />
@@ -59,15 +60,19 @@ export function HeroSection() {
               </div>
             </div>
             <div className="aspect-[2/3] absolute inset-1 overflow-hidden rounded-3xl border border-border/10 sm:aspect-video lg:rounded-[3rem]">
+              {/* Background color while video loads */}
+              <div className="absolute inset-0 bg-zinc-900" />
               {/* Video with parallax */}
               <motion.video 
                 autoPlay 
                 loop 
                 muted 
-                playsInline 
-                className="size-full object-cover object-[55%_center] sm:object-center" 
+                playsInline
+                preload="auto"
+                onCanPlayThrough={() => setVideoLoaded(true)}
+                className="size-full object-cover object-[55%_center] sm:object-center transition-opacity duration-500" 
                 src="/videos/hero-background.mp4"
-                style={{ y: videoY, scale: videoScale }}
+                style={{ y: videoY, scale: videoScale, opacity: videoLoaded ? 1 : 0 }}
               />
               {/* Bottom fade for text readability */}
               <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background to-transparent" />
