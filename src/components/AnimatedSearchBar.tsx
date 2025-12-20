@@ -54,7 +54,7 @@ export function AnimatedSearchBar({
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           placeholder={placeholder}
-          className="flex-1 bg-transparent py-4 pr-4 text-foreground placeholder:text-muted-foreground focus:outline-none"
+          className="flex-1 bg-transparent py-2 pr-4 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
         />
 
         {/* Mic Icon */}
