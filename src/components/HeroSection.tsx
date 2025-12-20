@@ -19,15 +19,15 @@ export function HeroSection() {
                 <p className="mt-8 max-w-2xl text-balance text-lg text-secondary">Construimos soluciones impulsadas por IA que automatizan, escalan y transforman la forma en que las empresas operan.</p>
 
                 <div className="mt-8 sm:mt-12 flex flex-col items-center justify-center gap-2 sm:flex-row lg:justify-start">
-                  <Button asChild size="lg" className="h-12 rounded-full pl-5 pr-3 text-base bg-black text-white hover:bg-black/90 active:scale-100">
+                  <Button asChild size="lg" variant="ai" className="h-12 rounded-full pl-5 pr-3 text-base">
                     <Link to="#link">
                       <span className="text-nowrap">Start Building</span>
                       <ChevronRight className="ml-1" />
                     </Link>
                   </Button>
-                  <Button asChild size="lg" variant="ghost" className="h-12 rounded-full px-5 text-base hover:bg-transparent active:shadow-lg active:shadow-white/40 transition-shadow duration-150">
+                  <Button asChild size="lg" variant="ai-outline" className="h-12 rounded-full px-5 text-base text-primary-foreground">
                     <Link to="#link">
-                      <span className="text-nowrap text-primary-foreground">Request a demo</span>
+                      <span className="text-nowrap">Request a demo</span>
                     </Link>
                   </Button>
                 </div>

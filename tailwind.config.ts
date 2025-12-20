@@ -88,11 +88,32 @@ export default {
             transform: "translateX(100%)",
           },
         },
+        "glow-pulse": {
+          "0%, 100%": {
+            boxShadow: "0 0 20px 0 hsl(var(--ai-glow) / 0.4), 0 0 40px 0 hsl(var(--ai-glow) / 0.2)",
+          },
+          "50%": {
+            boxShadow: "0 0 30px 5px hsl(var(--ai-glow) / 0.6), 0 0 60px 10px hsl(var(--ai-glow) / 0.3)",
+          },
+        },
+        "border-flow": {
+          "0%": {
+            backgroundPosition: "0% 50%",
+          },
+          "50%": {
+            backgroundPosition: "100% 50%",
+          },
+          "100%": {
+            backgroundPosition: "0% 50%",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         shimmer: "shimmer 3s ease-in-out infinite",
+        "glow-pulse": "glow-pulse 2s ease-in-out infinite",
+        "border-flow": "border-flow 3s ease infinite",
       },
     },
   },
