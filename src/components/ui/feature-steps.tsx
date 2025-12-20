@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
-import { ChevronLeft, ChevronRight } from "lucide-react"
-import { useIsMobile } from "@/hooks/use-mobile"
 
 interface Feature {
   step: string
@@ -23,17 +21,14 @@ export function FeatureSteps({
   features,
   className,
   title = "How to get Started",
-  autoPlayInterval = 3000,
+  autoPlayInterval = 4000,
   imageHeight = "h-[400px]",
 }: FeatureStepsProps) {
   const [currentFeature, setCurrentFeature] = useState(0)
   const [progress, setProgress] = useState(0)
-  const isMobile = useIsMobile()
 
-  // Auto-play only on desktop
+  // Auto-play on all devices
   useEffect(() => {
-    if (isMobile) return // Disable auto-play on mobile
-
     const timer = setInterval(() => {
       if (progress < 100) {
         setProgress((prev) => prev + 100 / (autoPlayInterval / 100))
@@ -44,17 +39,7 @@ export function FeatureSteps({
     }, 100)
 
     return () => clearInterval(timer)
-  }, [progress, features.length, autoPlayInterval, isMobile])
-
-  const goToPrevious = () => {
-    setCurrentFeature((prev) => (prev - 1 + features.length) % features.length)
-    setProgress(0)
-  }
-
-  const goToNext = () => {
-    setCurrentFeature((prev) => (prev + 1) % features.length)
-    setProgress(0)
-  }
+  }, [progress, features.length, autoPlayInterval])
 
   return (
     <div className={cn("pt-0 pb-8 px-8 md:pt-0 md:pb-12 md:px-12", className)}>
@@ -63,7 +48,7 @@ export function FeatureSteps({
           {title}
         </h2>
 
-        {/* Mobile Carousel */}
+        {/* Mobile Carousel - Auto-play only, no controls */}
         <div className="md:hidden">
           <AnimatePresence mode="wait">
             <motion.div
@@ -95,40 +80,6 @@ export function FeatureSteps({
               </div>
             </motion.div>
           </AnimatePresence>
-
-          {/* Navigation arrows */}
-          <div className="flex items-center justify-center gap-4 mt-6">
-            <button
-              onClick={goToPrevious}
-              className="w-10 h-10 rounded-full bg-muted flex items-center justify-center hover:bg-muted/80 transition-colors"
-            >
-              <ChevronLeft className="w-5 h-5 text-foreground" />
-            </button>
-            
-            {/* Dots indicator */}
-            <div className="flex gap-2">
-              {features.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => {
-                    setCurrentFeature(index)
-                    setProgress(0)
-                  }}
-                  className={cn(
-                    "w-2 h-2 rounded-full transition-all duration-300",
-                    index === currentFeature ? "bg-primary w-6" : "bg-muted-foreground/30"
-                  )}
-                />
-              ))}
-            </div>
-
-            <button
-              onClick={goToNext}
-              className="w-10 h-10 rounded-full bg-muted flex items-center justify-center hover:bg-muted/80 transition-colors"
-            >
-              <ChevronRight className="w-5 h-5 text-foreground" />
-            </button>
-          </div>
         </div>
 
         {/* Desktop Layout */}
