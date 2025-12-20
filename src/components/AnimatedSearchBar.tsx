@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { Search } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const NEGOCIOS = [
@@ -64,6 +65,7 @@ export function AnimatedSearchBar({
         }}
         transition={{ duration: 0.2 }}
       >
+        <Search className="ml-4 h-4 w-4 text-muted-foreground" />
         <input
           ref={inputRef}
           type="text"
@@ -72,7 +74,7 @@ export function AnimatedSearchBar({
           onFocus={() => setIsFocused(true)}
           onBlur={() => setTimeout(() => setIsFocused(false), 150)}
           placeholder={placeholder}
-          className="flex-1 bg-transparent py-2 px-5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
+          className="flex-1 bg-transparent py-2 px-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
         />
       </motion.div>
 
