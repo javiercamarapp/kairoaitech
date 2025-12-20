@@ -122,30 +122,30 @@ export function BusinessShowcaseSection() {
     <section className="relative bg-background">
       {/* Main content */}
       <ScrollXCarousel className="h-[400vh]">
-        <ScrollXCarouselContainer className="flex flex-col justify-center py-20 px-6 lg:px-12">
+        <ScrollXCarouselContainer className="flex flex-col justify-center py-12 md:py-20 px-4 md:px-6 lg:px-12">
           <div className="max-w-7xl mx-auto w-full">
             {/* Section Title */}
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+            <div className="text-center mb-8 md:mb-12">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3 md:mb-4 px-2">
                 <BlurTextEffect delay={0} stagger={0.02}>
                   Negocios que pueden implementar IA
                 </BlurTextEffect>
               </h2>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
+              <p className="text-sm md:text-lg text-muted-foreground max-w-3xl mx-auto mb-6 md:mb-8 px-4">
                 Descubre cómo diferentes industrias están transformando sus operaciones con inteligencia artificial
               </p>
-              <ScrollXCarouselProgress className="max-w-md mx-auto h-2" progressStyle="bg-primary" />
+              <ScrollXCarouselProgress className="max-w-xs md:max-w-md mx-auto h-1.5 md:h-2" progressStyle="bg-primary" />
             </div>
 
             {/* Carousel */}
             <ScrollXCarouselWrap 
-              className="flex gap-8 py-8" 
-              xRange={['0%', '-75%']}
+              className="flex gap-4 md:gap-6 py-4 md:py-8" 
+              xRange={['0%', '-80%']}
             >
               {businesses.map((business) => (
                 <CardHoverReveal
                   key={business.id}
-                  className="w-[320px] md:w-[380px] h-[480px] flex-shrink-0 rounded-2xl overflow-hidden shadow-xl border border-border"
+                  className="w-[260px] sm:w-[280px] md:w-[320px] h-[340px] sm:h-[380px] md:h-[420px] flex-shrink-0 rounded-xl md:rounded-2xl overflow-hidden shadow-lg border border-border"
                 >
                   <CardHoverRevealMain className="w-full h-full">
                     <img
@@ -155,30 +155,15 @@ export function BusinessShowcaseSection() {
                     />
                   </CardHoverRevealMain>
 
-                  <CardHoverRevealContent className="flex flex-col justify-end p-5 bg-gradient-to-t from-zinc-900 via-zinc-900/95 to-zinc-900/80">
-                    {/* Industry Badge */}
-                    <div className="mb-3">
-                      <span className="text-xs font-medium text-primary uppercase tracking-wider">
-                        Industria
-                      </span>
-                      <div className="mt-1">
-                        <Badge variant="secondary" className="bg-primary/20 text-primary border-primary/30">
-                          {business.name}
-                        </Badge>
-                      </div>
-                    </div>
-
+                  <CardHoverRevealContent className="flex flex-col justify-end p-3 sm:p-4 md:p-5 bg-gradient-to-t from-zinc-900 via-zinc-900/95 to-zinc-900/70">
                     {/* Services */}
-                    <div className="mb-3">
-                      <span className="text-xs font-medium text-primary uppercase tracking-wider">
-                        Servicios IA
-                      </span>
-                      <div className="flex flex-wrap gap-1.5 mt-1">
-                        {business.services.map((service) => (
+                    <div className="mb-2 md:mb-3">
+                      <div className="flex flex-wrap gap-1 md:gap-1.5">
+                        {business.services.slice(0, 2).map((service) => (
                           <Badge 
                             key={service} 
                             variant="outline" 
-                            className="text-gray-300 border-gray-600 text-xs py-0.5"
+                            className="text-gray-300 border-gray-600 text-[10px] md:text-xs py-0.5 px-1.5 md:px-2"
                           >
                             {service}
                           </Badge>
@@ -187,11 +172,11 @@ export function BusinessShowcaseSection() {
                     </div>
 
                     {/* Description */}
-                    <div className="mt-2">
-                      <h3 className="text-lg font-semibold text-white mb-1.5">
+                    <div>
+                      <h3 className="text-base md:text-lg font-semibold text-white mb-1">
                         {business.name}
                       </h3>
-                      <p className="text-gray-300 text-sm leading-relaxed line-clamp-3">
+                      <p className="text-gray-300 text-xs md:text-sm leading-relaxed line-clamp-2">
                         {business.description}
                       </p>
                     </div>
