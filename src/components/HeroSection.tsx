@@ -20,7 +20,22 @@ export function HeroSection() {
   const { scrollY } = useScroll();
   const videoY = useTransform(scrollY, [0, 500], [0, 150]);
   const videoScale = useTransform(scrollY, [0, 500], [1, 1.1]);
+  const videoRef = React.useRef<HTMLVideoElement | null>(null);
   const [videoLoaded, setVideoLoaded] = React.useState(false);
+
+  React.useEffect(() => {
+    // Ensure autoplay starts ASAP across browsers.
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = true;
+    (v as any).playsInline = true;
+    const p = v.play?.();
+    if (p && typeof (p as Promise<void>).catch === 'function') {
+      (p as Promise<void>).catch(() => {
+        // Autoplay can be blocked until user interaction on some devices.
+      });
+    }
+  }, []);
 
   return <>
       <HeroHeader />
@@ -64,16 +79,23 @@ export function HeroSection() {
               <div className="absolute inset-0 bg-zinc-900" />
               {/* Video with parallax */}
               <motion.video 
+                ref={videoRef}
                 autoPlay 
                 loop 
                 muted 
                 playsInline
                 preload="auto"
-                onCanPlayThrough={() => setVideoLoaded(true)}
-                className="size-full object-cover object-[55%_center] sm:object-center transition-opacity duration-500" 
+                poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9'%3E%3Crect width='16' height='9' fill='%230a0a0a'/%3E%3C/svg%3E"
+                onLoadedData={() => setVideoLoaded(true)}
+                onCanPlay={() => setVideoLoaded(true)}
+                className="size-full object-cover object-[55%_center] sm:object-center" 
                 src="/videos/hero-background.mp4"
-                style={{ y: videoY, scale: videoScale, opacity: videoLoaded ? 1 : 0 }}
+                style={{ y: videoY, scale: videoScale }}
               />
+              {/* Subtle veil while loading to avoid flash */}
+              {!videoLoaded && (
+                <div className="absolute inset-0 bg-zinc-900/40" />
+              )}
               {/* Bottom fade for text readability */}
               <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background to-transparent" />
             </div>
