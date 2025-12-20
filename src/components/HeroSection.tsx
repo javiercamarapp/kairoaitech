@@ -27,7 +27,7 @@ export function HeroSection() {
                   </Button>
                   <Button asChild size="lg" variant="ghost" className="h-12 rounded-full px-5 text-base">
                     <Link to="#link">
-                      <span className="text-nowrap">Request a demo</span>
+                      <span className="text-nowrap text-primary-foreground">Request a demo</span>
                     </Link>
                   </Button>
                 </div>
