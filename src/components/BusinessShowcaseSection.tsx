@@ -121,6 +121,10 @@ export function BusinessShowcaseSection() {
       <div className="px-4 md:px-6 lg:px-12">
         <div className="max-w-7xl mx-auto w-full">
           <SectionHeader
+            title="¿Con qué soluciones contamos?"
+            className="mb-6 md:mb-8"
+          />
+          <SectionHeader
             title="Negocios que pueden implementar IA"
             subtitle="Descubre cómo diferentes industrias están transformando sus operaciones con inteligencia artificial"
           />
