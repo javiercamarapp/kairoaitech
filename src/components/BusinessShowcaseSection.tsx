@@ -8,6 +8,8 @@ import {
   CardHoverRevealMain,
 } from "@/components/ui/reveal-on-hover";
 import { Badge } from "@/components/ui/badge";
+import { ContainerScroll, CardSticky } from "@/components/ui/cards-stack";
+import { Bot, MessageSquare, Zap, Brain } from "lucide-react";
 
 // Import business images
 import restaurantImg from "@/assets/businesses/restaurant.png";
@@ -128,22 +130,54 @@ export function BusinessShowcaseSection() {
         </div>
       </div>
 
-      {/* Robot Hand Image */}
-      <ScrollAnimate 
-        className="relative -ml-8 md:-ml-16 lg:-ml-24 mb-8 md:mb-12"
-        delay={0.2}
-        duration={0.8}
-        x={-100}
-        y={0}
-      >
-        <motion.img
-          src={robotHandImg}
-          alt="Mano robótica de IA"
-          className="w-48 sm:w-64 md:w-80 lg:w-[420px] xl:w-[500px] h-auto object-contain"
-          whileHover={{ scale: 1.02, x: 10 }}
-          transition={{ duration: 0.3 }}
-        />
-      </ScrollAnimate>
+      {/* Robot Hand + Animated Cards */}
+      <div className="flex items-center gap-4 md:gap-8 lg:gap-12 mb-8 md:mb-12">
+        {/* Robot Hand Image */}
+        <ScrollAnimate 
+          className="relative -ml-8 md:-ml-16 lg:-ml-24 flex-shrink-0"
+          delay={0.2}
+          duration={0.8}
+          x={-100}
+          y={0}
+        >
+          <motion.img
+            src={robotHandImg}
+            alt="Mano robótica de IA"
+            className="w-48 sm:w-64 md:w-80 lg:w-[420px] xl:w-[500px] h-auto object-contain"
+            whileHover={{ scale: 1.02, x: 10 }}
+            transition={{ duration: 0.3 }}
+          />
+        </ScrollAnimate>
+
+        {/* Animated Cards Stack */}
+        <div className="flex gap-3 md:gap-4 flex-wrap max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-xl">
+          {[
+            { icon: Bot, title: "Chatbots IA", color: "from-primary/20 to-primary/5" },
+            { icon: MessageSquare, title: "Atención 24/7", color: "from-blue-500/20 to-blue-500/5" },
+            { icon: Zap, title: "Automatización", color: "from-amber-500/20 to-amber-500/5" },
+            { icon: Brain, title: "Machine Learning", color: "from-purple-500/20 to-purple-500/5" },
+          ].map((card, index) => (
+            <ScrollAnimate
+              key={card.title}
+              delay={0.3 + index * 0.15}
+              duration={0.6}
+              y={40}
+              x={20}
+            >
+              <motion.div
+                className={`flex items-center gap-2 md:gap-3 px-3 py-2 md:px-4 md:py-3 rounded-xl md:rounded-2xl bg-gradient-to-br ${card.color} backdrop-blur-sm border border-border/50 shadow-lg`}
+                whileHover={{ scale: 1.05, y: -5 }}
+                transition={{ duration: 0.2 }}
+              >
+                <card.icon className="w-4 h-4 md:w-5 md:h-5 text-foreground" />
+                <span className="text-xs md:text-sm font-medium text-foreground whitespace-nowrap">
+                  {card.title}
+                </span>
+              </motion.div>
+            </ScrollAnimate>
+          ))}
+        </div>
+      </div>
 
       <div className="px-4 md:px-6 lg:px-12">
         <div className="max-w-7xl mx-auto w-full">
