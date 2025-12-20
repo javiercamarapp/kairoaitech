@@ -32,8 +32,6 @@ const repeatedIcons = (icons: string[], repeat = 4) =>
 export default function IntegrationHero() {
   return (
     <section className="relative w-full overflow-hidden bg-background py-6 md:py-10">
-      {/* Light grid background */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border)/0.3)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border)/0.3)_1px,transparent_1px)] bg-[size:40px_40px] md:bg-[size:60px_60px]" />
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center px-2">
