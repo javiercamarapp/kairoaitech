@@ -74,7 +74,7 @@ export function HeroSection() {
                 <div className="mx-auto max-w-7xl px-6 lg:px-12 w-full">
                   <div className="mx-auto max-w-lg text-center lg:ml-0 lg:max-w-full lg:text-left">
                     <h1 className="mt-20 max-w-2xl text-balance text-3xl font-bold sm:text-4xl md:text-6xl lg:mt-16 xl:text-7xl text-primary-foreground mx-auto lg:mx-0">
-                      <TextLoopReveal text="Empieza a ahorrar dentro de tu empresa usando AI" />
+                      <TextLoopReveal text="Empieza a ahorrar dentro de tu empresa usando IA" />
                     </h1>
                     <p className="mt-8 max-w-2xl text-balance text-lg text-secondary">
                       <TextLoopReveal 
