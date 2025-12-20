@@ -1,12 +1,13 @@
 import React from "react"
 import { FeatureSteps } from "@/components/ui/feature-steps"
+import automationImage from "@/assets/automation.png"
 
 const aiBenefits = [
   {
     step: "Paso 1",
     title: "Automatización Inteligente",
     content: "Reduce hasta un 70% del trabajo repetitivo con IA. Automatiza tareas como respuestas a clientes, procesamiento de datos y generación de reportes, liberando a tu equipo para tareas estratégicas.",
-    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=2070&auto=format&fit=crop"
+    image: automationImage
   },
   {
     step: "Paso 2", 
