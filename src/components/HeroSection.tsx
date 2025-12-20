@@ -59,23 +59,23 @@ export function HeroSection() {
               </div>
               <div className="relative py-6 md:w-[calc(100%-11rem)]">
                 <InfiniteSlider speedOnHover={20} speed={40} gap={112}>
-                  <div className="flex">
-                    <img className="mx-auto h-12 w-fit" src={logoTaquitos} alt="Taquitos Logo" height="48" width="auto" />
+                  <div className="flex items-center justify-center h-16 w-32">
+                    <img className="max-h-12 max-w-full object-contain" src={logoTaquitos} alt="Taquitos Logo" />
                   </div>
-                  <div className="flex">
-                    <img className="mx-auto h-12 w-fit" src={logoAmerica} alt="Club América Logo" height="48" width="auto" />
+                  <div className="flex items-center justify-center h-16 w-32">
+                    <img className="max-h-12 max-w-full object-contain" src={logoAmerica} alt="Club América Logo" />
                   </div>
-                  <div className="flex">
-                    <img className="mx-auto h-12 w-fit" src={logoMonterrey} alt="Monterrey Logo" height="48" width="auto" />
+                  <div className="flex items-center justify-center h-16 w-32">
+                    <img className="max-h-12 max-w-full object-contain" src={logoMonterrey} alt="Monterrey Logo" />
                   </div>
-                  <div className="flex">
-                    <img className="mx-auto h-12 w-fit" src={logoKing} alt="King Logo" height="48" width="auto" />
+                  <div className="flex items-center justify-center h-16 w-32">
+                    <img className="max-h-12 max-w-full object-contain" src={logoKing} alt="King Logo" />
                   </div>
-                  <div className="flex">
-                    <img className="mx-auto h-12 w-fit" src={logoParadise} alt="Paradise Logo" height="48" width="auto" />
+                  <div className="flex items-center justify-center h-16 w-32">
+                    <img className="max-h-12 max-w-full object-contain" src={logoParadise} alt="Paradise Logo" />
                   </div>
-                  <div className="flex">
-                    <img className="mx-auto h-12 w-fit" src={logoDropin} alt="Dropin Logo" height="48" width="auto" />
+                  <div className="flex items-center justify-center h-16 w-32">
+                    <img className="max-h-12 max-w-full object-contain" src={logoDropin} alt="Dropin Logo" />
                   </div>
                 </InfiniteSlider>
 
