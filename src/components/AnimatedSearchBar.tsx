@@ -35,7 +35,7 @@ export function AnimatedSearchBar({
 
   const filteredNegocios = value.trim() 
     ? NEGOCIOS.filter(negocio => 
-        negocio.toLowerCase().includes(value.toLowerCase())
+        negocio.toLowerCase().startsWith(value.toLowerCase())
       )
     : [];
 
