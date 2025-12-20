@@ -162,7 +162,7 @@ export function HeroSection() {
           
           {/* Search Bar */}
           <div className="py-6 px-3">
-            <AnimatedSearchBar placeholder="¿De qué es tu negocio y que te gustaría mejorar?" />
+            <AnimatedSearchBar placeholder="Busca tu negocio..." />
           </div>
         </motion.section>
       </main>
