@@ -44,14 +44,19 @@ export function HeroSection() {
               </div>
             </div>
             <div className="aspect-[2/3] absolute inset-1 overflow-hidden rounded-3xl border border-border/10 sm:aspect-video lg:rounded-[3rem]">
-            <video
+              {/* Video */}
+              <video
                 autoPlay
                 loop
                 muted
                 playsInline
-                className="size-full object-cover opacity-50 dark:opacity-75"
+                className="size-full object-cover opacity-70 dark:opacity-85"
                 src="/videos/hero-background.mp4"
               />
+              {/* Gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-transparent to-accent/20" />
+              {/* Bottom fade for text readability */}
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
             </div>
           </div>
         </section>
