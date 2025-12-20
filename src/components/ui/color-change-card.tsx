@@ -4,8 +4,8 @@ import { ArrowRight } from "lucide-react";
 
 const ColorChangeCards = () => {
   return (
-    <section className="bg-background p-4 py-16 md:p-8 md:py-24">
-      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-2">
+    <section className="bg-background px-2 py-8 md:px-4 md:py-12">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
         <Card
           heading="Automatización"
           description="Optimiza tus procesos con flujos de trabajo inteligentes que reducen costos y aumentan la productividad."
