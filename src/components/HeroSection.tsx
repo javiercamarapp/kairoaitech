@@ -60,6 +60,8 @@ export function HeroSection() {
                 className="absolute inset-0 h-full w-full object-cover object-[55%_center] sm:object-center"
                 src="/videos/hero-background.mp4"
               />
+              {/* Mobile overlay for text readability */}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-transparent sm:hidden" />
               {/* Bottom fade for text readability */}
               <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background to-transparent" />
             </div>
