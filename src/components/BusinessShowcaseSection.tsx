@@ -166,12 +166,12 @@ function SolutionsCarousel({ robotHandImg }: { robotHandImg: string }) {
   return (
     <div className="flex flex-row items-center gap-2 sm:gap-4 md:gap-6 lg:gap-8 mb-8 md:mb-12">
       {/* Robot Hand Image */}
-      <ScrollAnimate 
+      <motion.div 
         className="relative -ml-8 sm:-ml-10 md:-ml-16 lg:-ml-24 flex-shrink-0"
-        delay={0.2}
-        duration={0.8}
-        x={-100}
-        y={0}
+        initial={{ opacity: 0, x: -100 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+        viewport={{ once: true, margin: "-50px" }}
       >
         <motion.img
           src={robotHandImg}
@@ -180,7 +180,7 @@ function SolutionsCarousel({ robotHandImg }: { robotHandImg: string }) {
           whileHover={{ scale: 1.02, x: 10 }}
           transition={{ duration: 0.3 }}
         />
-      </ScrollAnimate>
+      </motion.div>
 
       {/* Carousel Card */}
       <div className="flex-1 max-w-[260px] sm:max-w-sm md:max-w-xl lg:max-w-2xl pr-2 sm:pr-4 md:pr-0">
