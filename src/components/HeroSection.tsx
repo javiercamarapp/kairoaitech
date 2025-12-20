@@ -8,6 +8,7 @@ import { Menu, X, ChevronRight } from 'lucide-react';
 import { useScroll, motion } from 'motion/react';
 import { TextLoopReveal } from '@/components/ui/text-loop-reveal';
 import { AnimatedSearchBar } from '@/components/AnimatedSearchBar';
+import { AIBenefitsSection } from '@/components/AIBenefitsSection';
 import logoImage from '@/assets/logo.png';
 import logoTaquitos from '@/assets/logos/taquitos.avif';
 import logoAmerica from '@/assets/logos/america.png';
@@ -165,6 +166,9 @@ export function HeroSection() {
             <AnimatedSearchBar placeholder="Busca tu negocio..." />
           </div>
         </motion.section>
+        
+        {/* AI Benefits Section */}
+        <AIBenefitsSection />
       </main>
     </>;
 }
