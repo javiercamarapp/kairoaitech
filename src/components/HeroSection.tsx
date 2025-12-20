@@ -7,6 +7,13 @@ import { cn } from '@/lib/utils';
 import { Menu, X, ChevronRight } from 'lucide-react';
 import { useScroll, motion } from 'motion/react';
 import logoImage from '@/assets/logo.png';
+import logoTaquitos from '@/assets/logos/taquitos.avif';
+import logoAmerica from '@/assets/logos/america.png';
+import logoMonterrey from '@/assets/logos/monterrey.png';
+import logoKing from '@/assets/logos/king.png';
+import logoParadise from '@/assets/logos/paradise.png';
+import logoDropin from '@/assets/logos/dropin.png';
+
 export function HeroSection() {
   return <>
       <HeroHeader />
@@ -53,28 +60,22 @@ export function HeroSection() {
               <div className="relative py-6 md:w-[calc(100%-11rem)]">
                 <InfiniteSlider speedOnHover={20} speed={40} gap={112}>
                   <div className="flex">
-                    <img className="mx-auto h-5 w-fit dark:invert" src="https://html.tailus.io/blocks/customers/nvidia.svg" alt="Nvidia Logo" height="20" width="auto" />
+                    <img className="mx-auto h-12 w-fit" src={logoTaquitos} alt="Taquitos Logo" height="48" width="auto" />
                   </div>
                   <div className="flex">
-                    <img className="mx-auto h-4 w-fit dark:invert" src="https://html.tailus.io/blocks/customers/column.svg" alt="Column Logo" height="16" width="auto" />
+                    <img className="mx-auto h-12 w-fit" src={logoAmerica} alt="Club América Logo" height="48" width="auto" />
                   </div>
                   <div className="flex">
-                    <img className="mx-auto h-4 w-fit dark:invert" src="https://html.tailus.io/blocks/customers/github.svg" alt="GitHub Logo" height="16" width="auto" />
+                    <img className="mx-auto h-12 w-fit" src={logoMonterrey} alt="Monterrey Logo" height="48" width="auto" />
                   </div>
                   <div className="flex">
-                    <img className="mx-auto h-5 w-fit dark:invert" src="https://html.tailus.io/blocks/customers/nike.svg" alt="Nike Logo" height="20" width="auto" />
+                    <img className="mx-auto h-12 w-fit" src={logoKing} alt="King Logo" height="48" width="auto" />
                   </div>
                   <div className="flex">
-                    <img className="mx-auto h-5 w-fit dark:invert" src="https://html.tailus.io/blocks/customers/lemonsqueezy.svg" alt="Lemon Squeezy Logo" height="20" width="auto" />
+                    <img className="mx-auto h-12 w-fit" src={logoParadise} alt="Paradise Logo" height="48" width="auto" />
                   </div>
                   <div className="flex">
-                    <img className="mx-auto h-4 w-fit dark:invert" src="https://html.tailus.io/blocks/customers/laravel.svg" alt="Laravel Logo" height="16" width="auto" />
-                  </div>
-                  <div className="flex">
-                    <img className="mx-auto h-7 w-fit dark:invert" src="https://html.tailus.io/blocks/customers/lilly.svg" alt="Lilly Logo" height="28" width="auto" />
-                  </div>
-                  <div className="flex">
-                    <img className="mx-auto h-6 w-fit dark:invert" src="https://html.tailus.io/blocks/customers/openai.svg" alt="OpenAI Logo" height="24" width="auto" />
+                    <img className="mx-auto h-12 w-fit" src={logoDropin} alt="Dropin Logo" height="48" width="auto" />
                   </div>
                 </InfiniteSlider>
 
