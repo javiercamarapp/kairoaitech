@@ -183,8 +183,8 @@ function SolutionsCarousel({ robotHandImg }: { robotHandImg: string }) {
       </ScrollAnimate>
 
       {/* Carousel Card */}
-      <div className="flex-1 max-w-[240px] sm:max-w-sm md:max-w-xl lg:max-w-2xl pr-2 sm:pr-4 md:pr-0">
-        <div className="relative h-[100px] sm:h-[120px] md:h-[240px] lg:h-[260px]">
+      <div className="flex-1 max-w-[260px] sm:max-w-sm md:max-w-xl lg:max-w-2xl pr-2 sm:pr-4 md:pr-0">
+        <div className="relative h-[115px] sm:h-[130px] md:h-[240px] lg:h-[260px]">
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={currentIndex}
@@ -195,20 +195,20 @@ function SolutionsCarousel({ robotHandImg }: { robotHandImg: string }) {
               transition={{ duration: 0.4, ease: "easeInOut" }}
               className="absolute inset-0 p-2.5 sm:p-3 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-3xl bg-gradient-to-br from-zinc-800/90 to-zinc-900/95 backdrop-blur-md border border-zinc-700/50 shadow-2xl"
             >
-              <div className="flex flex-col md:flex-row md:items-start gap-1.5 sm:gap-2 md:gap-4 h-full">
+              <div className="flex flex-col md:flex-row md:items-start gap-1 sm:gap-1.5 md:gap-4 h-full">
                 <div className="flex items-center gap-2 md:block">
                   <div className="p-1 sm:p-1.5 md:p-3 rounded-md md:rounded-xl bg-zinc-700/50 border border-zinc-600/30 flex-shrink-0">
                     <IconComponent className="w-3 h-3 sm:w-4 sm:h-4 md:w-7 md:h-7 lg:w-8 lg:h-8 text-white" />
                   </div>
-                  <h3 className="text-[11px] sm:text-xs md:hidden font-bold text-white line-clamp-1">
+                  <h3 className="text-[10px] sm:text-xs md:hidden font-bold text-white">
                     {currentCard.title}
                   </h3>
                 </div>
-                <div className="flex-1 min-w-0 flex flex-col">
+                <div className="flex-1 min-w-0 flex flex-col overflow-hidden">
                   <h3 className="hidden md:block text-xl lg:text-2xl font-bold text-white mb-3">
                     {currentCard.title}
                   </h3>
-                  <p className="text-[9px] sm:text-[10px] md:text-sm lg:text-base text-zinc-300 leading-snug md:leading-relaxed flex-1 line-clamp-3 md:line-clamp-none">
+                  <p className="text-[8px] sm:text-[9px] md:text-sm lg:text-base text-zinc-300 leading-tight sm:leading-snug md:leading-relaxed flex-1 line-clamp-4 sm:line-clamp-5 md:line-clamp-none">
                     {currentCard.description}
                   </p>
                 </div>
