@@ -1,7 +1,24 @@
-import React, { useState } from 'react';
-import { motion } from 'motion/react';
-import { Search, Mic } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '@/lib/utils';
+
+const NEGOCIOS = [
+  "Restaurante",
+  "Cafetería",
+  "Tienda de ropa",
+  "Peluquería",
+  "Gimnasio",
+  "Panadería",
+  "Farmacia",
+  "Ferretería",
+  "Floristería",
+  "Taller mecánico",
+  "Consultorio médico",
+  "Clínica dental",
+  "Estudio de yoga",
+  "Agencia de viajes",
+  "Inmobiliaria",
+];
 
 interface AnimatedSearchBarProps {
   className?: string;
@@ -10,14 +27,27 @@ interface AnimatedSearchBarProps {
 
 export function AnimatedSearchBar({ 
   className, 
-  placeholder = "¿Qué quieres saber sobre AI?" 
+  placeholder = "Busca tu negocio..." 
 }: AnimatedSearchBarProps) {
   const [isFocused, setIsFocused] = useState(false);
   const [value, setValue] = useState('');
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const filteredNegocios = value.trim() 
+    ? NEGOCIOS.filter(negocio => 
+        negocio.toLowerCase().includes(value.toLowerCase())
+      )
+    : [];
+
+  const handleSelect = (negocio: string) => {
+    setValue(negocio);
+    setIsFocused(false);
+    inputRef.current?.blur();
+  };
 
   return (
     <motion.div
-      className={cn("w-full max-w-2xl mx-auto", className)}
+      className={cn("w-full max-w-2xl mx-auto relative", className)}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.3 }}
@@ -34,50 +64,40 @@ export function AnimatedSearchBar({
         }}
         transition={{ duration: 0.2 }}
       >
-        {/* Search Icon */}
-        <motion.div
-          className="pl-5 pr-2"
-          animate={{ 
-            scale: isFocused ? 1.1 : 1,
-            color: isFocused ? 'hsl(var(--primary))' : 'hsl(var(--muted-foreground))'
-          }}
-          transition={{ duration: 0.2 }}
-        >
-          <Search className="h-5 w-5" />
-        </motion.div>
-
-        {/* Input */}
         <input
+          ref={inputRef}
           type="text"
           value={value}
           onChange={(e) => setValue(e.target.value)}
           onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
+          onBlur={() => setTimeout(() => setIsFocused(false), 150)}
           placeholder={placeholder}
-          className="flex-1 bg-transparent py-2 pr-4 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
+          className="flex-1 bg-transparent py-2 px-5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
         />
-
-        {/* Mic Icon */}
-        <motion.button
-          className="pr-5 pl-2 text-muted-foreground hover:text-foreground transition-colors"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-          type="button"
-        >
-          <Mic className="h-5 w-5" />
-        </motion.button>
-
-        {/* Animated border glow */}
-        {isFocused && (
-          <motion.div
-            className="absolute inset-0 rounded-full border-2 border-primary/30 pointer-events-none"
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.98 }}
-            transition={{ duration: 0.2 }}
-          />
-        )}
       </motion.div>
+
+      {/* Dropdown de sugerencias */}
+      <AnimatePresence>
+        {isFocused && filteredNegocios.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="absolute top-full left-0 right-0 mt-2 bg-background border border-border rounded-xl shadow-lg overflow-hidden z-50"
+          >
+            {filteredNegocios.map((negocio, index) => (
+              <button
+                key={negocio}
+                onClick={() => handleSelect(negocio)}
+                className="w-full text-left px-5 py-3 text-sm text-foreground hover:bg-muted transition-colors cursor-pointer"
+              >
+                {negocio}
+              </button>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }
