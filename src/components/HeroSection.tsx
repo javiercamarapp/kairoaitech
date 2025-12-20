@@ -46,13 +46,13 @@ export function HeroSection() {
                 >
                   <Button asChild size="lg" className="h-12 rounded-full pl-5 pr-3 text-base bg-black text-white hover:bg-black/90 active:-translate-y-1 transition-all duration-150">
                     <Link to="#link">
-                      <span className="text-nowrap">Start Building</span>
+                      <span className="text-nowrap">Ponerse en contacto</span>
                       <ChevronRight className="ml-1" />
                     </Link>
                   </Button>
                   <Button asChild size="lg" variant="ghost" className="h-12 rounded-full px-5 text-base hover:bg-transparent active:-translate-y-1 active:shadow-lg active:shadow-white/40 transition-all duration-150 bg-white/20 sm:bg-transparent backdrop-blur-sm sm:backdrop-blur-none">
                     <Link to="#link">
-                      <span className="text-nowrap text-white font-medium sm:font-normal sm:text-primary-foreground">Request a demo</span>
+                      <span className="text-nowrap text-white font-medium sm:font-normal sm:text-primary-foreground">Ver soluciones</span>
                     </Link>
                   </Button>
                 </motion.div>
