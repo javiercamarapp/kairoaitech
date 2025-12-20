@@ -8,6 +8,7 @@ interface ScrollAnimateProps {
   className?: string;
   delay?: number;
   duration?: number;
+  x?: number;
   y?: number;
   scale?: number;
 }
@@ -17,6 +18,7 @@ export const ScrollAnimate: React.FC<ScrollAnimateProps> = ({
   className = '',
   delay = 0,
   duration = 0.6,
+  x = 0,
   y = 30,
   scale = 0.95
 }) => {
@@ -31,9 +33,10 @@ export const ScrollAnimate: React.FC<ScrollAnimateProps> = ({
         if (entry.isIntersecting) {
           gsap.fromTo(
             containerRef.current,
-            { opacity: 0, y: y, scale: scale },
+            { opacity: 0, x: x, y: y, scale: scale },
             {
               opacity: 1,
+              x: 0,
               y: 0,
               scale: 1,
               duration: duration,
@@ -43,7 +46,7 @@ export const ScrollAnimate: React.FC<ScrollAnimateProps> = ({
           );
           setHasAnimated(true);
         } else if (hasAnimated) {
-          gsap.set(containerRef.current, { opacity: 0, y: y, scale: scale });
+          gsap.set(containerRef.current, { opacity: 0, x: x, y: y, scale: scale });
           setHasAnimated(false);
         }
       },
@@ -58,13 +61,13 @@ export const ScrollAnimate: React.FC<ScrollAnimateProps> = ({
       }
       observer.disconnect();
     };
-  }, [delay, duration, y, scale, hasAnimated]);
+  }, [delay, duration, x, y, scale, hasAnimated]);
 
   return (
     <div 
       ref={containerRef} 
       className={className}
-      style={{ opacity: 0, transform: `translateY(${y}px) scale(${scale})` }}
+      style={{ opacity: 0, transform: `translateX(${x}px) translateY(${y}px) scale(${scale})` }}
     >
       {children}
     </div>

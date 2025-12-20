@@ -129,13 +129,21 @@ export function BusinessShowcaseSection() {
       </div>
 
       {/* Robot Hand Image */}
-      <div className="relative -ml-8 md:-ml-16 lg:-ml-24 mb-8 md:mb-12">
-        <img
+      <ScrollAnimate 
+        className="relative -ml-8 md:-ml-16 lg:-ml-24 mb-8 md:mb-12"
+        delay={0.2}
+        duration={0.8}
+        x={-100}
+        y={0}
+      >
+        <motion.img
           src={robotHandImg}
           alt="Mano robótica de IA"
           className="w-48 sm:w-64 md:w-80 lg:w-[420px] xl:w-[500px] h-auto object-contain"
+          whileHover={{ scale: 1.02, x: 10 }}
+          transition={{ duration: 0.3 }}
         />
-      </div>
+      </ScrollAnimate>
 
       <div className="px-4 md:px-6 lg:px-12">
         <div className="max-w-7xl mx-auto w-full">
