@@ -131,7 +131,7 @@ export function HeroSection() {
               >
                 <InfiniteSlider speedOnHover={60} speed={80} gap={48}>
                   <div className="flex items-center justify-center h-16 w-32">
-                    <img className="max-h-12 max-w-full object-contain" src={logoTaquitos} alt="Taquitos Logo" />
+                    <img className="max-h-12 max-w-full object-contain" src={logoTaquitos} alt="Taquitos Logo" loading="eager" fetchPriority="high" />
                   </div>
                   <div className="flex items-center justify-center h-16 w-32">
                     <img className="max-h-12 max-w-full object-contain" src={logoAmerica} alt="Club América Logo" />
