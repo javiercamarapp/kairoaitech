@@ -95,7 +95,7 @@ export function HeroSection() {
                       y={40}
                     >
                       <Button asChild size="lg" className="h-12 rounded-full pl-5 pr-3 text-base bg-black text-white hover:bg-black/90 active:-translate-y-1 transition-all duration-150">
-                        <Link to="#link">
+                        <Link to="/contacto">
                           <span className="text-nowrap">Ponerse en contacto</span>
                           <ChevronRight className="ml-1" />
                         </Link>
