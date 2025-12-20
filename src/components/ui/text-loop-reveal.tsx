@@ -1,60 +1,70 @@
 "use client";
 
-import { FC, useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { FC, useEffect, useState, useRef } from "react";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface TextLoopRevealProps {
   text: string;
   className?: string;
   wordDelay?: number;
-  loopDelay?: number;
 }
 
 const TextLoopReveal: FC<TextLoopRevealProps> = ({
   text,
   className,
   wordDelay = 0.15,
-  loopDelay = 3000,
 }) => {
   const words = text.split(" ");
-  const [key, setKey] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const [animationKey, setAnimationKey] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    const totalDuration = words.length * wordDelay * 1000 + loopDelay;
-    const interval = setInterval(() => {
-      setKey((prev) => prev + 1);
-    }, totalDuration);
-    return () => clearInterval(interval);
-  }, [words.length, wordDelay, loopDelay]);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          setAnimationKey((prev) => prev + 1);
+        } else {
+          setIsVisible(false);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <span
+      ref={ref}
       className={cn(
         "flex w-full flex-wrap justify-center text-center lg:justify-start lg:text-left",
         className,
       )}
     >
-      <AnimatePresence mode="wait">
-        <motion.span key={key} className="flex w-full flex-wrap justify-center lg:justify-start">
-          {words.map((word, i) => (
-            <motion.span
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{
-                duration: 0.4,
-                delay: i * wordDelay,
-                ease: "easeOut",
-              }}
-              className="mx-[0.125em] inline-block"
-            >
-              {word}
-            </motion.span>
-          ))}
-        </motion.span>
-      </AnimatePresence>
+      <motion.span key={animationKey} className="flex w-full flex-wrap justify-center lg:justify-start">
+        {words.map((word, i) => (
+          <motion.span
+            key={i}
+            initial={{ opacity: 0, y: 20 }}
+            animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{
+              duration: 0.4,
+              delay: i * wordDelay,
+              ease: "easeOut",
+            }}
+            className="mx-[0.125em] inline-block"
+          >
+            {word}
+          </motion.span>
+        ))}
+      </motion.span>
     </span>
   );
 };
