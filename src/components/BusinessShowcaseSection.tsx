@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/reveal-on-hover";
 import { Badge } from "@/components/ui/badge";
 import { Bot, MessageSquare, Zap, Brain, ChevronLeft, ChevronRight } from "lucide-react";
+import ColorChangeCards from "@/components/ui/color-change-card";
 
 // Import business images
 import restaurantImg from "@/assets/businesses/restaurant.png";
@@ -238,6 +239,9 @@ export function BusinessShowcaseSection() {
 
       {/* Robot Hand + Carousel Cards */}
       <SolutionsCarousel robotHandImg={robotHandImg} />
+
+      {/* Color Change Cards Carousel */}
+      <ColorChangeCards />
 
       <div className="px-4 md:px-6 lg:px-12">
         <div className="max-w-7xl mx-auto w-full">
