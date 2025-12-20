@@ -164,10 +164,10 @@ function SolutionsCarousel({ robotHandImg }: { robotHandImg: string }) {
   const IconComponent = currentCard.icon;
 
   return (
-    <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 lg:gap-8 mb-8 md:mb-12 px-4 md:px-0">
+    <div className="flex flex-row items-center gap-2 sm:gap-4 md:gap-6 lg:gap-8 mb-8 md:mb-12">
       {/* Robot Hand Image */}
       <ScrollAnimate 
-        className="relative -ml-4 md:-ml-16 lg:-ml-24 flex-shrink-0"
+        className="relative -ml-8 sm:-ml-10 md:-ml-16 lg:-ml-24 flex-shrink-0"
         delay={0.2}
         duration={0.8}
         x={-100}
@@ -176,15 +176,15 @@ function SolutionsCarousel({ robotHandImg }: { robotHandImg: string }) {
         <motion.img
           src={robotHandImg}
           alt="Mano robótica de IA"
-          className="w-40 sm:w-56 md:w-72 lg:w-[380px] xl:w-[450px] h-auto object-contain"
+          className="w-28 sm:w-40 md:w-72 lg:w-[380px] xl:w-[450px] h-auto object-contain"
           whileHover={{ scale: 1.02, x: 10 }}
           transition={{ duration: 0.3 }}
         />
       </ScrollAnimate>
 
       {/* Carousel Card */}
-      <div className="w-full md:flex-1 md:max-w-xl lg:max-w-2xl">
-        <div className="relative h-[200px] sm:h-[220px] md:h-[240px] lg:h-[260px]">
+      <div className="flex-1 max-w-[200px] sm:max-w-xs md:max-w-xl lg:max-w-2xl pr-2 sm:pr-4 md:pr-0">
+        <div className="relative h-[140px] sm:h-[160px] md:h-[240px] lg:h-[260px]">
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={currentIndex}
@@ -193,17 +193,17 @@ function SolutionsCarousel({ robotHandImg }: { robotHandImg: string }) {
               animate={{ opacity: 1, x: 0, scale: 1 }}
               exit={{ opacity: 0, x: direction > 0 ? -100 : 100, scale: 0.9 }}
               transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="absolute inset-0 p-5 md:p-6 lg:p-8 rounded-2xl md:rounded-3xl bg-gradient-to-br from-zinc-800/90 to-zinc-900/95 backdrop-blur-md border border-zinc-700/50 shadow-2xl"
+              className="absolute inset-0 p-3 sm:p-4 md:p-6 lg:p-8 rounded-xl sm:rounded-2xl md:rounded-3xl bg-gradient-to-br from-zinc-800/90 to-zinc-900/95 backdrop-blur-md border border-zinc-700/50 shadow-2xl"
             >
-              <div className="flex items-start gap-3 md:gap-4 h-full">
-                <div className="p-2 md:p-3 rounded-xl bg-zinc-700/50 border border-zinc-600/30 flex-shrink-0">
-                  <IconComponent className="w-5 h-5 md:w-7 md:h-7 lg:w-8 lg:h-8 text-white" />
+              <div className="flex items-start gap-2 sm:gap-3 md:gap-4 h-full">
+                <div className="p-1.5 sm:p-2 md:p-3 rounded-lg md:rounded-xl bg-zinc-700/50 border border-zinc-600/30 flex-shrink-0">
+                  <IconComponent className="w-4 h-4 sm:w-5 sm:h-5 md:w-7 md:h-7 lg:w-8 lg:h-8 text-white" />
                 </div>
                 <div className="flex-1 min-w-0 flex flex-col">
-                  <h3 className="text-base md:text-xl lg:text-2xl font-bold text-white mb-2 md:mb-3">
+                  <h3 className="text-xs sm:text-sm md:text-xl lg:text-2xl font-bold text-white mb-1 md:mb-3 line-clamp-1">
                     {currentCard.title}
                   </h3>
-                  <p className="text-xs md:text-sm lg:text-base text-zinc-300 leading-relaxed flex-1">
+                  <p className="text-[10px] sm:text-xs md:text-sm lg:text-base text-zinc-300 leading-relaxed flex-1 line-clamp-3 sm:line-clamp-4 md:line-clamp-none">
                     {currentCard.description}
                   </p>
                 </div>
@@ -213,8 +213,8 @@ function SolutionsCarousel({ robotHandImg }: { robotHandImg: string }) {
         </div>
 
         {/* Controls */}
-        <div className="flex items-center justify-between mt-4">
-          <div className="flex gap-2">
+        <div className="flex items-center justify-between mt-2 sm:mt-3 md:mt-4">
+          <div className="flex gap-1 sm:gap-1.5 md:gap-2">
             {solutionCards.map((_, idx) => (
               <button
                 key={idx}
@@ -222,26 +222,26 @@ function SolutionsCarousel({ robotHandImg }: { robotHandImg: string }) {
                   setDirection(idx > currentIndex ? 1 : -1);
                   setCurrentIndex(idx);
                 }}
-                className={`w-2 h-2 md:w-2.5 md:h-2.5 rounded-full transition-all duration-300 ${
+                className={`h-1.5 sm:h-2 md:h-2.5 rounded-full transition-all duration-300 ${
                   idx === currentIndex 
-                    ? "bg-white w-6 md:w-8" 
-                    : "bg-zinc-600 hover:bg-zinc-500"
+                    ? "bg-white w-4 sm:w-5 md:w-8" 
+                    : "bg-zinc-600 hover:bg-zinc-500 w-1.5 sm:w-2 md:w-2.5"
                 }`}
               />
             ))}
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-1 sm:gap-1.5 md:gap-2">
             <button
               onClick={goToPrev}
-              className="p-2 rounded-full bg-zinc-800 border border-zinc-700 hover:bg-zinc-700 transition-colors"
+              className="p-1 sm:p-1.5 md:p-2 rounded-full bg-zinc-800 border border-zinc-700 hover:bg-zinc-700 transition-colors"
             >
-              <ChevronLeft className="w-4 h-4 md:w-5 md:h-5 text-white" />
+              <ChevronLeft className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 text-white" />
             </button>
             <button
               onClick={goToNext}
-              className="p-2 rounded-full bg-zinc-800 border border-zinc-700 hover:bg-zinc-700 transition-colors"
+              className="p-1 sm:p-1.5 md:p-2 rounded-full bg-zinc-800 border border-zinc-700 hover:bg-zinc-700 transition-colors"
             >
-              <ChevronRight className="w-4 h-4 md:w-5 md:h-5 text-white" />
+              <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 text-white" />
             </button>
           </div>
         </div>
