@@ -84,7 +84,7 @@ export function AnimatedSearchBar({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-full left-0 right-0 mt-2 bg-background border border-border rounded-xl shadow-lg overflow-hidden z-50"
+            className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-zinc-900 border border-border rounded-xl shadow-2xl overflow-hidden z-[100]"
           >
             {filteredNegocios.map((negocio, index) => (
               <button
