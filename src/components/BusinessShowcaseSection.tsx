@@ -1,12 +1,7 @@
-import React from "react";
+import React, { useRef } from "react";
+import { motion } from "motion/react";
 import { BlurTextEffect } from "@/components/ui/blur-text-effect";
 import { ScrollAnimate } from "@/components/ui/scroll-animate";
-import {
-  ScrollXCarousel,
-  ScrollXCarouselContainer,
-  ScrollXCarouselProgress,
-  ScrollXCarouselWrap,
-} from "@/components/ui/scroll-x-carousel";
 import {
   CardHoverReveal,
   CardHoverRevealContent,
@@ -119,79 +114,87 @@ const businesses: Business[] = [
 ];
 
 export function BusinessShowcaseSection() {
+  const constraintsRef = useRef<HTMLDivElement>(null);
+
   return (
-    <section className="relative bg-background py-16 md:py-24">
-      {/* Main content */}
-      <ScrollXCarousel className="h-[400vh]">
-        <ScrollXCarouselContainer className="flex flex-col justify-center py-16 md:py-24 px-4 md:px-6 lg:px-12">
-          <div className="max-w-7xl mx-auto w-full">
-            {/* Section Title */}
-            <ScrollAnimate className="text-center mb-10 md:mb-16" delay={0.1} duration={0.7}>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 md:mb-6 px-2">
-                <BlurTextEffect delay={0.2} stagger={0.02}>
-                  Negocios que pueden implementar IA
-                </BlurTextEffect>
-              </h2>
-              <p className="text-sm md:text-lg text-muted-foreground max-w-3xl mx-auto mb-6 md:mb-8 px-4">
-                <BlurTextEffect delay={0.5} stagger={0.01}>
-                  Descubre cómo diferentes industrias están transformando sus operaciones con inteligencia artificial
-                </BlurTextEffect>
-              </p>
-              <ScrollXCarouselProgress className="max-w-xs md:max-w-md mx-auto h-1.5 md:h-2" progressStyle="bg-primary" />
-            </ScrollAnimate>
+    <section className="relative bg-background overflow-hidden">
+      <div className="px-4 md:px-6 lg:px-12">
+        <div className="max-w-7xl mx-auto w-full">
+          {/* Section Title */}
+          <ScrollAnimate className="text-center mb-10 md:mb-12" delay={0.1} duration={0.7}>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 md:mb-6 px-2">
+              <BlurTextEffect delay={0.2} stagger={0.02}>
+                Negocios que pueden implementar IA
+              </BlurTextEffect>
+            </h2>
+            <p className="text-sm md:text-lg text-muted-foreground max-w-3xl mx-auto px-4">
+              <BlurTextEffect delay={0.5} stagger={0.01}>
+                Descubre cómo diferentes industrias están transformando sus operaciones con inteligencia artificial
+              </BlurTextEffect>
+            </p>
+          </ScrollAnimate>
+        </div>
+      </div>
 
-            {/* Carousel */}
-            <ScrollAnimate delay={0.3} duration={0.8} y={50}>
-              <ScrollXCarouselWrap 
-                className="flex gap-4 md:gap-6 py-4 md:py-8" 
-                xRange={['0%', '-80%']}
+      {/* Draggable Carousel */}
+      <div ref={constraintsRef} className="overflow-hidden cursor-grab active:cursor-grabbing">
+        <motion.div
+          drag="x"
+          dragConstraints={constraintsRef}
+          dragElastic={0.1}
+          className="flex gap-4 md:gap-6 px-4 md:px-6 lg:px-12 pb-4"
+          style={{ width: "max-content" }}
+        >
+          {businesses.map((business, index) => (
+            <ScrollAnimate
+              key={business.id}
+              delay={0.1 + index * 0.05}
+              duration={0.6}
+              y={30}
+            >
+              <CardHoverReveal
+                className="w-[260px] sm:w-[280px] md:w-[320px] h-[340px] sm:h-[380px] md:h-[420px] flex-shrink-0 rounded-xl md:rounded-2xl overflow-hidden shadow-lg border border-border"
               >
-              {businesses.map((business) => (
-                <CardHoverReveal
-                  key={business.id}
-                  className="w-[260px] sm:w-[280px] md:w-[320px] h-[340px] sm:h-[380px] md:h-[420px] flex-shrink-0 rounded-xl md:rounded-2xl overflow-hidden shadow-lg border border-border"
-                >
-                  <CardHoverRevealMain className="w-full h-full">
-                    <img
-                      src={business.image}
-                      alt={business.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </CardHoverRevealMain>
+                <CardHoverRevealMain className="w-full h-full">
+                  <img
+                    src={business.image}
+                    alt={business.name}
+                    className="w-full h-full object-cover pointer-events-none"
+                    draggable={false}
+                  />
+                </CardHoverRevealMain>
 
-                  <CardHoverRevealContent className="flex flex-col justify-end p-3 sm:p-4 md:p-5 bg-gradient-to-t from-zinc-900 via-zinc-900/95 to-zinc-900/70">
-                    {/* Services */}
-                    <div className="mb-2 md:mb-3">
-                      <div className="flex flex-wrap gap-1 md:gap-1.5">
-                        {business.services.slice(0, 2).map((service) => (
-                          <Badge 
-                            key={service} 
-                            variant="outline" 
-                            className="text-gray-300 border-gray-600 text-[10px] md:text-xs py-0.5 px-1.5 md:px-2"
-                          >
-                            {service}
-                          </Badge>
-                        ))}
-                      </div>
+                <CardHoverRevealContent className="flex flex-col justify-end p-3 sm:p-4 md:p-5 bg-gradient-to-t from-zinc-900 via-zinc-900/95 to-zinc-900/70">
+                  {/* Services */}
+                  <div className="mb-2 md:mb-3">
+                    <div className="flex flex-wrap gap-1 md:gap-1.5">
+                      {business.services.slice(0, 2).map((service) => (
+                        <Badge 
+                          key={service} 
+                          variant="outline" 
+                          className="text-gray-300 border-gray-600 text-[10px] md:text-xs py-0.5 px-1.5 md:px-2"
+                        >
+                          {service}
+                        </Badge>
+                      ))}
                     </div>
+                  </div>
 
-                    {/* Description */}
-                    <div>
-                      <h3 className="text-base md:text-lg font-semibold text-white mb-1">
-                        {business.name}
-                      </h3>
-                      <p className="text-gray-300 text-xs md:text-sm leading-relaxed line-clamp-2">
-                        {business.description}
-                      </p>
-                    </div>
-                  </CardHoverRevealContent>
-                </CardHoverReveal>
-              ))}
-              </ScrollXCarouselWrap>
+                  {/* Description */}
+                  <div>
+                    <h3 className="text-base md:text-lg font-semibold text-white mb-1">
+                      {business.name}
+                    </h3>
+                    <p className="text-gray-300 text-xs md:text-sm leading-relaxed line-clamp-2">
+                      {business.description}
+                    </p>
+                  </div>
+                </CardHoverRevealContent>
+              </CardHoverReveal>
             </ScrollAnimate>
-          </div>
-        </ScrollXCarouselContainer>
-      </ScrollXCarousel>
+          ))}
+        </motion.div>
+      </div>
     </section>
   );
 }
