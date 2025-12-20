@@ -51,7 +51,7 @@ export default function IntegrationHero() {
 
         <ScrollAnimate delay={0.3} duration={0.6} y={30}>
           <Button asChild size="lg" className="mb-6 md:mb-8 h-10 md:h-12 rounded-full pl-5 pr-3 text-sm md:text-base bg-black text-white hover:bg-black/90 active:-translate-y-1 transition-all duration-150">
-            <Link to="#link">
+            <Link to="/contacto">
               <span className="text-nowrap">Comenzar ahora</span>
               <ChevronRight className="ml-1" />
             </Link>
