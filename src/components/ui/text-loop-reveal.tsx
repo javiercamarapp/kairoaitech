@@ -29,9 +29,14 @@ const TextLoopReveal: FC<TextLoopRevealProps> = ({
   }, [words.length, wordDelay, loopDelay]);
 
   return (
-    <span className={cn("inline-flex flex-wrap justify-center lg:justify-start", className)}>
+    <span
+      className={cn(
+        "flex w-full flex-wrap justify-center text-center lg:justify-start lg:text-left",
+        className,
+      )}
+    >
       <AnimatePresence mode="wait">
-        <motion.span key={key} className="inline-flex flex-wrap">
+        <motion.span key={key} className="flex w-full flex-wrap justify-center lg:justify-start">
           {words.map((word, i) => (
             <motion.span
               key={i}
@@ -43,7 +48,7 @@ const TextLoopReveal: FC<TextLoopRevealProps> = ({
                 delay: i * wordDelay,
                 ease: "easeOut",
               }}
-              className="mr-[0.25em] inline-block"
+              className="mx-[0.125em] inline-block"
             >
               {word}
             </motion.span>
