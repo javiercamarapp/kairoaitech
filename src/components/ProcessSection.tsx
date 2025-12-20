@@ -105,21 +105,25 @@ export function ProcessSection() {
           </div>
 
           {/* Right Column - Stacking Cards */}
-          <div className="relative">
+          <div className="relative pb-20">
             {PROCESS_PHASES.map((phase, index) => (
-              <CardSticky
+              <div
                 key={phase.id}
-                index={index}
-                incrementY={30}
-                incrementZ={10}
-                className="mb-4"
+                className="sticky mb-6"
+                style={{ 
+                  top: `${80 + index * 24}px`, 
+                  zIndex: index + 1 
+                }}
               >
                 <motion.div
-                  initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                  initial={{ opacity: 0, y: 60, scale: 0.92 }}
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  className="rounded-2xl border border-zinc-700/50 bg-gradient-to-br from-zinc-800/90 to-zinc-900/95 p-5 shadow-xl backdrop-blur-md md:p-6"
+                  transition={{ duration: 0.5, delay: 0.05 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  className="rounded-2xl border border-zinc-700/50 bg-gradient-to-br from-zinc-800 to-zinc-900 p-5 shadow-2xl backdrop-blur-md md:p-6"
+                  style={{
+                    boxShadow: `0 ${10 + index * 5}px ${30 + index * 10}px -10px rgba(0,0,0,0.5)`
+                  }}
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
@@ -135,10 +139,10 @@ export function ProcessSection() {
                     {phase.description}
                   </p>
                 </motion.div>
-              </CardSticky>
+              </div>
             ))}
             {/* Spacer for last card visibility */}
-            <div className="h-40 md:h-60" />
+            <div className="h-60 md:h-80" />
           </div>
         </div>
       </div>
