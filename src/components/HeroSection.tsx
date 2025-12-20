@@ -52,7 +52,7 @@ export function HeroSection() {
                   </Button>
                   <Button asChild size="lg" variant="ghost" className="h-12 rounded-full px-5 text-base hover:bg-transparent active:-translate-y-1 active:shadow-lg active:shadow-white/40 transition-all duration-150 bg-white/20 sm:bg-transparent backdrop-blur-sm sm:backdrop-blur-none">
                     <Link to="#link">
-                      <span className="text-nowrap text-white font-medium sm:font-normal sm:text-primary-foreground">Ver soluciones</span>
+                      <span className="text-nowrap text-gray-300 font-medium sm:font-normal sm:text-primary-foreground">Ver soluciones</span>
                     </Link>
                   </Button>
                 </motion.div>
