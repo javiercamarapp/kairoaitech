@@ -175,14 +175,14 @@ export function HeroSection() {
         {/* AI Benefits Section */}
         <AIBenefitsSection />
         
+        {/* Color Change Cards Section */}
+        <ColorChangeCards />
+        
         {/* Business Showcase Section */}
         <BusinessShowcaseSection />
         
         {/* Process Section */}
         <ProcessSection />
-        
-        {/* Color Change Cards Section */}
-        <ColorChangeCards />
       </main>
     </>;
 }
