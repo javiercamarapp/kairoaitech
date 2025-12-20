@@ -11,6 +11,7 @@ import { ScrollAnimate } from '@/components/ui/scroll-animate';
 import { AnimatedSearchBar } from '@/components/AnimatedSearchBar';
 import { AIBenefitsSection } from '@/components/AIBenefitsSection';
 import { BusinessShowcaseSection } from '@/components/BusinessShowcaseSection';
+import { ProcessSection } from '@/components/ProcessSection';
 import logoImage from '@/assets/logo.png';
 import logoTaquitos from '@/assets/logos/taquitos.png';
 import logoAmerica from '@/assets/logos/america.png';
@@ -175,6 +176,9 @@ export function HeroSection() {
         
         {/* Business Showcase Section */}
         <BusinessShowcaseSection />
+        
+        {/* Process Section */}
+        <ProcessSection />
       </main>
     </>;
 }
