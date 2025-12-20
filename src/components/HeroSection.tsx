@@ -6,7 +6,7 @@ import { ProgressiveBlur } from '@/components/ui/progressive-blur';
 import { cn } from '@/lib/utils';
 import { Menu, X, ChevronRight } from 'lucide-react';
 import { useScroll, motion } from 'motion/react';
-import { BlurText } from '@/components/ui/blur-text';
+import { BlurTextEffect } from '@/components/ui/blur-text-effect';
 import { AnimatedSearchBar } from '@/components/AnimatedSearchBar';
 import { AIBenefitsSection } from '@/components/AIBenefitsSection';
 import logoImage from '@/assets/logo.png';
@@ -74,23 +74,15 @@ export function HeroSection() {
                 <div className="mx-auto max-w-7xl px-6 lg:px-12 w-full">
                   <div className="mx-auto max-w-lg text-center lg:ml-0 lg:max-w-full lg:text-left">
                     <h1 className="mt-20 max-w-2xl text-balance text-3xl font-bold sm:text-4xl md:text-6xl lg:mt-16 xl:text-7xl text-primary-foreground mx-auto lg:mx-0">
-                      <BlurText 
-                        text="Empieza a ahorrar dentro de tu empresa usando IA" 
-                        delay={100}
-                        animateBy="words"
-                        direction="top"
-                        className="justify-center lg:justify-start"
-                      />
+                      <BlurTextEffect delay={0.2} stagger={0.02}>
+                        Empieza a ahorrar dentro de tu empresa usando IA
+                      </BlurTextEffect>
                     </h1>
-                    <div className="mt-8 max-w-2xl text-balance text-lg text-secondary">
-                      <BlurText 
-                        text="Construimos soluciones impulsadas por IA que automatizan, escalan y transforman la forma en que las empresas operan." 
-                        delay={50}
-                        animateBy="words"
-                        direction="bottom"
-                        className="justify-center lg:justify-start"
-                      />
-                    </div>
+                    <p className="mt-8 max-w-2xl text-balance text-lg text-secondary">
+                      <BlurTextEffect delay={0.5} stagger={0.01}>
+                        Construimos soluciones impulsadas por IA que automatizan, escalan y transforman la forma en que las empresas operan.
+                      </BlurTextEffect>
+                    </p>
 
                     <motion.div 
                       className="mt-12 sm:mt-12 flex flex-col items-center justify-center gap-2 sm:flex-row lg:justify-start"
