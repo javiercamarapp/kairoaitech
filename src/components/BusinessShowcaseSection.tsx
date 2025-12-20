@@ -131,10 +131,10 @@ export function BusinessShowcaseSection() {
       </div>
 
       {/* Robot Hand + Stacking Cards */}
-      <div className="flex items-start gap-4 md:gap-8 lg:gap-12 mb-8 md:mb-12">
-        {/* Robot Hand Image */}
+      <div className="flex flex-col md:flex-row items-start gap-0 md:gap-8 lg:gap-12 mb-8 md:mb-12">
+        {/* Robot Hand Image - sticky on desktop */}
         <ScrollAnimate 
-          className="relative -ml-8 md:-ml-16 lg:-ml-24 flex-shrink-0 sticky top-20"
+          className="relative -ml-8 md:-ml-16 lg:-ml-24 flex-shrink-0 md:sticky md:top-24"
           delay={0.2}
           duration={0.8}
           x={-100}
@@ -149,8 +149,8 @@ export function BusinessShowcaseSection() {
           />
         </ScrollAnimate>
 
-        {/* Stacking Cards */}
-        <ContainerScroll className="flex-1 max-w-2xl py-8">
+        {/* Stacking Cards - Full width on mobile */}
+        <div className="w-full md:flex-1 md:max-w-2xl px-4 md:px-0">
           {[
             { 
               icon: Bot, 
@@ -177,37 +177,37 @@ export function BusinessShowcaseSection() {
               color: "from-purple-500/30 to-purple-500/10"
             },
           ].map((card, index) => (
-            <CardSticky
+            <div
               key={card.title}
-              index={index}
-              incrementY={80}
-              incrementZ={10}
-              className="mb-4"
+              className="sticky mb-4"
+              style={{ top: `${100 + index * 20}px`, zIndex: index + 1 }}
             >
               <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className={`p-5 md:p-6 lg:p-8 rounded-2xl md:rounded-3xl bg-gradient-to-br ${card.color} backdrop-blur-md border border-border/50 shadow-xl`}
+                initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                className={`w-full p-5 md:p-6 lg:p-8 rounded-2xl md:rounded-3xl bg-gradient-to-br ${card.color} backdrop-blur-md border border-border/50 shadow-xl`}
               >
-                <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-xl bg-background/50 border border-border/30">
-                    <card.icon className="w-6 h-6 md:w-8 md:h-8 text-foreground" />
+                <div className="flex items-start gap-3 md:gap-4">
+                  <div className="p-2 md:p-3 rounded-xl bg-background/50 border border-border/30 flex-shrink-0">
+                    <card.icon className="w-5 h-5 md:w-8 md:h-8 text-foreground" />
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-foreground mb-2">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-base md:text-xl lg:text-2xl font-bold text-foreground mb-1 md:mb-2">
                       {card.title}
                     </h3>
-                    <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                    <p className="text-xs md:text-base text-muted-foreground leading-relaxed">
                       {card.description}
                     </p>
                   </div>
                 </div>
               </motion.div>
-            </CardSticky>
+            </div>
           ))}
-        </ContainerScroll>
+          {/* Spacer to allow last card to be seen */}
+          <div className="h-32 md:h-48" />
+        </div>
       </div>
 
       <div className="px-4 md:px-6 lg:px-12">
