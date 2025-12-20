@@ -129,7 +129,7 @@ export function HeroSection() {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 2.4 }}
               >
-                <InfiniteSlider speedOnHover={5} speed={10} gap={48}>
+                <InfiniteSlider speedOnHover={3} speed={5} gap={48}>
                   <div className="flex items-center justify-center h-16 w-32">
                     <img className="max-h-12 max-w-full object-contain" src={logoTaquitos} alt="Taquitos Logo" />
                   </div>
