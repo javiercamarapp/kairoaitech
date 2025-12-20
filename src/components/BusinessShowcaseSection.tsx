@@ -1,5 +1,6 @@
 import React from "react";
 import { BlurTextEffect } from "@/components/ui/blur-text-effect";
+import { ScrollAnimate } from "@/components/ui/scroll-animate";
 import {
   ScrollXCarousel,
   ScrollXCarouselContainer,
@@ -119,29 +120,32 @@ const businesses: Business[] = [
 
 export function BusinessShowcaseSection() {
   return (
-    <section className="relative bg-background">
+    <section className="relative bg-background py-16 md:py-24">
       {/* Main content */}
       <ScrollXCarousel className="h-[400vh]">
-        <ScrollXCarouselContainer className="flex flex-col justify-center py-12 md:py-20 px-4 md:px-6 lg:px-12">
+        <ScrollXCarouselContainer className="flex flex-col justify-center py-16 md:py-24 px-4 md:px-6 lg:px-12">
           <div className="max-w-7xl mx-auto w-full">
             {/* Section Title */}
-            <div className="text-center mb-8 md:mb-12">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3 md:mb-4 px-2">
-                <BlurTextEffect delay={0} stagger={0.02}>
+            <ScrollAnimate className="text-center mb-10 md:mb-16" delay={0.1} duration={0.7}>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 md:mb-6 px-2">
+                <BlurTextEffect delay={0.2} stagger={0.02}>
                   Negocios que pueden implementar IA
                 </BlurTextEffect>
               </h2>
               <p className="text-sm md:text-lg text-muted-foreground max-w-3xl mx-auto mb-6 md:mb-8 px-4">
-                Descubre cómo diferentes industrias están transformando sus operaciones con inteligencia artificial
+                <BlurTextEffect delay={0.5} stagger={0.01}>
+                  Descubre cómo diferentes industrias están transformando sus operaciones con inteligencia artificial
+                </BlurTextEffect>
               </p>
               <ScrollXCarouselProgress className="max-w-xs md:max-w-md mx-auto h-1.5 md:h-2" progressStyle="bg-primary" />
-            </div>
+            </ScrollAnimate>
 
             {/* Carousel */}
-            <ScrollXCarouselWrap 
-              className="flex gap-4 md:gap-6 py-4 md:py-8" 
-              xRange={['0%', '-80%']}
-            >
+            <ScrollAnimate delay={0.3} duration={0.8} y={50}>
+              <ScrollXCarouselWrap 
+                className="flex gap-4 md:gap-6 py-4 md:py-8" 
+                xRange={['0%', '-80%']}
+              >
               {businesses.map((business) => (
                 <CardHoverReveal
                   key={business.id}
@@ -183,7 +187,8 @@ export function BusinessShowcaseSection() {
                   </CardHoverRevealContent>
                 </CardHoverReveal>
               ))}
-            </ScrollXCarouselWrap>
+              </ScrollXCarouselWrap>
+            </ScrollAnimate>
           </div>
         </ScrollXCarouselContainer>
       </ScrollXCarousel>
