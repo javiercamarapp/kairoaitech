@@ -13,6 +13,7 @@ import logoMonterrey from '@/assets/logos/monterrey.png';
 import logoKing from '@/assets/logos/king.png';
 import logoParadise from '@/assets/logos/paradise.png';
 import logoDropin from '@/assets/logos/dropin.png';
+import logoPolloLoco from '@/assets/logos/polloloco.png';
 
 export function HeroSection() {
   return <>
@@ -73,6 +74,9 @@ export function HeroSection() {
                   </div>
                   <div className="flex items-center justify-center h-16 w-32">
                     <img className="max-h-12 max-w-full object-contain" src={logoDropin} alt="Dropin Logo" />
+                  </div>
+                  <div className="flex items-center justify-center h-16 w-32">
+                    <img className="max-h-12 max-w-full object-contain" src={logoPolloLoco} alt="El Pollo Loco Logo" />
                   </div>
                 </InfiniteSlider>
 
