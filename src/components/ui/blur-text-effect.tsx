@@ -9,17 +9,23 @@ interface BlurTextEffectProps {
   delay?: number;
   stagger?: number;
   duration?: number;
+  animateBy?: 'words' | 'letters';
 }
 
 export const BlurTextEffect: React.FC<BlurTextEffectProps> = ({ 
   children, 
   className = '',
   delay = 0,
-  stagger = 0.04,
-  duration = 0.6
+  stagger = 0.08,
+  duration = 0.6,
+  animateBy = 'words'
 }) => {
   const containerRef = useRef<HTMLSpanElement>(null);
   const [hasAnimated, setHasAnimated] = useState(false);
+
+  const elements = animateBy === 'words' 
+    ? children.split(' ') 
+    : children.split('');
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -28,12 +34,12 @@ export const BlurTextEffect: React.FC<BlurTextEffectProps> = ({
       ([entry]) => {
         if (entry.isIntersecting) {
           // Animate when entering viewport
-          const chars = containerRef.current?.querySelectorAll('span.char');
-          if (!chars) return;
+          const items = containerRef.current?.querySelectorAll('span.animate-item');
+          if (!items) return;
 
-          gsap.set(chars, { opacity: 0, y: 15, filter: 'blur(10px)' });
+          gsap.set(items, { opacity: 0, y: 15, filter: 'blur(10px)' });
 
-          gsap.to(chars, {
+          gsap.to(items, {
             opacity: 1,
             y: 0,
             filter: 'blur(0px)',
@@ -47,10 +53,10 @@ export const BlurTextEffect: React.FC<BlurTextEffectProps> = ({
           setHasAnimated(true);
         } else if (hasAnimated) {
           // Reset when leaving viewport so it can animate again
-          const chars = containerRef.current?.querySelectorAll('span.char');
-          if (!chars) return;
+          const items = containerRef.current?.querySelectorAll('span.animate-item');
+          if (!items) return;
           
-          gsap.set(chars, { opacity: 0, y: 15, filter: 'blur(10px)' });
+          gsap.set(items, { opacity: 0, y: 15, filter: 'blur(10px)' });
           setHasAnimated(false);
         }
       },
@@ -68,14 +74,15 @@ export const BlurTextEffect: React.FC<BlurTextEffectProps> = ({
   }, [children, delay, stagger, duration, hasAnimated]);
 
   return (
-    <span className={`inline-block ${className}`} ref={containerRef}>
-      {children.split('').map((char, i) => (
+    <span className={`inline ${className}`} ref={containerRef}>
+      {elements.map((element, i) => (
         <span 
-          key={`${char}-${i}`} 
-          className="char inline-block opacity-0" 
-          style={{ whiteSpace: 'pre', filter: 'blur(10px)' }}
+          key={`${element}-${i}`} 
+          className="animate-item inline-block opacity-0" 
+          style={{ filter: 'blur(10px)' }}
         >
-          {char === ' ' ? '\u00A0' : char}
+          {element}
+          {animateBy === 'words' && i < elements.length - 1 && '\u00A0'}
         </span>
       ))}
     </span>
