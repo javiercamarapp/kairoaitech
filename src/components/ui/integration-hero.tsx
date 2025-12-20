@@ -1,6 +1,9 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { ScrollAnimate } from "@/components/ui/scroll-animate";
+import { ChevronRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import React from "react";
 
 const ICONS_ROW1 = [
@@ -28,54 +31,72 @@ const repeatedIcons = (icons: string[], repeat = 4) =>
 
 export default function IntegrationHero() {
   return (
-    <section className="relative w-full overflow-hidden bg-background py-12 md:py-20">
+    <section className="relative w-full overflow-hidden bg-background py-6 md:py-10">
       {/* Light grid background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border)/0.3)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border)/0.3)_1px,transparent_1px)] bg-[size:40px_40px] md:bg-[size:60px_60px]" />
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center px-4">
-        <h2 className="mb-3 md:mb-4 text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
-          Intégrate con tus herramientas favoritas
-        </h2>
+      <div className="relative z-10 flex flex-col items-center px-2">
+        <ScrollAnimate delay={0.1} duration={0.6} y={30}>
+          <h2 className="mb-2 md:mb-3 text-center text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground">
+            Intégrate con tus herramientas favoritas
+          </h2>
+        </ScrollAnimate>
 
-        <p className="mb-6 md:mb-8 max-w-md md:max-w-2xl text-center text-sm md:text-base lg:text-lg text-muted-foreground px-2">
-          Más de 250 aplicaciones disponibles para integrar perfectamente con tu flujo de trabajo.
-        </p>
+        <ScrollAnimate delay={0.2} duration={0.6} y={30}>
+          <p className="mb-4 md:mb-6 max-w-md md:max-w-2xl text-center text-xs md:text-sm lg:text-base text-muted-foreground">
+            Más de 250 aplicaciones disponibles para integrar perfectamente con tu flujo de trabajo.
+          </p>
+        </ScrollAnimate>
 
-        <Button size="lg" className="mb-8 md:mb-12 h-10 md:h-12 px-6 md:px-8 text-sm md:text-base rounded-full bg-primary hover:bg-primary/90">
-          Comenzar ahora
-        </Button>
+        <ScrollAnimate delay={0.3} duration={0.6} y={30}>
+          <div className="flex flex-col sm:flex-row gap-2 mb-6 md:mb-8">
+            <Button asChild size="lg" className="h-10 md:h-12 rounded-full pl-5 pr-3 text-sm md:text-base bg-black text-white hover:bg-black/90 active:-translate-y-1 transition-all duration-150">
+              <Link to="#link">
+                <span className="text-nowrap">Comenzar ahora</span>
+                <ChevronRight className="ml-1" />
+              </Link>
+            </Button>
+            <Button asChild size="lg" variant="ghost" className="h-10 md:h-12 rounded-full px-5 text-sm md:text-base hover:bg-muted active:-translate-y-1 transition-all duration-150">
+              <Link to="#link">
+                <span className="text-nowrap text-muted-foreground">Ver integraciones</span>
+              </Link>
+            </Button>
+          </div>
+        </ScrollAnimate>
 
         {/* Carousel */}
-        <div className="relative w-full max-w-5xl overflow-hidden">
-          {/* Row 1 */}
-          <div className="mb-3 md:mb-4 flex animate-scroll-left">
-            {repeatedIcons(ICONS_ROW1, 4).map((src, i) => (
-              <div
-                key={`row1-${i}`}
-                className="mx-2 md:mx-3 flex h-12 w-12 sm:h-14 sm:w-14 md:h-16 md:w-16 flex-shrink-0 items-center justify-center rounded-xl md:rounded-2xl bg-card border border-border shadow-sm"
-              >
-                <img src={src} alt="" className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 object-contain" />
-              </div>
-            ))}
-          </div>
+        <ScrollAnimate delay={0.4} duration={0.6} y={30} className="w-full">
+          <div className="relative w-full max-w-5xl mx-auto overflow-hidden">
+            {/* Row 1 */}
+            <div className="mb-2 md:mb-3 flex animate-scroll-left">
+              {repeatedIcons(ICONS_ROW1, 4).map((src, i) => (
+                <div
+                  key={`row1-${i}`}
+                  className="mx-1.5 md:mx-2 flex h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 flex-shrink-0 items-center justify-center rounded-lg md:rounded-xl bg-card border border-border shadow-sm"
+                >
+                  <img src={src} alt="" className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7 object-contain" />
+                </div>
+              ))}
+            </div>
 
-          {/* Row 2 */}
-          <div className="flex animate-scroll-right">
-            {repeatedIcons(ICONS_ROW2, 4).map((src, i) => (
-              <div
-                key={`row2-${i}`}
-                className="mx-2 md:mx-3 flex h-12 w-12 sm:h-14 sm:w-14 md:h-16 md:w-16 flex-shrink-0 items-center justify-center rounded-xl md:rounded-2xl bg-card border border-border shadow-sm"
-              >
-                <img src={src} alt="" className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 object-contain" />
-              </div>
-            ))}
-          </div>
+            {/* Row 2 */}
+            <div className="flex animate-scroll-right">
+              {repeatedIcons(ICONS_ROW2, 4).map((src, i) => (
+                <div
+                  key={`row2-${i}`}
+                  className="mx-1.5 md:mx-2 flex h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 flex-shrink-0 items-center justify-center rounded-lg md:rounded-xl bg-card border border-border shadow-sm"
+                >
+                  <img src={src} alt="" className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7 object-contain" />
+                </div>
+              ))}
+            </div>
 
-          {/* Fade overlays */}
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-background to-transparent" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-background to-transparent" />
-        </div>
+            {/* Fade overlays */}
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-12 md:w-24 bg-gradient-to-r from-background to-transparent" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-12 md:w-24 bg-gradient-to-l from-background to-transparent" />
+          </div>
+        </ScrollAnimate>
       </div>
 
       <style>{`
