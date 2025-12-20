@@ -44,7 +44,7 @@ const TextLoopReveal: FC<TextLoopRevealProps> = ({
     <span
       ref={ref}
       className={cn(
-        "flex w-full flex-wrap justify-center text-center lg:justify-start lg:text-left",
+        "flex w-full flex-wrap justify-center text-center lg:justify-start lg:text-left bg-gradient-to-r from-zinc-500 via-zinc-300 to-white bg-clip-text text-transparent",
         className,
       )}
     >
