@@ -29,11 +29,11 @@ const features = [
 
 export function AIFeaturesSection() {
   return (
-    <section className="relative bg-black">
-      {/* Gradient fade from top - matching video style */}
-      <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/0 via-black/50 to-black pointer-events-none" />
+    <section className="relative bg-black -mt-24">
+      {/* Gradient fade from background to black */}
+      <div className="h-32 bg-gradient-to-b from-background via-background/50 to-black" />
       
-      <div className="pt-20 pb-24">
+      <div className="pb-24">
         <FeatureSteps 
           features={features}
           title="¿Por qué tu empresa necesita IA?"
