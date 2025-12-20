@@ -43,18 +43,75 @@ const ColorChangeCards = () => {
         </InfiniteSlider>
       </div>
       
-      {/* Desktop: Grid */}
-      <div className="hidden md:grid mx-auto max-w-6xl grid-cols-2 gap-6">
-        {cards.map((card, index) => (
-          <Card
-            key={index}
-            heading={card.heading}
-            description={card.description}
-            imgSrc={card.imgSrc}
-          />
-        ))}
+      {/* Desktop: Image Rectangle Carousel */}
+      <div className="hidden md:block">
+        <InfiniteSlider speed={30} gap={24} speedOnHover={50}>
+          {cards.map((card, index) => (
+            <RectangleCard
+              key={index}
+              heading={card.heading}
+              description={card.description}
+              imgSrc={card.imgSrc}
+            />
+          ))}
+        </InfiniteSlider>
       </div>
     </section>
+  );
+};
+
+// --- Rectangle Card Component for Desktop Carousel ---
+const RectangleCard = ({ heading, description, imgSrc }: CardProps) => {
+  return (
+    <motion.div
+      whileHover="hover"
+      className="group relative h-64 w-[500px] flex-shrink-0 overflow-hidden rounded-2xl bg-zinc-900"
+    >
+      <motion.div
+        className="absolute inset-0"
+        initial={{ scale: 1 }}
+        variants={{
+          hover: { scale: 1.05 },
+        }}
+        transition={{ duration: 0.4 }}
+      >
+        <img
+          src={imgSrc}
+          alt={heading}
+          className="h-full w-full object-cover opacity-70 transition-opacity duration-300 group-hover:opacity-50"
+        />
+      </motion.div>
+
+      <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-zinc-950/90 via-zinc-950/40 to-transparent p-6">
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <div className="flex items-center justify-between gap-2">
+            <h3 className="text-2xl font-bold text-white">
+              {heading.split("").map((letter, index) => (
+                <AnimatedLetter key={index} letter={letter} />
+              ))}
+            </h3>
+            <motion.div
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm"
+              variants={{
+                hover: { scale: 1.1, backgroundColor: "rgba(255,255,255,0.2)" },
+              }}
+              transition={{ duration: 0.2 }}
+            >
+              <ArrowRight className="h-5 w-5 text-white" />
+            </motion.div>
+          </div>
+
+          <p className="mt-2 text-sm text-zinc-300 line-clamp-2">
+            {description}
+          </p>
+        </motion.div>
+      </div>
+    </motion.div>
   );
 };
 
