@@ -1,31 +1,58 @@
 import React from "react";
 import { motion, Variants } from "motion/react";
 import { ArrowRight } from "lucide-react";
+import { InfiniteSlider } from "./infinite-slider";
+
+const cards = [
+  {
+    heading: "Automatización",
+    description: "Optimiza tus procesos con flujos de trabajo inteligentes que reducen costos y aumentan la productividad.",
+    imgSrc: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    heading: "Chatbots IA",
+    description: "Asistentes virtuales disponibles 24/7 que atienden a tus clientes de manera personalizada.",
+    imgSrc: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    heading: "Análisis de Datos",
+    description: "Convierte información en decisiones estratégicas con análisis predictivo y reportes en tiempo real.",
+    imgSrc: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    heading: "Integración",
+    description: "Conectamos tus sistemas existentes con soluciones de IA para una transformación sin fricciones.",
+    imgSrc: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=800&auto=format&fit=crop"
+  }
+];
 
 const ColorChangeCards = () => {
   return (
     <section className="bg-background px-2 py-8 md:px-4 md:py-12">
-      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
-        <Card
-          heading="Automatización"
-          description="Optimiza tus procesos con flujos de trabajo inteligentes que reducen costos y aumentan la productividad."
-          imgSrc="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=800&auto=format&fit=crop"
-        />
-        <Card
-          heading="Chatbots IA"
-          description="Asistentes virtuales disponibles 24/7 que atienden a tus clientes de manera personalizada."
-          imgSrc="https://images.unsplash.com/photo-1531746790731-6c087fecd65a?q=80&w=800&auto=format&fit=crop"
-        />
-        <Card
-          heading="Análisis de Datos"
-          description="Convierte información en decisiones estratégicas con análisis predictivo y reportes en tiempo real."
-          imgSrc="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop"
-        />
-        <Card
-          heading="Integración"
-          description="Conectamos tus sistemas existentes con soluciones de IA para una transformación sin fricciones."
-          imgSrc="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=800&auto=format&fit=crop"
-        />
+      {/* Mobile: Infinite Carousel */}
+      <div className="md:hidden">
+        <InfiniteSlider speed={40} gap={16} speedOnHover={60}>
+          {cards.map((card, index) => (
+            <Card
+              key={index}
+              heading={card.heading}
+              description={card.description}
+              imgSrc={card.imgSrc}
+            />
+          ))}
+        </InfiniteSlider>
+      </div>
+      
+      {/* Desktop: Grid */}
+      <div className="hidden md:grid mx-auto max-w-6xl grid-cols-2 gap-6">
+        {cards.map((card, index) => (
+          <Card
+            key={index}
+            heading={card.heading}
+            description={card.description}
+            imgSrc={card.imgSrc}
+          />
+        ))}
       </div>
     </section>
   );
@@ -42,7 +69,7 @@ const Card = ({ heading, description, imgSrc }: CardProps) => {
   return (
     <motion.div
       whileHover="hover"
-      className="group relative h-96 w-full overflow-hidden rounded-2xl bg-zinc-900"
+      className="group relative h-80 w-72 md:h-96 md:w-full flex-shrink-0 overflow-hidden rounded-2xl bg-zinc-900"
     >
       <motion.div
         className="absolute inset-0"
