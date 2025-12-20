@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 import { Menu, X, ChevronRight } from 'lucide-react';
 import { useScroll, motion } from 'motion/react';
 import { TextLoopReveal } from '@/components/ui/text-loop-reveal';
+import { AnimatedSearchBar } from '@/components/AnimatedSearchBar';
 import logoImage from '@/assets/logo.png';
 import logoTaquitos from '@/assets/logos/taquitos.avif';
 import logoAmerica from '@/assets/logos/america.png';
@@ -157,6 +158,11 @@ export function HeroSection() {
                 <ProgressiveBlur className="pointer-events-none absolute right-0 top-0 h-full w-20" direction="right" blurIntensity={1} />
               </motion.div>
             </div>
+          </div>
+          
+          {/* Search Bar */}
+          <div className="py-12 px-6">
+            <AnimatedSearchBar />
           </div>
         </motion.section>
       </main>
