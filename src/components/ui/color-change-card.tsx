@@ -89,11 +89,9 @@ const RectangleCard = ({ heading, description, imgSrc }: CardProps) => {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <div className="flex items-center justify-between gap-2">
-            <h3 className="text-2xl font-bold text-white">
-              {heading.split("").map((letter, index) => (
-                <AnimatedLetter key={index} letter={letter} />
-              ))}
+          <div className="flex items-center justify-between gap-3">
+            <h3 className="text-xl font-bold text-white">
+              {heading}
             </h3>
             <motion.div
               className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm"
@@ -150,11 +148,9 @@ const Card = ({ heading, description, imgSrc }: CardProps) => {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <div className="flex items-center justify-between gap-2">
-            <h3 className="text-lg font-bold text-white md:text-3xl whitespace-nowrap">
-              {heading.split("").map((letter, index) => (
-                <AnimatedLetter key={index} letter={letter} />
-              ))}
+          <div className="flex items-center justify-between gap-3">
+            <h3 className="text-lg font-bold text-white md:text-2xl">
+              {heading}
             </h3>
             <motion.div
               className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 backdrop-blur-sm"

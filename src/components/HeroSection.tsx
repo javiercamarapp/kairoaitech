@@ -175,11 +175,11 @@ export function HeroSection() {
         {/* AI Benefits Section */}
         <AIBenefitsSection />
         
-        {/* Business Showcase Section */}
-        <BusinessShowcaseSection />
-        
         {/* Color Change Cards Section */}
         <ColorChangeCards />
+        
+        {/* Business Showcase Section */}
+        <BusinessShowcaseSection />
       </main>
     </>;
 }
