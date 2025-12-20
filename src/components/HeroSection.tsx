@@ -13,7 +13,6 @@ import { AIBenefitsSection } from '@/components/AIBenefitsSection';
 import { BusinessShowcaseSection } from '@/components/BusinessShowcaseSection';
 import { ProcessSection } from '@/components/ProcessSection';
 import IntegrationHero from '@/components/ui/integration-hero';
-import { StatsSection } from '@/components/StatsSection';
 import logoImage from '@/assets/logo.png';
 import logoTaquitos from '@/assets/logos/taquitos.png';
 import logoAmerica from '@/assets/logos/america.png';
@@ -181,9 +180,6 @@ export function HeroSection() {
         
         {/* Integration Hero Section */}
         <IntegrationHero />
-        
-        {/* Stats Section */}
-        <StatsSection />
       </main>
     </>;
 }
