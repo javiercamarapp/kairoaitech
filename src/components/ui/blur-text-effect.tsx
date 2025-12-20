@@ -8,13 +8,15 @@ interface BlurTextEffectProps {
   className?: string;
   delay?: number;
   stagger?: number;
+  duration?: number;
 }
 
 export const BlurTextEffect: React.FC<BlurTextEffectProps> = ({ 
   children, 
   className = '',
   delay = 0,
-  stagger = 0.015
+  stagger = 0.04,
+  duration = 0.6
 }) => {
   const containerRef = useRef<HTMLSpanElement>(null);
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -29,14 +31,14 @@ export const BlurTextEffect: React.FC<BlurTextEffectProps> = ({
           const chars = containerRef.current?.querySelectorAll('span.char');
           if (!chars) return;
 
-          gsap.set(chars, { opacity: 0, y: 10, filter: 'blur(8px)' });
+          gsap.set(chars, { opacity: 0, y: 15, filter: 'blur(10px)' });
 
           gsap.to(chars, {
             opacity: 1,
             y: 0,
             filter: 'blur(0px)',
-            duration: 0.3,
-            ease: 'power2.out',
+            duration: duration,
+            ease: 'power3.out',
             stagger: stagger,
             delay: delay,
             clearProps: 'filter',
@@ -48,7 +50,7 @@ export const BlurTextEffect: React.FC<BlurTextEffectProps> = ({
           const chars = containerRef.current?.querySelectorAll('span.char');
           if (!chars) return;
           
-          gsap.set(chars, { opacity: 0, y: 10, filter: 'blur(8px)' });
+          gsap.set(chars, { opacity: 0, y: 15, filter: 'blur(10px)' });
           setHasAnimated(false);
         }
       },
@@ -63,7 +65,7 @@ export const BlurTextEffect: React.FC<BlurTextEffectProps> = ({
       }
       observer.disconnect();
     };
-  }, [children, delay, stagger, hasAnimated]);
+  }, [children, delay, stagger, duration, hasAnimated]);
 
   return (
     <span className={`inline-block ${className}`} ref={containerRef}>
@@ -71,7 +73,7 @@ export const BlurTextEffect: React.FC<BlurTextEffectProps> = ({
         <span 
           key={`${char}-${i}`} 
           className="char inline-block opacity-0" 
-          style={{ whiteSpace: 'pre', filter: 'blur(8px)' }}
+          style={{ whiteSpace: 'pre', filter: 'blur(10px)' }}
         >
           {char === ' ' ? '\u00A0' : char}
         </span>
