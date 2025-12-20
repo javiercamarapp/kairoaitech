@@ -1,6 +1,7 @@
 import React from "react"
 import { FeatureSteps } from "@/components/ui/feature-steps"
 import automationImage from "@/assets/automation.png"
+import analyticsImage from "@/assets/analytics.png"
 
 const aiBenefits = [
   {
@@ -13,7 +14,7 @@ const aiBenefits = [
     step: "Paso 2", 
     title: "Análisis Predictivo",
     content: "Anticipa tendencias del mercado y comportamiento de clientes. La IA analiza millones de datos en segundos para darte insights que tardarías semanas en obtener manualmente.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop"
+    image: analyticsImage
   },
   {
     step: "Paso 3",
