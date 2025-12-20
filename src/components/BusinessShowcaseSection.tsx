@@ -1,5 +1,5 @@
-import React, { useRef } from "react";
-import { motion } from "motion/react";
+import React, { useRef, useState, useEffect } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import { SectionHeader } from "@/components/ui/section-header";
 import { ScrollAnimate } from "@/components/ui/scroll-animate";
 import {
@@ -8,8 +8,7 @@ import {
   CardHoverRevealMain,
 } from "@/components/ui/reveal-on-hover";
 import { Badge } from "@/components/ui/badge";
-import { ContainerScroll, CardSticky } from "@/components/ui/cards-stack";
-import { Bot, MessageSquare, Zap, Brain } from "lucide-react";
+import { Bot, MessageSquare, Zap, Brain, ChevronLeft, ChevronRight } from "lucide-react";
 
 // Import business images
 import restaurantImg from "@/assets/businesses/restaurant.png";
@@ -116,6 +115,141 @@ const businesses: Business[] = [
   },
 ];
 
+const solutionCards = [
+  { 
+    icon: Bot, 
+    title: "Chatbots Inteligentes", 
+    description: "Asistentes virtuales que entienden el contexto, responden preguntas complejas y aprenden de cada interacción para ofrecer respuestas cada vez más precisas.",
+  },
+  { 
+    icon: MessageSquare, 
+    title: "Atención al Cliente 24/7", 
+    description: "Nunca pierdas una oportunidad de venta. Nuestros sistemas de IA atienden consultas, resuelven dudas y guían a tus clientes en cualquier momento del día.",
+  },
+  { 
+    icon: Zap, 
+    title: "Automatización de Procesos", 
+    description: "Elimina tareas repetitivas y libera a tu equipo para lo que realmente importa. Desde facturación hasta gestión de inventarios, la IA hace el trabajo pesado.",
+  },
+  { 
+    icon: Brain, 
+    title: "Análisis Predictivo", 
+    description: "Anticipa tendencias, identifica patrones de compra y toma decisiones basadas en datos. La IA analiza millones de puntos de información en segundos.",
+  },
+];
+
+function SolutionsCarousel({ robotHandImg }: { robotHandImg: string }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setDirection(1);
+      setCurrentIndex((prev) => (prev + 1) % solutionCards.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const goToNext = () => {
+    setDirection(1);
+    setCurrentIndex((prev) => (prev + 1) % solutionCards.length);
+  };
+
+  const goToPrev = () => {
+    setDirection(-1);
+    setCurrentIndex((prev) => (prev - 1 + solutionCards.length) % solutionCards.length);
+  };
+
+  const currentCard = solutionCards[currentIndex];
+  const IconComponent = currentCard.icon;
+
+  return (
+    <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 lg:gap-8 mb-8 md:mb-12 px-4 md:px-0">
+      {/* Robot Hand Image */}
+      <ScrollAnimate 
+        className="relative -ml-4 md:-ml-16 lg:-ml-24 flex-shrink-0"
+        delay={0.2}
+        duration={0.8}
+        x={-100}
+        y={0}
+      >
+        <motion.img
+          src={robotHandImg}
+          alt="Mano robótica de IA"
+          className="w-40 sm:w-56 md:w-72 lg:w-[380px] xl:w-[450px] h-auto object-contain"
+          whileHover={{ scale: 1.02, x: 10 }}
+          transition={{ duration: 0.3 }}
+        />
+      </ScrollAnimate>
+
+      {/* Carousel Card */}
+      <div className="w-full md:flex-1 md:max-w-xl lg:max-w-2xl">
+        <div className="relative h-[200px] sm:h-[220px] md:h-[240px] lg:h-[260px]">
+          <AnimatePresence mode="wait" custom={direction}>
+            <motion.div
+              key={currentIndex}
+              custom={direction}
+              initial={{ opacity: 0, x: direction > 0 ? 100 : -100, scale: 0.9 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              exit={{ opacity: 0, x: direction > 0 ? -100 : 100, scale: 0.9 }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+              className="absolute inset-0 p-5 md:p-6 lg:p-8 rounded-2xl md:rounded-3xl bg-gradient-to-br from-zinc-800/90 to-zinc-900/95 backdrop-blur-md border border-zinc-700/50 shadow-2xl"
+            >
+              <div className="flex items-start gap-3 md:gap-4 h-full">
+                <div className="p-2 md:p-3 rounded-xl bg-zinc-700/50 border border-zinc-600/30 flex-shrink-0">
+                  <IconComponent className="w-5 h-5 md:w-7 md:h-7 lg:w-8 lg:h-8 text-white" />
+                </div>
+                <div className="flex-1 min-w-0 flex flex-col">
+                  <h3 className="text-base md:text-xl lg:text-2xl font-bold text-white mb-2 md:mb-3">
+                    {currentCard.title}
+                  </h3>
+                  <p className="text-xs md:text-sm lg:text-base text-zinc-300 leading-relaxed flex-1">
+                    {currentCard.description}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Controls */}
+        <div className="flex items-center justify-between mt-4">
+          <div className="flex gap-2">
+            {solutionCards.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => {
+                  setDirection(idx > currentIndex ? 1 : -1);
+                  setCurrentIndex(idx);
+                }}
+                className={`w-2 h-2 md:w-2.5 md:h-2.5 rounded-full transition-all duration-300 ${
+                  idx === currentIndex 
+                    ? "bg-white w-6 md:w-8" 
+                    : "bg-zinc-600 hover:bg-zinc-500"
+                }`}
+              />
+            ))}
+          </div>
+          <div className="flex gap-2">
+            <button
+              onClick={goToPrev}
+              className="p-2 rounded-full bg-zinc-800 border border-zinc-700 hover:bg-zinc-700 transition-colors"
+            >
+              <ChevronLeft className="w-4 h-4 md:w-5 md:h-5 text-white" />
+            </button>
+            <button
+              onClick={goToNext}
+              className="p-2 rounded-full bg-zinc-800 border border-zinc-700 hover:bg-zinc-700 transition-colors"
+            >
+              <ChevronRight className="w-4 h-4 md:w-5 md:h-5 text-white" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function BusinessShowcaseSection() {
   const constraintsRef = useRef<HTMLDivElement>(null);
 
@@ -130,85 +264,8 @@ export function BusinessShowcaseSection() {
         </div>
       </div>
 
-      {/* Robot Hand + Stacking Cards */}
-      <div className="flex flex-col md:flex-row items-start gap-0 md:gap-8 lg:gap-12 mb-8 md:mb-12">
-        {/* Robot Hand Image - sticky on desktop */}
-        <ScrollAnimate 
-          className="relative -ml-8 md:-ml-16 lg:-ml-24 flex-shrink-0 md:sticky md:top-24"
-          delay={0.2}
-          duration={0.8}
-          x={-100}
-          y={0}
-        >
-          <motion.img
-            src={robotHandImg}
-            alt="Mano robótica de IA"
-            className="w-48 sm:w-64 md:w-80 lg:w-[420px] xl:w-[500px] h-auto object-contain"
-            whileHover={{ scale: 1.02, x: 10 }}
-            transition={{ duration: 0.3 }}
-          />
-        </ScrollAnimate>
-
-        {/* Stacking Cards - Full width on mobile */}
-        <div className="w-full md:flex-1 md:max-w-2xl px-4 md:px-0">
-          {[
-            { 
-              icon: Bot, 
-              title: "Chatbots Inteligentes", 
-              description: "Asistentes virtuales que entienden el contexto, responden preguntas complejas y aprenden de cada interacción para ofrecer respuestas cada vez más precisas.",
-              color: "from-primary/30 to-primary/10"
-            },
-            { 
-              icon: MessageSquare, 
-              title: "Atención al Cliente 24/7", 
-              description: "Nunca pierdas una oportunidad de venta. Nuestros sistemas de IA atienden consultas, resuelven dudas y guían a tus clientes en cualquier momento del día.",
-              color: "from-blue-500/30 to-blue-500/10"
-            },
-            { 
-              icon: Zap, 
-              title: "Automatización de Procesos", 
-              description: "Elimina tareas repetitivas y libera a tu equipo para lo que realmente importa. Desde facturación hasta gestión de inventarios, la IA hace el trabajo pesado.",
-              color: "from-amber-500/30 to-amber-500/10"
-            },
-            { 
-              icon: Brain, 
-              title: "Análisis Predictivo", 
-              description: "Anticipa tendencias, identifica patrones de compra y toma decisiones basadas en datos. La IA analiza millones de puntos de información en segundos.",
-              color: "from-purple-500/30 to-purple-500/10"
-            },
-          ].map((card, index) => (
-            <div
-              key={card.title}
-              className="sticky mb-4"
-              style={{ top: `${100 + index * 20}px`, zIndex: index + 1 }}
-            >
-              <motion.div
-                initial={{ opacity: 0, y: 50, scale: 0.95 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                className={`w-full p-5 md:p-6 lg:p-8 rounded-2xl md:rounded-3xl bg-gradient-to-br ${card.color} backdrop-blur-md border border-border/50 shadow-xl`}
-              >
-                <div className="flex items-start gap-3 md:gap-4">
-                  <div className="p-2 md:p-3 rounded-xl bg-background/50 border border-border/30 flex-shrink-0">
-                    <card.icon className="w-5 h-5 md:w-8 md:h-8 text-foreground" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-base md:text-xl lg:text-2xl font-bold text-foreground mb-1 md:mb-2">
-                      {card.title}
-                    </h3>
-                    <p className="text-xs md:text-base text-muted-foreground leading-relaxed">
-                      {card.description}
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          ))}
-          {/* Spacer to allow last card to be seen */}
-          <div className="h-32 md:h-48" />
-        </div>
-      </div>
+      {/* Robot Hand + Carousel Cards */}
+      <SolutionsCarousel robotHandImg={robotHandImg} />
 
       <div className="px-4 md:px-6 lg:px-12">
         <div className="max-w-7xl mx-auto w-full">
