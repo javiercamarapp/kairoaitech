@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { ChevronLeft, ChevronRight } from "lucide-react"
+import { useIsMobile } from "@/hooks/use-mobile"
 
 interface Feature {
   step: string
@@ -27,8 +28,12 @@ export function FeatureSteps({
 }: FeatureStepsProps) {
   const [currentFeature, setCurrentFeature] = useState(0)
   const [progress, setProgress] = useState(0)
+  const isMobile = useIsMobile()
 
+  // Auto-play only on desktop
   useEffect(() => {
+    if (isMobile) return // Disable auto-play on mobile
+
     const timer = setInterval(() => {
       if (progress < 100) {
         setProgress((prev) => prev + 100 / (autoPlayInterval / 100))
@@ -39,7 +44,7 @@ export function FeatureSteps({
     }, 100)
 
     return () => clearInterval(timer)
-  }, [progress, features.length, autoPlayInterval])
+  }, [progress, features.length, autoPlayInterval, isMobile])
 
   const goToPrevious = () => {
     setCurrentFeature((prev) => (prev - 1 + features.length) % features.length)
@@ -79,29 +84,14 @@ export function FeatureSteps({
                 <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
               </div>
 
-              {/* Content */}
+              {/* Content - Only title, no number */}
               <div className="text-center px-4">
-                <div className="flex items-center justify-center gap-2 mb-3">
-                  <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground text-sm font-bold">
-                    {currentFeature + 1}
-                  </div>
-                  <h3 className="text-xl font-semibold text-primary">
-                    {features[currentFeature].title || features[currentFeature].step}
-                  </h3>
-                </div>
+                <h3 className="text-xl font-semibold text-primary mb-3">
+                  {features[currentFeature].title || features[currentFeature].step}
+                </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   {features[currentFeature].content}
                 </p>
-              </div>
-
-              {/* Progress bar */}
-              <div className="h-1 w-full bg-muted rounded-full mt-2 overflow-hidden">
-                <motion.div
-                  className="h-full bg-primary"
-                  initial={{ width: "0%" }}
-                  animate={{ width: `${progress}%` }}
-                  transition={{ duration: 0.1 }}
-                />
               </div>
             </motion.div>
           </AnimatePresence>
