@@ -26,8 +26,6 @@ export function LetsWorkTogether() {
 
   return (
     <section className="relative min-h-screen bg-background overflow-hidden flex items-center justify-center py-12 md:py-20">
-      {/* Background grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border)/0.3)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border)/0.3)_1px,transparent_1px)] bg-[size:40px_40px] md:bg-[size:60px_60px]" />
 
       <div className="relative z-10 w-full max-w-6xl mx-auto px-4 md:px-8">
         {/* Success State */}
