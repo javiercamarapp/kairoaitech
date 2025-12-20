@@ -77,9 +77,9 @@ CardSticky.displayName = "CardSticky";
 
 export function ProcessSection() {
   return (
-    <section className="relative bg-zinc-100 py-16 md:py-24">
+    <section className="relative bg-background py-16 md:py-24">
       <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-12">
-        <div className="grid gap-8 lg:grid-cols-2 lg:gap-16">
+        <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
           {/* Left Column - Header */}
           <div className="lg:sticky lg:top-24 lg:h-fit">
             <ScrollAnimate delay={0.1} duration={0.6} y={30}>
@@ -87,60 +87,56 @@ export function ProcessSection() {
                 Nuestro Proceso
               </span>
             </ScrollAnimate>
-            
+
             <ScrollAnimate delay={0.2} duration={0.6} y={30}>
-              <h2 className="mt-4 text-3xl font-bold tracking-tight text-zinc-900 sm:text-4xl lg:text-5xl">
+              <h2 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
                 Planificando tu{" "}
                 <span className="text-primary">viaje de transformación</span>
               </h2>
             </ScrollAnimate>
-            
+
             <ScrollAnimate delay={0.3} duration={0.6} y={30}>
-              <p className="mt-6 text-base text-zinc-600 md:text-lg">
-                Nuestro proceso comienza con una inmersión profunda en tu visión. 
-                En la fase de Descubrimiento, mantenemos conversaciones significativas 
-                para comprender tu identidad de marca, objetivos y la esencia que deseas transmitir.
+              <p className="mt-6 text-base text-muted-foreground md:text-lg">
+                Nuestro proceso comienza con una inmersión profunda en tu visión. En la fase de
+                Descubrimiento, mantenemos conversaciones significativas para comprender tu identidad
+                de marca, objetivos y la esencia que deseas transmitir.
               </p>
             </ScrollAnimate>
           </div>
 
           {/* Right Column - Stacking Cards */}
-          <div className="relative pb-20">
+          <div className="relative pb-24">
             {PROCESS_PHASES.map((phase, index) => (
               <div
                 key={phase.id}
-                className="sticky mb-4"
-                style={{ 
-                  top: `${60 + index * 16}px`, 
-                  zIndex: index + 1 
-                }}
+                className={cn(
+                  "sticky top-24",
+                  index > 0 && "-mt-16 sm:-mt-20 md:-mt-24"
+                )}
+                style={{ zIndex: index + 1 }}
               >
                 <motion.div
-                  initial={{ opacity: 0, y: 80, scale: 0.9 }}
+                  initial={{ opacity: 0, y: 60, scale: 0.96 }}
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
-                  viewport={{ once: true, margin: "-60px" }}
-                  className="rounded-2xl border border-zinc-200 bg-gradient-to-b from-white to-zinc-50 p-6 md:p-8"
-                  style={{
-                    boxShadow: `0 4px 20px -4px rgba(0,0,0,0.1), 0 ${8 + index * 2}px ${24 + index * 4}px -8px rgba(0,0,0,0.08)`
-                  }}
+                  transition={{ duration: 0.45, ease: "easeOut" }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  className="rounded-2xl border border-border bg-card p-6 shadow-2xl md:p-8"
                 >
-                  <div className="flex items-center justify-between gap-4 mb-4">
-                    <h3 className="text-xl font-bold text-zinc-900 md:text-2xl">
+                  <div className="flex items-center justify-between gap-4">
+                    <h3 className="text-xl font-bold text-card-foreground md:text-2xl">
                       {phase.title}
                     </h3>
                     <span className="flex-shrink-0 text-3xl font-bold text-primary md:text-4xl">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                   </div>
-                  <p className="text-sm text-zinc-500 md:text-base leading-relaxed">
+                  <p className="mt-4 text-sm text-muted-foreground md:text-base leading-relaxed">
                     {phase.description}
                   </p>
                 </motion.div>
               </div>
             ))}
-            {/* Spacer for last card visibility */}
-            <div className="h-48 md:h-64" />
+            <div className="h-72 md:h-96" />
           </div>
         </div>
       </div>
