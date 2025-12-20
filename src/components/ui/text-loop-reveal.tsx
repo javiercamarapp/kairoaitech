@@ -29,7 +29,7 @@ const TextLoopReveal: FC<TextLoopRevealProps> = ({
   }, [words.length, wordDelay, loopDelay]);
 
   return (
-    <span className={cn("inline-flex flex-wrap", className)}>
+    <span className={cn("inline-flex flex-wrap justify-center lg:justify-start", className)}>
       <AnimatePresence mode="wait">
         <motion.span key={key} className="inline-flex flex-wrap">
           {words.map((word, i) => (
