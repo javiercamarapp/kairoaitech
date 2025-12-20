@@ -45,7 +45,10 @@ export function HeroSection() {
           <div className="group relative m-auto max-w-7xl px-6">
             <div className="flex flex-col items-center md:flex-row">
               <div className="md:max-w-44 md:border-r md:pr-6">
-                <p className="text-end text-sm text-muted-foreground">Powering the best teams</p>
+                <p className="text-end text-sm text-muted-foreground">Empresas con las que hemos trabajado 
+   
+
+ </p>
               </div>
               <div className="relative py-6 md:w-[calc(100%-11rem)]">
                 <InfiniteSlider speedOnHover={20} speed={40} gap={112}>
@@ -129,7 +132,7 @@ const HeroHeader = () => {
                 <ul className="flex gap-8 text-sm text-primary-foreground border-primary-foreground">
                   {menuItems.map((item, index) => <li key={index}>
                       <Link to={item.href} className="block text-muted-foreground duration-150 hover:text-accent-foreground active:-translate-y-1 transition-all">
-                        <span className="text-primary-foreground underline-link">{item.name}</span>
+                        <span className="text-primary-foreground">{item.name}</span>
                       </Link>
                     </li>)}
                 </ul>
@@ -140,8 +143,8 @@ const HeroHeader = () => {
               <div className="lg:hidden">
                 <ul className="space-y-6 text-base">
                   {menuItems.map((item, index) => <li key={index}>
-                      <Link to={item.href} className="block text-muted-foreground duration-150 hover:text-accent-foreground active:-translate-y-1 transition-all">
-                        <span className="underline-link">{item.name}</span>
+                      <Link to={item.href} className="block text-muted-foreground duration-150 hover:text-accent-foreground">
+                        <span>{item.name}</span>
                       </Link>
                     </li>)}
                 </ul>
