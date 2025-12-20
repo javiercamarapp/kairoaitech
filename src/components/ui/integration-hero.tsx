@@ -50,19 +50,12 @@ export default function IntegrationHero() {
         </ScrollAnimate>
 
         <ScrollAnimate delay={0.3} duration={0.6} y={30}>
-          <div className="flex flex-col sm:flex-row gap-2 mb-6 md:mb-8">
-            <Button asChild size="lg" className="h-10 md:h-12 rounded-full pl-5 pr-3 text-sm md:text-base bg-black text-white hover:bg-black/90 active:-translate-y-1 transition-all duration-150">
-              <Link to="#link">
-                <span className="text-nowrap">Comenzar ahora</span>
-                <ChevronRight className="ml-1" />
-              </Link>
-            </Button>
-            <Button asChild size="lg" variant="ghost" className="h-10 md:h-12 rounded-full px-5 text-sm md:text-base hover:bg-muted active:-translate-y-1 transition-all duration-150">
-              <Link to="#link">
-                <span className="text-nowrap text-muted-foreground">Ver integraciones</span>
-              </Link>
-            </Button>
-          </div>
+          <Button asChild size="lg" className="mb-6 md:mb-8 h-10 md:h-12 rounded-full pl-5 pr-3 text-sm md:text-base bg-black text-white hover:bg-black/90 active:-translate-y-1 transition-all duration-150">
+            <Link to="#link">
+              <span className="text-nowrap">Comenzar ahora</span>
+              <ChevronRight className="ml-1" />
+            </Link>
+          </Button>
         </ScrollAnimate>
 
         {/* Carousel */}
