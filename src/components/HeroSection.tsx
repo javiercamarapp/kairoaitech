@@ -18,14 +18,14 @@ export function HeroSection() {
                 <h1 className="mt-8 max-w-2xl text-balance text-5xl font-bold md:text-6xl lg:mt-16 xl:text-7xl text-primary-foreground">TODO LO QUE TU EMPRESA NECESITA</h1>
                 <p className="mt-8 max-w-2xl text-balance text-lg text-secondary">Construimos soluciones impulsadas por IA que automatizan, escalan y transforman la forma en que las empresas operan.</p>
 
-                <div className="mt-12 flex flex-col items-center justify-center gap-2 sm:flex-row lg:justify-start">
+                <div className="mt-8 sm:mt-12 flex flex-col items-center justify-center gap-2 sm:flex-row lg:justify-start">
                   <Button asChild size="lg" className="h-12 rounded-full pl-5 pr-3 text-base bg-black text-white hover:bg-black/90 active:scale-100">
                     <Link to="#link">
                       <span className="text-nowrap">Start Building</span>
                       <ChevronRight className="ml-1" />
                     </Link>
                   </Button>
-                  <Button asChild size="lg" variant="ghost" className="h-12 rounded-full px-5 text-base">
+                  <Button asChild size="lg" variant="ghost" className="h-12 rounded-full px-5 text-base hover:bg-transparent active:shadow-lg active:shadow-black/20 transition-shadow duration-150">
                     <Link to="#link">
                       <span className="text-nowrap text-primary-foreground">Request a demo</span>
                     </Link>
