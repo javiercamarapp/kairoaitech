@@ -1,9 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { motion, HTMLMotionProps } from "motion/react";
-import { cn } from "@/lib/utils";
-import { SectionHeader } from "@/components/ui/section-header";
+import { motion, useScroll, useTransform } from "motion/react";
 import { ScrollAnimate } from "@/components/ui/scroll-animate";
 
 const PROCESS_PHASES = [
@@ -39,43 +37,13 @@ const PROCESS_PHASES = [
   },
 ];
 
-interface CardStickyProps extends HTMLMotionProps<"div"> {
-  index: number;
-  incrementY?: number;
-  incrementZ?: number;
-}
-
-const CardSticky = React.forwardRef<HTMLDivElement, CardStickyProps>(
-  (
-    {
-      index,
-      incrementY = 40,
-      incrementZ = 10,
-      children,
-      className,
-      style,
-      ...props
-    },
-    ref
-  ) => {
-    const y = index * incrementY;
-    const z = index * incrementZ;
-
-    return (
-      <motion.div
-        ref={ref}
-        className={cn("sticky", className)}
-        style={{ top: `${100 + y}px`, zIndex: z, ...style }}
-        {...props}
-      >
-        {children}
-      </motion.div>
-    );
-  }
-);
-CardSticky.displayName = "CardSticky";
-
 export function ProcessSection() {
+  const stackRef = React.useRef<HTMLDivElement | null>(null);
+  const { scrollYProgress } = useScroll({
+    target: stackRef,
+    offset: ["start start", "end start"],
+  });
+
   return (
     <section className="relative bg-background py-16 md:py-24">
       <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-12">
@@ -104,39 +72,49 @@ export function ProcessSection() {
             </ScrollAnimate>
           </div>
 
-          {/* Right Column - Stacking Cards */}
-          <div className="relative pb-24">
-            {PROCESS_PHASES.map((phase, index) => (
-              <div
-                key={phase.id}
-                className={cn(
-                  "sticky top-24",
-                  index > 0 && "-mt-16 sm:-mt-20 md:-mt-24"
-                )}
-                style={{ zIndex: index + 1 }}
-              >
-                <motion.div
-                  initial={{ opacity: 0, y: 60, scale: 0.96 }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ duration: 0.45, ease: "easeOut" }}
-                  viewport={{ once: true, margin: "-80px" }}
-                  className="rounded-2xl border border-border bg-card p-6 shadow-2xl md:p-8"
-                >
-                  <div className="flex items-center justify-between gap-4">
-                    <h3 className="text-xl font-bold text-card-foreground md:text-2xl">
-                      {phase.title}
-                    </h3>
-                    <span className="flex-shrink-0 text-3xl font-bold text-primary md:text-4xl">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                  </div>
-                  <p className="mt-4 text-sm text-muted-foreground md:text-base leading-relaxed">
-                    {phase.description}
-                  </p>
-                </motion.div>
-              </div>
-            ))}
-            <div className="h-72 md:h-96" />
+          {/* Right Column - Animated Stacking Cards */}
+          <div
+            ref={stackRef}
+            className="relative"
+            style={{ height: `${PROCESS_PHASES.length * 80}vh` }}
+          >
+            <div className="sticky top-24 h-[70vh]">
+              {PROCESS_PHASES.map((phase, index) => {
+                const n = PROCESS_PHASES.length;
+                const start = index / n;
+                const end = (index + 1) / n;
+
+                const y = useTransform(scrollYProgress, [start, end], [90, 0]);
+                const scale = useTransform(scrollYProgress, [start, end], [0.95, 1]);
+                const opacity = useTransform(
+                  scrollYProgress,
+                  [start, start + 0.06, end - 0.02, end],
+                  [0, 1, 1, index === n - 1 ? 1 : 0]
+                );
+
+                return (
+                  <motion.div
+                    key={phase.id}
+                    className="absolute inset-0"
+                    style={{ y, scale, opacity, zIndex: n - index }}
+                  >
+                    <div className="rounded-2xl border border-zinc-800 bg-zinc-950/90 p-6 shadow-2xl backdrop-blur-md md:p-8">
+                      <div className="flex items-center justify-between gap-4">
+                        <h3 className="text-xl font-bold text-white md:text-2xl">
+                          {phase.title}
+                        </h3>
+                        <span className="flex-shrink-0 text-3xl font-bold text-white/70 md:text-4xl">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                      </div>
+                      <p className="mt-4 text-sm text-zinc-300 md:text-base leading-relaxed">
+                        {phase.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
