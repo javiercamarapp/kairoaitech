@@ -180,9 +180,6 @@ export function HeroSection() {
         
         {/* Color Change Cards Section */}
         <ColorChangeCards />
-        
-        {/* Process Section */}
-        <ProcessSection />
       </main>
     </>;
 }
