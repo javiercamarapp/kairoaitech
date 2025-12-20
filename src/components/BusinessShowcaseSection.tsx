@@ -20,6 +20,7 @@ import lawFirmImg from "@/assets/businesses/law-firm.png";
 import insuranceImg from "@/assets/businesses/insurance.png";
 import autoRepairImg from "@/assets/businesses/auto-repair.png";
 import academyImg from "@/assets/businesses/academy.png";
+import robotHandImg from "@/assets/robot-hand.png";
 
 interface Business {
   id: string;
@@ -124,6 +125,20 @@ export function BusinessShowcaseSection() {
             title="¿Con qué soluciones contamos?"
             className="mb-6 md:mb-8"
           />
+        </div>
+      </div>
+
+      {/* Robot Hand Image */}
+      <div className="relative -ml-8 md:-ml-16 lg:-ml-24 mb-8 md:mb-12">
+        <img
+          src={robotHandImg}
+          alt="Mano robótica de IA"
+          className="w-48 sm:w-64 md:w-80 lg:w-[420px] xl:w-[500px] h-auto object-contain"
+        />
+      </div>
+
+      <div className="px-4 md:px-6 lg:px-12">
+        <div className="max-w-7xl mx-auto w-full">
           <SectionHeader
             title="Negocios que pueden implementar IA"
             subtitle="Descubre cómo diferentes industrias están transformando sus operaciones con inteligencia artificial"
