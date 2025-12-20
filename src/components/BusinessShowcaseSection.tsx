@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/reveal-on-hover";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight } from "lucide-react";
-import ColorChangeCards from "@/components/ui/color-change-card";
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
 
 // Import business images
@@ -228,9 +227,6 @@ export function BusinessShowcaseSection() {
 
       {/* Robot Hand + Carousel Cards */}
       <SolutionsCarousel robotHandImg={robotHandImg} />
-
-      {/* Color Change Cards Carousel */}
-      <ColorChangeCards />
 
       <div className="px-4 md:px-6 lg:px-12">
         <div className="max-w-7xl mx-auto w-full">
