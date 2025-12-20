@@ -38,43 +38,12 @@ export function HeroSection() {
       <HeroHeader />
       <main className="overflow-x-hidden">
         <section>
-          <div className="py-4 md:py-24 md:pb-12 lg:pb-16 lg:pt-72">
-            <div className="relative z-10 mx-auto flex max-w-7xl flex-col px-6 lg:block lg:px-12">
-              <div className="mx-auto max-w-lg text-center lg:ml-0 lg:max-w-full lg:text-left">
-                <h1 className="mt-20 max-w-2xl text-balance text-3xl font-bold sm:text-4xl md:text-6xl lg:mt-16 xl:text-7xl text-primary-foreground mx-auto lg:mx-0">
-                  <TextLoopReveal text="Empieza a ahorrar dentro de tu empresa usando AI" />
-                </h1>
-                <p className="mt-8 max-w-2xl text-balance text-lg text-secondary">
-                  <TextLoopReveal 
-                    text="Construimos soluciones impulsadas por IA que automatizan, escalan y transforman la forma en que las empresas operan." 
-                    wordDelay={0.08}
-                  />
-                </p>
-
-                <motion.div 
-                  className="mt-8 sm:mt-12 flex flex-col items-center justify-center gap-2 sm:flex-row lg:justify-start"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 1.5 }}
-                >
-                  <Button asChild size="lg" className="h-12 rounded-full pl-5 pr-3 text-base bg-black text-white hover:bg-black/90 active:-translate-y-1 transition-all duration-150">
-                    <Link to="#link">
-                      <span className="text-nowrap">Ponerse en contacto</span>
-                      <ChevronRight className="ml-1" />
-                    </Link>
-                  </Button>
-                  <Button asChild size="lg" variant="ghost" className="h-12 rounded-full px-5 text-base hover:bg-transparent active:-translate-y-1 active:shadow-lg active:shadow-white/40 transition-all duration-150 bg-white/20 sm:bg-transparent backdrop-blur-sm sm:backdrop-blur-none">
-                    <Link to="#link">
-                      <span className="text-nowrap text-gray-300 font-medium sm:font-normal sm:text-primary-foreground">Ver soluciones</span>
-                    </Link>
-                  </Button>
-                </motion.div>
-              </div>
-            </div>
-            <div className="aspect-[2/3] absolute inset-1 overflow-hidden rounded-3xl border border-border/10 sm:aspect-video lg:rounded-[3rem]">
+          <div className="relative min-h-screen">
+            {/* Video background container */}
+            <div className="absolute inset-0 overflow-hidden rounded-3xl border border-border/10 lg:rounded-[3rem] mx-1">
               {/* Fallback background */}
               <div className="absolute inset-0 bg-zinc-900" />
-              {/* Video (absolute to avoid layout/stacking issues on mobile) */}
+              {/* Video */}
               <video 
                 ref={videoRef}
                 autoPlay 
@@ -93,6 +62,44 @@ export function HeroSection() {
               />
               {/* Bottom fade for text readability */}
               <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background to-transparent" />
+            </div>
+            
+            {/* Content overlay */}
+            <div className="relative z-10 flex flex-col min-h-screen">
+              <div className="flex-1 flex items-center py-4 md:py-24">
+                <div className="mx-auto max-w-7xl px-6 lg:px-12 w-full">
+                  <div className="mx-auto max-w-lg text-center lg:ml-0 lg:max-w-full lg:text-left">
+                    <h1 className="mt-20 max-w-2xl text-balance text-3xl font-bold sm:text-4xl md:text-6xl lg:mt-16 xl:text-7xl text-primary-foreground mx-auto lg:mx-0">
+                      <TextLoopReveal text="Empieza a ahorrar dentro de tu empresa usando AI" />
+                    </h1>
+                    <p className="mt-8 max-w-2xl text-balance text-lg text-secondary">
+                      <TextLoopReveal 
+                        text="Construimos soluciones impulsadas por IA que automatizan, escalan y transforman la forma en que las empresas operan." 
+                        wordDelay={0.08}
+                      />
+                    </p>
+
+                    <motion.div 
+                      className="mt-8 sm:mt-12 flex flex-col items-center justify-center gap-2 sm:flex-row lg:justify-start"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: 1.5 }}
+                    >
+                      <Button asChild size="lg" className="h-12 rounded-full pl-5 pr-3 text-base bg-black text-white hover:bg-black/90 active:-translate-y-1 transition-all duration-150">
+                        <Link to="#link">
+                          <span className="text-nowrap">Ponerse en contacto</span>
+                          <ChevronRight className="ml-1" />
+                        </Link>
+                      </Button>
+                      <Button asChild size="lg" variant="ghost" className="h-12 rounded-full px-5 text-base hover:bg-transparent active:-translate-y-1 active:shadow-lg active:shadow-white/40 transition-all duration-150 bg-white/20 sm:bg-transparent backdrop-blur-sm sm:backdrop-blur-none">
+                        <Link to="#link">
+                          <span className="text-nowrap text-gray-300 font-medium sm:font-normal sm:text-primary-foreground">Ver soluciones</span>
+                        </Link>
+                      </Button>
+                    </motion.div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
