@@ -19,7 +19,7 @@ export function HeroSection() {
                 <p className="mt-8 max-w-2xl text-balance text-lg text-secondary">Construimos soluciones impulsadas por IA que automatizan, escalan y transforman la forma en que las empresas operan.</p>
 
                 <div className="mt-8 sm:mt-12 flex flex-col items-center justify-center gap-2 sm:flex-row lg:justify-start">
-                  <Button asChild size="lg" className="h-12 rounded-full pl-5 pr-3 text-base bg-black text-white hover:bg-black/90 active:scale-100">
+                  <Button asChild size="lg" className="h-12 rounded-full pl-5 pr-3 text-base bg-black text-white hover:bg-black/90 active:-translate-y-1 transition-all duration-150">
                     <Link to="#link">
                       <span className="text-nowrap">Start Building</span>
                       <ChevronRight className="ml-1" />
