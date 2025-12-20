@@ -130,11 +130,11 @@ export function BusinessShowcaseSection() {
         </div>
       </div>
 
-      {/* Robot Hand + Animated Cards */}
-      <div className="flex items-center gap-4 md:gap-8 lg:gap-12 mb-8 md:mb-12">
+      {/* Robot Hand + Stacking Cards */}
+      <div className="flex items-start gap-4 md:gap-8 lg:gap-12 mb-8 md:mb-12">
         {/* Robot Hand Image */}
         <ScrollAnimate 
-          className="relative -ml-8 md:-ml-16 lg:-ml-24 flex-shrink-0"
+          className="relative -ml-8 md:-ml-16 lg:-ml-24 flex-shrink-0 sticky top-20"
           delay={0.2}
           duration={0.8}
           x={-100}
@@ -149,34 +149,65 @@ export function BusinessShowcaseSection() {
           />
         </ScrollAnimate>
 
-        {/* Animated Cards Stack */}
-        <div className="flex gap-3 md:gap-4 flex-wrap max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-xl">
+        {/* Stacking Cards */}
+        <ContainerScroll className="flex-1 max-w-2xl py-8">
           {[
-            { icon: Bot, title: "Chatbots IA", color: "from-primary/20 to-primary/5" },
-            { icon: MessageSquare, title: "Atención 24/7", color: "from-blue-500/20 to-blue-500/5" },
-            { icon: Zap, title: "Automatización", color: "from-amber-500/20 to-amber-500/5" },
-            { icon: Brain, title: "Machine Learning", color: "from-purple-500/20 to-purple-500/5" },
+            { 
+              icon: Bot, 
+              title: "Chatbots Inteligentes", 
+              description: "Asistentes virtuales que entienden el contexto, responden preguntas complejas y aprenden de cada interacción para ofrecer respuestas cada vez más precisas.",
+              color: "from-primary/30 to-primary/10"
+            },
+            { 
+              icon: MessageSquare, 
+              title: "Atención al Cliente 24/7", 
+              description: "Nunca pierdas una oportunidad de venta. Nuestros sistemas de IA atienden consultas, resuelven dudas y guían a tus clientes en cualquier momento del día.",
+              color: "from-blue-500/30 to-blue-500/10"
+            },
+            { 
+              icon: Zap, 
+              title: "Automatización de Procesos", 
+              description: "Elimina tareas repetitivas y libera a tu equipo para lo que realmente importa. Desde facturación hasta gestión de inventarios, la IA hace el trabajo pesado.",
+              color: "from-amber-500/30 to-amber-500/10"
+            },
+            { 
+              icon: Brain, 
+              title: "Análisis Predictivo", 
+              description: "Anticipa tendencias, identifica patrones de compra y toma decisiones basadas en datos. La IA analiza millones de puntos de información en segundos.",
+              color: "from-purple-500/30 to-purple-500/10"
+            },
           ].map((card, index) => (
-            <ScrollAnimate
+            <CardSticky
               key={card.title}
-              delay={0.3 + index * 0.15}
-              duration={0.6}
-              y={40}
-              x={20}
+              index={index}
+              incrementY={80}
+              incrementZ={10}
+              className="mb-4"
             >
               <motion.div
-                className={`flex items-center gap-2 md:gap-3 px-3 py-2 md:px-4 md:py-3 rounded-xl md:rounded-2xl bg-gradient-to-br ${card.color} backdrop-blur-sm border border-border/50 shadow-lg`}
-                whileHover={{ scale: 1.05, y: -5 }}
-                transition={{ duration: 0.2 }}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className={`p-5 md:p-6 lg:p-8 rounded-2xl md:rounded-3xl bg-gradient-to-br ${card.color} backdrop-blur-md border border-border/50 shadow-xl`}
               >
-                <card.icon className="w-4 h-4 md:w-5 md:h-5 text-foreground" />
-                <span className="text-xs md:text-sm font-medium text-foreground whitespace-nowrap">
-                  {card.title}
-                </span>
+                <div className="flex items-start gap-4">
+                  <div className="p-3 rounded-xl bg-background/50 border border-border/30">
+                    <card.icon className="w-6 h-6 md:w-8 md:h-8 text-foreground" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-foreground mb-2">
+                      {card.title}
+                    </h3>
+                    <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                      {card.description}
+                    </p>
+                  </div>
+                </div>
               </motion.div>
-            </ScrollAnimate>
+            </CardSticky>
           ))}
-        </div>
+        </ContainerScroll>
       </div>
 
       <div className="px-4 md:px-6 lg:px-12">
