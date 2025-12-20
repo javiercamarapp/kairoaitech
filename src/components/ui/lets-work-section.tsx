@@ -21,24 +21,7 @@ export function LetsWorkTogether() {
   }
 
   const handleBookCall = () => {
-    // Crear fecha para la próxima hora disponible
-    const now = new Date()
-    const startDate = new Date(now.getTime() + 60 * 60 * 1000) // +1 hora
-    startDate.setMinutes(0, 0, 0) // Redondear a la hora
-    const endDate = new Date(startDate.getTime() + 15 * 60 * 1000) // +15 min
-    
-    // Formatear fechas para Google Calendar (formato: YYYYMMDDTHHmmssZ)
-    const formatDate = (date: Date) => {
-      return date.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '')
-    }
-    
-    const eventTitle = encodeURIComponent("Llamada con Kairo AI - Consulta de proyecto")
-    const eventDetails = encodeURIComponent("Llamada de introducción de 15 minutos para discutir tu proyecto.\n\nContacto: contacto@kairoai.tech")
-    const dates = `${formatDate(startDate)}/${formatDate(endDate)}`
-    
-    const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${eventTitle}&dates=${dates}&details=${eventDetails}`
-    
-    window.open(googleCalendarUrl, "_blank")
+    window.open("https://cal.com/javier-eduardo-camara-porte-petit-hioult/30min", "_blank")
   }
 
   return (
@@ -101,7 +84,7 @@ export function LetsWorkTogether() {
 
           {/* Subtle subtext */}
           <p className="mt-6 text-sm text-muted-foreground">
-            Llamada de 15 min
+            Llamada de 30 min
           </p>
         </motion.div>
 
