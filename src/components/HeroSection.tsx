@@ -152,7 +152,7 @@ const HeroHeader = () => {
                     <span>Login</span>
                   </Link>
                 </Button>
-                <Button asChild size="sm">
+                <Button asChild size="sm" className="bg-black text-white hover:bg-black/90">
                   <Link to="#">
                     <span>Sign Up</span>
                   </Link>
