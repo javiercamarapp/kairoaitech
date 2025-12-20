@@ -50,16 +50,11 @@ export function HeroSection() {
                 loop
                 muted
                 playsInline
-                className="size-full object-cover opacity-70 dark:opacity-85"
+                className="size-full object-cover"
                 src="/videos/hero-background.mp4"
               />
-              {/* Gradient overlay with shimmer */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-transparent to-accent/20" />
-              <div className="absolute inset-0 overflow-hidden">
-                <div className="absolute inset-0 animate-shimmer bg-gradient-to-r from-transparent via-primary/10 to-transparent" />
-              </div>
               {/* Bottom fade for text readability */}
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
             </div>
           </div>
         </section>
