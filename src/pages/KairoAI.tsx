@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { ArrowLeft, Send, Bot, User, Loader2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { supabase } from '@/integrations/supabase/client';
+import { DottedSurface } from '@/components/ui/dotted-surface';
 import logo from '@/assets/logo.png';
 
 interface Message {
@@ -141,9 +141,12 @@ const KairoAI = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#0a0a0f] via-[#0d0d15] to-[#0a0a0f] flex flex-col">
+    <div className="min-h-screen bg-gradient-to-b from-[#0a0a0f] via-[#0d0d15] to-[#0a0a0f] flex flex-col relative overflow-hidden">
+      {/* Animated Background */}
+      <DottedSurface className="fixed inset-0 z-0 opacity-40" />
+      
       {/* Header */}
-      <header className="border-b border-white/10 bg-black/20 backdrop-blur-xl sticky top-0 z-50">
+      <header className="border-b border-white/10 bg-black/40 backdrop-blur-xl sticky top-0 z-50 relative">
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2 text-white/70 hover:text-white transition-colors">
             <ArrowLeft className="w-5 h-5" />
