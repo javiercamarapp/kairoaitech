@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ArrowLeft, Send, Bot, User, Loader2, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowLeft, Send, Bot, User, Loader2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { DottedSurface } from '@/components/ui/dotted-surface';
@@ -7,9 +7,8 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from '@/components/ui/carousel';
+import Autoplay from 'embla-carousel-autoplay';
 import logo from '@/assets/logo.png';
 
 interface Message {
@@ -178,35 +177,9 @@ const KairoAI = () => {
               <h1 className="text-2xl md:text-3xl font-bold text-black mb-3">
                 ¡Hola! Soy tu asistente de Kairo AI
               </h1>
-              <p className="text-black/60 max-w-md mb-8">
+              <p className="text-black/60 max-w-md">
                 Cuéntame sobre tu negocio y te ayudaré a encontrar la solución perfecta de automatización con IA.
               </p>
-              
-              {/* Suggested Questions Carousel */}
-              <div className="w-full max-w-2xl px-12">
-                <Carousel
-                  opts={{
-                    align: "start",
-                    loop: true,
-                  }}
-                  className="w-full"
-                >
-                  <CarouselContent className="-ml-2 md:-ml-4">
-                    {suggestedQuestions.map((question, index) => (
-                      <CarouselItem key={index} className="pl-2 md:pl-4 basis-full md:basis-1/2">
-                        <button
-                          onClick={() => sendMessage(question)}
-                          className="w-full text-left p-4 rounded-xl bg-black/5 border border-black/10 hover:bg-black/10 hover:border-black/30 transition-all duration-300 text-black/80 hover:text-black text-sm h-full min-h-[80px] flex items-center"
-                        >
-                          {question}
-                        </button>
-                      </CarouselItem>
-                    ))}
-                  </CarouselContent>
-                  <CarouselPrevious className="left-0 bg-white border-black/20 text-black hover:bg-black/10" />
-                  <CarouselNext className="right-0 bg-white border-black/20 text-black hover:bg-black/10" />
-                </Carousel>
-              </div>
             </div>
           ) : (
             messages.map((message, index) => (
@@ -247,7 +220,40 @@ const KairoAI = () => {
         </div>
 
         {/* Input */}
-        <div className="sticky bottom-0 p-4 bg-gradient-to-t from-white via-white to-transparent pt-8 relative z-10">
+        <div className="sticky bottom-0 p-4 bg-gradient-to-t from-white via-white to-transparent pt-4 relative z-10">
+          {/* Suggested Questions Carousel */}
+          {messages.length === 0 && (
+            <div className="max-w-3xl mx-auto mb-3">
+              <Carousel
+                opts={{
+                  align: "start",
+                  loop: true,
+                }}
+                plugins={[
+                  Autoplay({
+                    delay: 3000,
+                    stopOnInteraction: false,
+                    stopOnMouseEnter: true,
+                  }),
+                ]}
+                className="w-full"
+              >
+                <CarouselContent className="-ml-2">
+                  {suggestedQuestions.map((question, index) => (
+                    <CarouselItem key={index} className="pl-2 basis-full md:basis-1/2">
+                      <button
+                        onClick={() => sendMessage(question)}
+                        className="w-full text-left p-3 rounded-xl bg-black/5 border border-black/10 hover:bg-black/10 hover:border-black/30 transition-all duration-300 text-black/70 hover:text-black text-sm"
+                      >
+                        {question}
+                      </button>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+              </Carousel>
+            </div>
+          )}
+          
           <form onSubmit={handleSubmit} className="max-w-3xl mx-auto">
             <div className="relative flex items-end bg-white border border-black/20 rounded-2xl overflow-hidden focus-within:border-black/50 transition-colors shadow-lg">
               <textarea
