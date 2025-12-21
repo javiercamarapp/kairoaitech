@@ -315,9 +315,9 @@ const Logo = ({
       alt="Logo" 
       className={cn(
         'h-6 w-auto sm:h-8 transition-all duration-300',
-        inverted && 'invert brightness-0 invert',
+        inverted && 'brightness-0 invert',
         className
-      )} 
+      )}
     />
   );
 };
