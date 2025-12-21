@@ -17,29 +17,13 @@ import five9 from "@/assets/integrations/five9.png";
 import twilio from "@/assets/integrations/twilio.png";
 import aspel from "@/assets/integrations/aspel.png";
 import procore from "@/assets/integrations/procore.png";
-
-const ICONS_ROW1 = [
-  oracleMicros,
-  sap,
-  zendesk,
-  rappi,
-  genesys,
-];
-
-const ICONS_ROW2 = [
-  five9,
-  twilio,
-  aspel,
-  procore,
-  untable,
-];
-
-const repeatedIcons = (icons: string[], repeat = 4) => 
-  Array.from({ length: repeat }).flatMap(() => icons);
-
+const ICONS_ROW1 = [oracleMicros, sap, zendesk, rappi, genesys];
+const ICONS_ROW2 = [five9, twilio, aspel, procore, untable];
+const repeatedIcons = (icons: string[], repeat = 4) => Array.from({
+  length: repeat
+}).flatMap(() => icons);
 export default function IntegrationHero() {
-  return (
-    <section className="relative w-full overflow-hidden bg-background py-6 md:py-10">
+  return <section className="relative w-full overflow-hidden bg-background py-6 md:py-10">
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center px-2">
@@ -51,7 +35,7 @@ export default function IntegrationHero() {
 
         <ScrollAnimate delay={0.2} duration={0.6} y={30}>
           <p className="mb-4 md:mb-6 max-w-md md:max-w-2xl text-center text-xs md:text-sm lg:text-base text-muted-foreground">
-            Más de 250 aplicaciones disponibles para integrar perfectamente con tu flujo de trabajo.
+              Podemos conectarnos a más de 250 softwares que se usan en el día a día en todas las industrias para integrar perfectamente con tu flujo de trabajo a la IA.   
           </p>
         </ScrollAnimate>
 
@@ -69,26 +53,16 @@ export default function IntegrationHero() {
           <div className="relative w-full max-w-5xl mx-auto overflow-hidden">
             {/* Row 1 */}
             <div className="mb-2 md:mb-3 flex animate-scroll-left">
-              {repeatedIcons(ICONS_ROW1, 4).map((src, i) => (
-                <div
-                  key={`row1-${i}`}
-                  className="mx-1.5 md:mx-2 flex h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 flex-shrink-0 items-center justify-center rounded-lg md:rounded-xl bg-card border border-border shadow-sm"
-                >
+              {repeatedIcons(ICONS_ROW1, 4).map((src, i) => <div key={`row1-${i}`} className="mx-1.5 md:mx-2 flex h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 flex-shrink-0 items-center justify-center rounded-lg md:rounded-xl bg-card border border-border shadow-sm">
                   <img src={src} alt="" className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7 object-contain" />
-                </div>
-              ))}
+                </div>)}
             </div>
 
             {/* Row 2 */}
             <div className="flex animate-scroll-right">
-              {repeatedIcons(ICONS_ROW2, 4).map((src, i) => (
-                <div
-                  key={`row2-${i}`}
-                  className="mx-1.5 md:mx-2 flex h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 flex-shrink-0 items-center justify-center rounded-lg md:rounded-xl bg-card border border-border shadow-sm"
-                >
+              {repeatedIcons(ICONS_ROW2, 4).map((src, i) => <div key={`row2-${i}`} className="mx-1.5 md:mx-2 flex h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 flex-shrink-0 items-center justify-center rounded-lg md:rounded-xl bg-card border border-border shadow-sm">
                   <img src={src} alt="" className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7 object-contain" />
-                </div>
-              ))}
+                </div>)}
             </div>
 
             {/* Fade overlays */}
@@ -114,6 +88,5 @@ export default function IntegrationHero() {
           animation: scroll-right 30s linear infinite;
         }
       `}</style>
-    </section>
-  );
+    </section>;
 }
