@@ -132,54 +132,6 @@ export function HeroSection() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 2 }}
         >
-          <div className="group relative m-auto max-w-7xl px-6">
-            <div className="flex flex-col items-center md:flex-row">
-              <motion.div 
-                className="md:max-w-44 md:border-r md:pr-6"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 2.2 }}
-              >
-                <p className="text-end text-sm text-muted-foreground">Empresas con las que hemos trabajado</p>
-              </motion.div>
-              <motion.div 
-                className="relative md:w-[calc(100%-11rem)]"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 2.4 }}
-              >
-                <InfiniteSlider speedOnHover={60} speed={80} gap={48}>
-                  <div className="flex items-center justify-center h-16 w-32">
-                    <img className="max-h-12 max-w-full object-contain" src={logoTaquitos} alt="Taquitos Logo" loading="eager" fetchPriority="high" />
-                  </div>
-                  <div className="flex items-center justify-center h-16 w-32">
-                    <img className="max-h-12 max-w-full object-contain" src={logoAmerica} alt="Club América Logo" />
-                  </div>
-                  <div className="flex items-center justify-center h-16 w-32">
-                    <img className="max-h-12 max-w-full object-contain" src={logoMonterrey} alt="Monterrey Logo" />
-                  </div>
-                  <div className="flex items-center justify-center h-16 w-32">
-                    <img className="max-h-12 max-w-full object-contain" src={logoKing} alt="King Logo" />
-                  </div>
-                  <div className="flex items-center justify-center h-16 w-32">
-                    <img className="max-h-12 max-w-full object-contain" src={logoParadise} alt="Paradise Logo" />
-                  </div>
-                  <div className="flex items-center justify-center h-16 w-32">
-                    <img className="max-h-12 max-w-full object-contain" src={logoDropin} alt="Dropin Logo" />
-                  </div>
-                  <div className="flex items-center justify-center h-16 w-32">
-                    <img className="max-h-12 max-w-full object-contain" src={logoPolloLoco} alt="El Pollo Loco Logo" />
-                  </div>
-                </InfiniteSlider>
-
-                <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-background to-transparent"></div>
-                <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-background to-transparent"></div>
-                <ProgressiveBlur className="pointer-events-none absolute left-0 top-0 h-full w-20" direction="left" blurIntensity={1} />
-                <ProgressiveBlur className="pointer-events-none absolute right-0 top-0 h-full w-20" direction="right" blurIntensity={1} />
-              </motion.div>
-            </div>
-          </div>
-          
           {/* Search Bar */}
           <ScrollAnimate className="py-6 px-3 relative z-[100]" delay={0.3} duration={0.7} y={30}>
             <AnimatedSearchBar placeholder="Busca tu negocio..." />
