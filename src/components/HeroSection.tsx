@@ -14,6 +14,7 @@ import { BusinessShowcaseSection } from '@/components/BusinessShowcaseSection';
 import { ProcessSection } from '@/components/ProcessSection';
 import IntegrationHero from '@/components/ui/integration-hero';
 import { FeaturedStats } from '@/components/FeaturedStats';
+import { GlobeSection } from '@/components/GlobeSection';
 import logoImage from '@/assets/logo.png';
 import logoTaquitos from '@/assets/logos/taquitos.png';
 import logoAmerica from '@/assets/logos/america.png';
@@ -184,6 +185,9 @@ export function HeroSection() {
         
         {/* Featured Stats Section */}
         <FeaturedStats />
+        
+        {/* Globe Section */}
+        <GlobeSection />
       </main>
     </>;
 }
