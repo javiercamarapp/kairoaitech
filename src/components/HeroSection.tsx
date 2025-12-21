@@ -16,6 +16,7 @@ import IntegrationHero from '@/components/ui/integration-hero';
 import { FeaturedStats } from '@/components/FeaturedStats';
 import { GlobeSection } from '@/components/GlobeSection';
 import CallToActionSection from '@/components/ui/call-to-action-section';
+import { Footer } from '@/components/Footer';
 import logoImage from '@/assets/logo.png';
 import logoTaquitos from '@/assets/logos/taquitos.png';
 import logoAmerica from '@/assets/logos/america.png';
@@ -192,6 +193,9 @@ export function HeroSection() {
         
         {/* Call to Action Section */}
         <CallToActionSection />
+        
+        {/* Footer */}
+        <Footer />
       </main>
     </>;
 }
