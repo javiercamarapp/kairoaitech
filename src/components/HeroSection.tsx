@@ -51,8 +51,13 @@ export function HeroSection() {
           <div className="relative min-h-screen">
             {/* Video background container */}
             <div className="absolute inset-0 overflow-hidden rounded-3xl border border-border/10 lg:rounded-[3rem] mx-1">
-              {/* Fallback background */}
-              <div className="absolute inset-0 bg-zinc-900" />
+              {/* Fallback background - always visible until video loads */}
+              <div 
+                className={cn(
+                  "absolute inset-0 bg-zinc-900 transition-opacity duration-500",
+                  videoLoaded ? "opacity-0" : "opacity-100"
+                )} 
+              />
               {/* Video */}
               <video 
                 ref={videoRef}
@@ -60,14 +65,18 @@ export function HeroSection() {
                 loop 
                 muted 
                 playsInline
-                preload="auto"
+                preload="metadata"
+                poster=""
                 onLoadedData={() => setVideoLoaded(true)}
                 onCanPlay={() => setVideoLoaded(true)}
                 onTimeUpdate={(e) => {
                   const v = e.currentTarget;
                   if (!videoLoaded && v.currentTime > 0) setVideoLoaded(true);
                 }}
-                className="absolute inset-0 h-full w-full object-cover object-[55%_center] sm:object-center"
+                className={cn(
+                  "absolute inset-0 h-full w-full object-cover object-[55%_center] sm:object-center transition-opacity duration-700",
+                  videoLoaded ? "opacity-100" : "opacity-0"
+                )}
                 src="/videos/hero-background.mp4"
               />
               {/* Overlay for text readability */}
