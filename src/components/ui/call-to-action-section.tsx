@@ -11,7 +11,7 @@ export default function CallToActionSection() {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <section className="relative py-16 pb-32 md:py-24 md:pb-48 lg:pb-56 overflow-hidden bg-background">
+    <section className="relative pt-8 pb-32 md:pt-12 md:pb-48 lg:pb-56 overflow-hidden bg-background">
       
       {/* Animated background elements */}
       <motion.div 
