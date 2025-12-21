@@ -169,7 +169,8 @@ const menuItems = [{
   href: '#soluciones'
 }, {
   name: 'Kairo AI',
-  href: '#kairo-ai'
+  href: '/kairo-ai',
+  isRoute: true
 }, {
   name: 'Nosotros',
   href: '#nosotros'
@@ -227,9 +228,15 @@ const HeroHeader = () => {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.1 * index + 0.3 }}
                     >
-                      <Link to={item.href} className="block text-muted-foreground duration-150 hover:text-accent-foreground active:-translate-y-1 transition-all">
-                        <span className="text-primary-foreground">{item.name}</span>
-                      </Link>
+                      {'isRoute' in item && item.isRoute ? (
+                        <Link to={item.href} className="block text-muted-foreground duration-150 hover:text-accent-foreground active:-translate-y-1 transition-all">
+                          <span className="text-primary-foreground">{item.name}</span>
+                        </Link>
+                      ) : (
+                        <a href={item.href} className="block text-muted-foreground duration-150 hover:text-accent-foreground active:-translate-y-1 transition-all">
+                          <span className="text-primary-foreground">{item.name}</span>
+                        </a>
+                      )}
                     </motion.li>
                   ))}
                 </ul>
@@ -241,9 +248,15 @@ const HeroHeader = () => {
                 <ul className="space-y-6 text-base">
                   {menuItems.map((item, index) => (
                     <li key={index}>
-                      <Link to={item.href} className="block text-muted-foreground duration-150 hover:text-accent-foreground">
-                        <span>{item.name}</span>
-                      </Link>
+                      {'isRoute' in item && item.isRoute ? (
+                        <Link to={item.href} className="block text-muted-foreground duration-150 hover:text-accent-foreground">
+                          <span>{item.name}</span>
+                        </Link>
+                      ) : (
+                        <a href={item.href} className="block text-muted-foreground duration-150 hover:text-accent-foreground">
+                          <span>{item.name}</span>
+                        </a>
+                      )}
                     </li>
                   ))}
                 </ul>
