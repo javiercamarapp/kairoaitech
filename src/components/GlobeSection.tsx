@@ -13,13 +13,10 @@ export function GlobeSection() {
         </ScrollAnimate>
 
         <ScrollAnimate delay={0.3} duration={0.8} y={50}>
-          <div className="relative flex items-end justify-center h-[250px] sm:h-[350px] md:h-[450px] lg:h-[550px] overflow-hidden">
-            <div className="absolute -bottom-[50%] w-full h-[200%] flex items-center justify-center">
-              <Globe className="w-full max-w-[800px] lg:max-w-[1000px]" />
+          <div className="relative flex items-start justify-center h-[250px] sm:h-[350px] md:h-[450px] lg:h-[500px] overflow-hidden">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] sm:w-[700px] md:w-[900px] lg:w-[1100px] aspect-square">
+              <Globe className="w-full h-full" />
             </div>
-            
-            {/* Glow effect */}
-            <div className="pointer-events-none absolute inset-0 bg-gradient-radial from-white/10 via-transparent to-transparent" />
           </div>
         </ScrollAnimate>
       </div>
