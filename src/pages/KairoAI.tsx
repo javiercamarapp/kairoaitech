@@ -10,6 +10,7 @@ import {
 } from '@/components/ui/carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import logo from '@/assets/logo.png';
+import { TextLoopReveal } from '@/components/ui/text-loop-reveal';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -171,11 +172,12 @@ const KairoAI = () => {
         <div className="flex-1 overflow-y-auto px-4 py-3 md:py-6 space-y-4 md:space-y-6 min-h-0">
           {messages.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full text-center px-2">
-              <div className="w-14 h-14 md:w-20 md:h-20 rounded-full bg-black flex items-center justify-center mb-3 md:mb-6 shadow-lg shadow-black/20">
-                <Bot className="w-7 h-7 md:w-10 md:h-10 text-white" />
-              </div>
-              <h1 className="text-lg md:text-3xl font-bold text-black mb-2 md:mb-3">
-                ¡Hola! Soy tu asistente de Kairo AI
+              <h1 className="text-lg md:text-3xl font-bold mb-2 md:mb-3">
+                <TextLoopReveal 
+                  text="¡Hola! Soy tu asistente de Kairo AI" 
+                  className="text-black justify-center bg-none bg-clip-border text-inherit"
+                  wordDelay={0.12}
+                />
               </h1>
               <p className="text-black/60 max-w-md text-sm md:text-base">
                 Cuéntame sobre tu negocio y te ayudaré a encontrar la solución perfecta.
