@@ -142,9 +142,9 @@ const solutionCards = [
 function SolutionsCarousel({ robotHandImg }: { robotHandImg: string }) {
   return (
     <div className="flex flex-row items-center gap-2 sm:gap-4 md:gap-6 lg:gap-8 mb-8 md:mb-12">
-      {/* Robot Hand Image */}
+      {/* Robot Hand Image - visible on all screen sizes */}
       <motion.div 
-        className="relative -ml-4 sm:-ml-10 md:-ml-16 lg:-ml-24 flex-shrink-0"
+        className="relative ml-2 sm:-ml-10 md:-ml-16 lg:-ml-24 flex-shrink-0"
         initial={{ opacity: 0, x: -50 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
@@ -153,7 +153,7 @@ function SolutionsCarousel({ robotHandImg }: { robotHandImg: string }) {
         <img
           src={robotHandImg}
           alt="Mano robótica de IA"
-          className="w-24 sm:w-40 md:w-72 lg:w-[380px] xl:w-[450px] h-auto object-contain"
+          className="w-20 sm:w-40 md:w-72 lg:w-[380px] xl:w-[450px] h-auto object-contain"
           loading="eager"
         />
       </motion.div>
