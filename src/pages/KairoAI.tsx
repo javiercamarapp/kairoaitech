@@ -153,7 +153,7 @@ const KairoAI = () => {
             <span className="text-sm">Volver</span>
           </Link>
           <div className="flex items-center gap-2">
-            <img src={logo} alt="Kairo AI" className="h-8 w-auto" />
+            <img src={logo} alt="Kairo AI" className="h-8 w-auto invert" />
           </div>
           <div className="w-20" />
         </div>
