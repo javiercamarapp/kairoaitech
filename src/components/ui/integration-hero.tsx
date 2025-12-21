@@ -6,24 +6,32 @@ import { ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import React from "react";
 
+// Import integration logos
+import oracleMicros from "@/assets/integrations/oracle-micros.png";
+import untable from "@/assets/integrations/untable.png";
+import sap from "@/assets/integrations/sap.png";
+import zendesk from "@/assets/integrations/zendesk.png";
+import rappi from "@/assets/integrations/rappi.png";
+import genesys from "@/assets/integrations/genesys.png";
+import five9 from "@/assets/integrations/five9.png";
+import twilio from "@/assets/integrations/twilio.png";
+import aspel from "@/assets/integrations/aspel.png";
+import procore from "@/assets/integrations/procore.png";
+
 const ICONS_ROW1 = [
-  "https://cdn-icons-png.flaticon.com/512/5968/5968854.png",
-  "https://cdn-icons-png.flaticon.com/512/732/732221.png",
-  "https://cdn-icons-png.flaticon.com/512/733/733609.png",
-  "https://cdn-icons-png.flaticon.com/512/732/732084.png",
-  "https://cdn-icons-png.flaticon.com/512/733/733585.png",
-  "https://cdn-icons-png.flaticon.com/512/281/281763.png",
-  "https://cdn-icons-png.flaticon.com/512/888/888879.png",
+  oracleMicros,
+  sap,
+  zendesk,
+  rappi,
+  genesys,
 ];
 
 const ICONS_ROW2 = [
-  "https://cdn-icons-png.flaticon.com/512/174/174857.png",
-  "https://cdn-icons-png.flaticon.com/512/906/906324.png",
-  "https://cdn-icons-png.flaticon.com/512/888/888841.png",
-  "https://cdn-icons-png.flaticon.com/512/5968/5968875.png",
-  "https://cdn-icons-png.flaticon.com/512/906/906361.png",
-  "https://cdn-icons-png.flaticon.com/512/732/732190.png",
-  "https://cdn-icons-png.flaticon.com/512/888/888847.png",
+  five9,
+  twilio,
+  aspel,
+  procore,
+  untable,
 ];
 
 const repeatedIcons = (icons: string[], repeat = 4) => 
