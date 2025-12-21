@@ -71,7 +71,7 @@ export default function CallToActionSection() {
           <div className="relative inline-block">
             {/* Robot Hand - positioned to point at button from bottom-right */}
             <motion.div
-              className="absolute -bottom-40 -right-6 md:-bottom-72 md:-right-20 lg:-bottom-96 lg:-right-28 w-40 h-56 md:w-64 md:h-96 lg:w-80 lg:h-[28rem] pointer-events-none z-20"
+              className="absolute -bottom-48 -right-6 md:-bottom-72 md:-right-20 lg:-bottom-96 lg:-right-28 w-40 h-56 md:w-64 md:h-96 lg:w-80 lg:h-[28rem] pointer-events-none z-20"
               initial={{ y: 100, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true }}
