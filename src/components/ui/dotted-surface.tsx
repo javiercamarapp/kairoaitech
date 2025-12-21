@@ -59,8 +59,8 @@ export function DottedSurface({ className, ...props }: DottedSurfaceProps) {
         const z = iy * SEPARATION - (AMOUNTY * SEPARATION) / 2;
 
         positions.push(x, y, z);
-        // Cyan/blue gradient colors for dark theme
-        colors.push(0.2, 0.8, 0.9);
+        // Black dots
+        colors.push(0.1, 0.1, 0.1);
       }
     }
 

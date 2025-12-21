@@ -141,20 +141,20 @@ const KairoAI = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#0a0a0f] via-[#0d0d15] to-[#0a0a0f] flex flex-col relative overflow-hidden">
+    <div className="min-h-screen bg-white flex flex-col relative overflow-hidden">
       {/* Animated Background */}
-      <DottedSurface className="fixed inset-0 z-0 opacity-40" />
+      <DottedSurface className="fixed inset-0 z-0 opacity-50" />
       
       {/* Header */}
-      <header className="border-b border-white/10 bg-black/40 backdrop-blur-xl sticky top-0 z-50 relative">
+      <header className="bg-white/80 backdrop-blur-xl sticky top-0 z-50 relative">
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 text-white/70 hover:text-white transition-colors">
+          <Link to="/" className="flex items-center gap-2 text-black/70 hover:text-black transition-colors">
             <ArrowLeft className="w-5 h-5" />
             <span className="text-sm">Volver</span>
           </Link>
           <div className="flex items-center gap-2">
             <img src={logo} alt="Kairo AI" className="h-8 w-auto" />
-            <span className="text-white font-semibold">Kairo AI</span>
+            <span className="text-black font-semibold">Kairo AI</span>
           </div>
           <div className="w-20" />
         </div>
@@ -166,13 +166,13 @@ const KairoAI = () => {
         <div className="flex-1 overflow-y-auto px-4 py-6 space-y-6">
           {messages.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full min-h-[60vh] text-center">
-              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center mb-6 shadow-lg shadow-cyan-500/20">
+              <div className="w-20 h-20 rounded-full bg-black flex items-center justify-center mb-6 shadow-lg shadow-black/20">
                 <Bot className="w-10 h-10 text-white" />
               </div>
-              <h1 className="text-2xl md:text-3xl font-bold text-white mb-3">
+              <h1 className="text-2xl md:text-3xl font-bold text-black mb-3">
                 ¡Hola! Soy tu asistente de Kairo AI
               </h1>
-              <p className="text-white/60 max-w-md mb-8">
+              <p className="text-black/60 max-w-md mb-8">
                 Cuéntame sobre tu negocio y te ayudaré a encontrar la solución perfecta de automatización con IA.
               </p>
               
@@ -182,7 +182,7 @@ const KairoAI = () => {
                   <button
                     key={index}
                     onClick={() => sendMessage(question)}
-                    className="text-left p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-cyan-500/50 transition-all duration-300 text-white/80 hover:text-white text-sm"
+                    className="text-left p-4 rounded-xl bg-black/5 border border-black/10 hover:bg-black/10 hover:border-black/30 transition-all duration-300 text-black/80 hover:text-black text-sm"
                   >
                     {question}
                   </button>
@@ -196,15 +196,15 @@ const KairoAI = () => {
                 className={`flex gap-4 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
               >
                 {message.role === 'assistant' && (
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center flex-shrink-0">
+                  <div className="w-8 h-8 rounded-full bg-black flex items-center justify-center flex-shrink-0">
                     <Bot className="w-4 h-4 text-white" />
                   </div>
                 )}
                 <div
                   className={`max-w-[80%] rounded-2xl px-4 py-3 ${
                     message.role === 'user'
-                      ? 'bg-cyan-600 text-white'
-                      : 'bg-white/10 text-white/90'
+                      ? 'bg-black text-white'
+                      : 'bg-black/10 text-black/90'
                   }`}
                 >
                   <p className="whitespace-pre-wrap text-sm md:text-base leading-relaxed">
@@ -217,8 +217,8 @@ const KairoAI = () => {
                   </p>
                 </div>
                 {message.role === 'user' && (
-                  <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
-                    <User className="w-4 h-4 text-white" />
+                  <div className="w-8 h-8 rounded-full bg-black/20 flex items-center justify-center flex-shrink-0">
+                    <User className="w-4 h-4 text-black" />
                   </div>
                 )}
               </div>
@@ -228,9 +228,9 @@ const KairoAI = () => {
         </div>
 
         {/* Input */}
-        <div className="sticky bottom-0 p-4 bg-gradient-to-t from-[#0a0a0f] via-[#0a0a0f] to-transparent pt-8">
+        <div className="sticky bottom-0 p-4 bg-gradient-to-t from-white via-white to-transparent pt-8 relative z-10">
           <form onSubmit={handleSubmit} className="max-w-3xl mx-auto">
-            <div className="relative flex items-end bg-white/5 border border-white/10 rounded-2xl overflow-hidden focus-within:border-cyan-500/50 transition-colors">
+            <div className="relative flex items-end bg-white border border-black/20 rounded-2xl overflow-hidden focus-within:border-black/50 transition-colors shadow-lg">
               <textarea
                 ref={textareaRef}
                 value={input}
@@ -238,13 +238,13 @@ const KairoAI = () => {
                 onKeyDown={handleKeyDown}
                 placeholder="Escribe tu mensaje..."
                 rows={1}
-                className="flex-1 bg-transparent text-white placeholder-white/40 px-4 py-4 resize-none focus:outline-none text-sm md:text-base max-h-[150px]"
+                className="flex-1 bg-transparent text-black placeholder-black/40 px-4 py-4 resize-none focus:outline-none text-sm md:text-base max-h-[150px]"
                 disabled={isLoading}
               />
               <Button
                 type="submit"
                 disabled={!input.trim() || isLoading}
-                className="m-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-xl px-4 py-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                className="m-2 bg-black hover:bg-black/80 text-white rounded-xl px-4 py-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
               >
                 {isLoading ? (
                   <Loader2 className="w-5 h-5 animate-spin" />
@@ -253,7 +253,7 @@ const KairoAI = () => {
                 )}
               </Button>
             </div>
-            <p className="text-center text-white/40 text-xs mt-3">
+            <p className="text-center text-black/40 text-xs mt-3">
               Kairo AI te ayuda a encontrar la mejor solución para tu negocio
             </p>
           </form>
