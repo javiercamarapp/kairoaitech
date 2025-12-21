@@ -74,7 +74,7 @@ export function FeaturedStats() {
 
           {/* Area Chart */}
           <ScrollAnimate delay={0.4} duration={0.8} y={40} className="flex-1 w-full">
-            <motion.div className="h-[250px] md:h-[350px] w-full bg-card border border-border rounded-2xl p-4 md:p-6 shadow-sm" whileHover={{
+            <motion.div className="h-[250px] md:h-[350px] w-full" whileHover={{
             scale: 1.01
           }} transition={{
             duration: 0.3
