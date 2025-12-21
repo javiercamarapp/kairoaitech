@@ -1,8 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ArrowLeft, Send, Bot, User, Loader2 } from 'lucide-react';
+import { ArrowLeft, Send, Bot, User, Loader2, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { DottedSurface } from '@/components/ui/dotted-surface';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
 import logo from '@/assets/logo.png';
 
 interface Message {
@@ -175,17 +182,30 @@ const KairoAI = () => {
                 Cuéntame sobre tu negocio y te ayudaré a encontrar la solución perfecta de automatización con IA.
               </p>
               
-              {/* Suggested Questions */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-full max-w-2xl">
-                {suggestedQuestions.map((question, index) => (
-                  <button
-                    key={index}
-                    onClick={() => sendMessage(question)}
-                    className="text-left p-4 rounded-xl bg-black/5 border border-black/10 hover:bg-black/10 hover:border-black/30 transition-all duration-300 text-black/80 hover:text-black text-sm"
-                  >
-                    {question}
-                  </button>
-                ))}
+              {/* Suggested Questions Carousel */}
+              <div className="w-full max-w-2xl px-12">
+                <Carousel
+                  opts={{
+                    align: "start",
+                    loop: true,
+                  }}
+                  className="w-full"
+                >
+                  <CarouselContent className="-ml-2 md:-ml-4">
+                    {suggestedQuestions.map((question, index) => (
+                      <CarouselItem key={index} className="pl-2 md:pl-4 basis-full md:basis-1/2">
+                        <button
+                          onClick={() => sendMessage(question)}
+                          className="w-full text-left p-4 rounded-xl bg-black/5 border border-black/10 hover:bg-black/10 hover:border-black/30 transition-all duration-300 text-black/80 hover:text-black text-sm h-full min-h-[80px] flex items-center"
+                        >
+                          {question}
+                        </button>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="left-0 bg-white border-black/20 text-black hover:bg-black/10" />
+                  <CarouselNext className="right-0 bg-white border-black/20 text-black hover:bg-black/10" />
+                </Carousel>
               </div>
             </div>
           ) : (
