@@ -239,7 +239,7 @@ const HeroHeader = () => {
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 >
-                  <Logo />
+                  <Logo inverted={!scrolled} />
                 </motion.div>
               </Link>
 
@@ -303,10 +303,22 @@ const HeroHeader = () => {
   );
 };
 const Logo = ({
-  className
+  className,
+  inverted = false
 }: {
   className?: string;
+  inverted?: boolean;
 }) => {
-  return <img src={logoImage} alt="Logo" className={cn('h-6 w-auto sm:h-8', className)} />;
+  return (
+    <img 
+      src={logoImage} 
+      alt="Logo" 
+      className={cn(
+        'h-6 w-auto sm:h-8 transition-all duration-300',
+        inverted && 'invert brightness-0 invert',
+        className
+      )} 
+    />
+  );
 };
 export default HeroSection;
