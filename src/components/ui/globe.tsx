@@ -11,13 +11,13 @@ const GLOBE_CONFIG: COBEOptions = {
   devicePixelRatio: 2,
   phi: 0,
   theta: 0.3,
-  dark: 1,
+  dark: 0,
   diffuse: 0.4,
   mapSamples: 16000,
   mapBrightness: 1.2,
-  baseColor: [0.1, 0.1, 0.1],
-  markerColor: [251 / 255, 100 / 255, 21 / 255],
-  glowColor: [0.1, 0.1, 0.1],
+  baseColor: [1, 1, 1],
+  markerColor: [0.1, 0.1, 0.1],
+  glowColor: [1, 1, 1],
   markers: [
     // Estados Unidos (Nueva York)
     { location: [40.7128, -74.006], size: 0.1 },
