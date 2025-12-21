@@ -31,7 +31,7 @@ const stats = [{
   value: "99.9%",
   label: "Garantía de Disponibilidad"
 }, {
-  value: "1,200+",
+  value: "100+",
   label: "Clientes Empresariales"
 }];
 export function FeaturedStats() {
