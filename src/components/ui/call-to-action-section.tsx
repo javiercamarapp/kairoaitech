@@ -71,7 +71,7 @@ export default function CallToActionSection() {
           <div className="relative inline-block">
             {/* Robot Hand - positioned to point at button from bottom-right */}
             <motion.div
-              className="absolute -bottom-24 -right-16 md:-bottom-32 md:-right-24 lg:-bottom-40 lg:-right-32 w-32 h-48 md:w-48 md:h-72 lg:w-64 lg:h-96 pointer-events-none z-20"
+              className="absolute -bottom-32 -right-16 md:-bottom-44 md:-right-24 lg:-bottom-56 lg:-right-32 w-32 h-48 md:w-48 md:h-72 lg:w-64 lg:h-96 pointer-events-none z-20"
               initial={{ y: 100, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true }}
@@ -135,23 +135,6 @@ export default function CallToActionSection() {
           </div>
         </ScrollAnimate>
 
-        {/* Trust indicators */}
-        <ScrollAnimate delay={0.5} duration={0.6} y={20}>
-          <div className="mt-12 flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground">
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-green-500" />
-              <span>Sin compromiso</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-green-500" />
-              <span>Respuesta en 24h</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-green-500" />
-              <span>Consulta gratuita</span>
-            </div>
-          </div>
-        </ScrollAnimate>
       </div>
     </section>
   );
