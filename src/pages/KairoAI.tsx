@@ -147,53 +147,53 @@ const KairoAI = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col relative overflow-hidden">
+    <div className="h-[100dvh] bg-white flex flex-col relative overflow-hidden">
       {/* Animated Background */}
       <DottedSurface className="fixed inset-0 z-0 opacity-50" />
       
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-xl sticky top-0 z-50 relative">
-        <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
+      <header className="bg-white/80 backdrop-blur-xl sticky top-0 z-50 relative flex-shrink-0">
+        <div className="max-w-4xl mx-auto px-4 py-2 md:py-4 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2 text-black/70 hover:text-black transition-colors">
             <ArrowLeft className="w-5 h-5" />
-            <span className="text-sm">Volver</span>
+            <span className="text-sm hidden md:inline">Volver</span>
           </Link>
           <div className="flex items-center gap-2">
-            <img src={logo} alt="Kairo AI" className="h-8 w-auto invert" />
+            <img src={logo} alt="Kairo AI" className="h-6 md:h-8 w-auto invert" />
           </div>
-          <div className="w-20" />
+          <div className="w-10 md:w-20" />
         </div>
       </header>
 
       {/* Chat Container */}
-      <div className="flex-1 flex flex-col max-w-4xl mx-auto w-full">
+      <div className="flex-1 flex flex-col max-w-4xl mx-auto w-full min-h-0">
         {/* Messages */}
-        <div className="flex-1 overflow-y-auto px-4 py-6 space-y-6">
+        <div className="flex-1 overflow-y-auto px-4 py-3 md:py-6 space-y-4 md:space-y-6 min-h-0">
           {messages.length === 0 ? (
-            <div className="flex flex-col items-center justify-center h-full min-h-[60vh] text-center">
-              <div className="w-20 h-20 rounded-full bg-black flex items-center justify-center mb-6 shadow-lg shadow-black/20">
-                <Bot className="w-10 h-10 text-white" />
+            <div className="flex flex-col items-center justify-center h-full text-center px-2">
+              <div className="w-14 h-14 md:w-20 md:h-20 rounded-full bg-black flex items-center justify-center mb-3 md:mb-6 shadow-lg shadow-black/20">
+                <Bot className="w-7 h-7 md:w-10 md:h-10 text-white" />
               </div>
-              <h1 className="text-2xl md:text-3xl font-bold text-black mb-3">
+              <h1 className="text-lg md:text-3xl font-bold text-black mb-2 md:mb-3">
                 ¡Hola! Soy tu asistente de Kairo AI
               </h1>
-              <p className="text-black/60 max-w-md">
-                Cuéntame sobre tu negocio y te ayudaré a encontrar la solución perfecta de automatización con IA.
+              <p className="text-black/60 max-w-md text-sm md:text-base">
+                Cuéntame sobre tu negocio y te ayudaré a encontrar la solución perfecta.
               </p>
             </div>
           ) : (
             messages.map((message, index) => (
               <div
                 key={index}
-                className={`flex gap-4 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                className={`flex gap-3 md:gap-4 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
               >
                 {message.role === 'assistant' && (
-                  <div className="w-8 h-8 rounded-full bg-black flex items-center justify-center flex-shrink-0">
-                    <Bot className="w-4 h-4 text-white" />
+                  <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-black flex items-center justify-center flex-shrink-0">
+                    <Bot className="w-3.5 h-3.5 md:w-4 md:h-4 text-white" />
                   </div>
                 )}
                 <div
-                  className={`max-w-[80%] rounded-2xl px-4 py-3 ${
+                  className={`max-w-[80%] rounded-2xl px-3 py-2 md:px-4 md:py-3 ${
                     message.role === 'user'
                       ? 'bg-black text-white'
                       : 'bg-black/10 text-black/90'
@@ -209,8 +209,8 @@ const KairoAI = () => {
                   </p>
                 </div>
                 {message.role === 'user' && (
-                  <div className="w-8 h-8 rounded-full bg-black/20 flex items-center justify-center flex-shrink-0">
-                    <User className="w-4 h-4 text-black" />
+                  <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-black/20 flex items-center justify-center flex-shrink-0">
+                    <User className="w-3.5 h-3.5 md:w-4 md:h-4 text-black" />
                   </div>
                 )}
               </div>
@@ -220,10 +220,10 @@ const KairoAI = () => {
         </div>
 
         {/* Input */}
-        <div className="sticky bottom-0 p-4 bg-gradient-to-t from-white via-white to-transparent pt-4 relative z-10">
+        <div className="flex-shrink-0 p-3 md:p-4 bg-gradient-to-t from-white via-white to-transparent pt-2 md:pt-4 relative z-10">
           {/* Suggested Questions Carousel */}
           {messages.length === 0 && (
-            <div className="max-w-3xl mx-auto mb-3">
+            <div className="max-w-3xl mx-auto mb-2 md:mb-3">
               <Carousel
                 opts={{
                   align: "start",
@@ -243,7 +243,7 @@ const KairoAI = () => {
                     <CarouselItem key={index} className="pl-2 basis-full md:basis-1/2">
                       <button
                         onClick={() => sendMessage(question)}
-                        className="w-full text-left p-3 rounded-xl bg-black/5 border border-black/10 hover:bg-black/10 hover:border-black/30 transition-all duration-300 text-black/70 hover:text-black text-sm"
+                        className="w-full text-left p-2.5 md:p-3 rounded-xl bg-black/5 border border-black/10 hover:bg-black/10 hover:border-black/30 transition-all duration-300 text-black/70 hover:text-black text-xs md:text-sm"
                       >
                         {question}
                       </button>
@@ -263,22 +263,22 @@ const KairoAI = () => {
                 onKeyDown={handleKeyDown}
                 placeholder="Escribe tu mensaje..."
                 rows={1}
-                className="flex-1 bg-transparent text-black placeholder-black/40 px-4 py-4 resize-none focus:outline-none text-sm md:text-base max-h-[150px]"
+                className="flex-1 bg-transparent text-black placeholder-black/40 px-3 py-3 md:px-4 md:py-4 resize-none focus:outline-none text-sm md:text-base max-h-[100px] md:max-h-[150px]"
                 disabled={isLoading}
               />
               <Button
                 type="submit"
                 disabled={!input.trim() || isLoading}
-                className="m-2 bg-black hover:bg-black/80 text-white rounded-xl px-4 py-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                className="m-1.5 md:m-2 bg-black hover:bg-black/80 text-white rounded-xl px-3 py-2 md:px-4 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
               >
                 {isLoading ? (
-                  <Loader2 className="w-5 h-5 animate-spin" />
+                  <Loader2 className="w-4 h-4 md:w-5 md:h-5 animate-spin" />
                 ) : (
-                  <Send className="w-5 h-5" />
+                  <Send className="w-4 h-4 md:w-5 md:h-5" />
                 )}
               </Button>
             </div>
-            <p className="text-center text-black/40 text-xs mt-3">
+            <p className="text-center text-black/40 text-[10px] md:text-xs mt-2 md:mt-3">
               Kairo AI te ayuda a encontrar la mejor solución para tu negocio
             </p>
           </form>
