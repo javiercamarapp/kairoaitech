@@ -11,7 +11,7 @@ export default function CallToActionSection() {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <section className="relative py-24 md:py-32 overflow-hidden bg-background">
+    <section className="relative py-32 pb-48 md:py-40 md:pb-64 lg:pb-80 overflow-hidden bg-background">
       
       {/* Animated background elements */}
       <motion.div 
@@ -71,7 +71,7 @@ export default function CallToActionSection() {
           <div className="relative inline-block">
             {/* Robot Hand - positioned to point at button from bottom-right */}
             <motion.div
-              className="absolute -bottom-44 -right-16 md:-bottom-56 md:-right-24 lg:-bottom-72 lg:-right-32 w-32 h-48 md:w-48 md:h-72 lg:w-64 lg:h-96 pointer-events-none z-20"
+              className="absolute -bottom-56 -right-16 md:-bottom-72 md:-right-24 lg:-bottom-96 lg:-right-32 w-32 h-48 md:w-48 md:h-72 lg:w-64 lg:h-96 pointer-events-none z-20"
               initial={{ y: 100, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true }}
