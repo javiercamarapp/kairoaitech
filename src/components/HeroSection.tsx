@@ -17,7 +17,6 @@ import { FeaturedStats } from '@/components/FeaturedStats';
 import { GlobeSection } from '@/components/GlobeSection';
 import CallToActionSection from '@/components/ui/call-to-action-section';
 import { Footer } from '@/components/Footer';
-import { ChatBot } from '@/components/ChatBot';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import logoImage from '@/assets/logo.png';
 import logoTaquitos from '@/assets/logos/taquitos.png';
@@ -209,7 +208,6 @@ export function HeroSection() {
         <Footer />
         
         {/* Floating Buttons */}
-        <ChatBot />
         <WhatsAppButton />
       </main>
     </>;
