@@ -154,10 +154,6 @@ const KairoAI = () => {
           </Link>
           <div className="flex items-center gap-2">
             <img src={logo} alt="Kairo AI" className="h-8 w-auto" />
-            <span className="font-semibold">
-              <span className="text-white">K</span>
-              <span className="text-black">AIRO AI</span>
-            </span>
           </div>
           <div className="w-20" />
         </div>
