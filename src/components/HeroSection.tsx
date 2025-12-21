@@ -251,23 +251,6 @@ const HeroHeader = () => {
                   ))}
                 </ul>
               </div>
-              <motion.div 
-                className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit"
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.5 }}
-              >
-                <Button asChild variant="outline" size="sm" className="active:-translate-y-1 transition-all duration-150">
-                  <Link to="#">
-                    <span>Login</span>
-                  </Link>
-                </Button>
-                <Button asChild size="sm" className="bg-black text-white hover:bg-black/90 active:-translate-y-1 transition-all duration-150">
-                  <Link to="#">
-                    <span>Sign Up</span>
-                  </Link>
-                </Button>
-              </motion.div>
             </div>
           </motion.div>
         </motion.div>
