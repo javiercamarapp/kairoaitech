@@ -27,7 +27,7 @@ const stats = [
 
 export function FeaturedStats() {
   return (
-    <section className="w-full bg-background py-16 md:py-24 overflow-hidden">
+    <section className="w-full bg-background overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-12">
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center">
           {/* Left content */}
