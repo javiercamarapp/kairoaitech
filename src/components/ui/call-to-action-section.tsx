@@ -10,9 +10,7 @@ export default function CallToActionSection() {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <section className="relative py-24 md:py-32 overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-accent/5" />
+    <section className="relative py-24 md:py-32 overflow-hidden bg-background">
       
       {/* Animated background elements */}
       <motion.div 
