@@ -1,29 +1,17 @@
 import React from "react";
-import { AreaChart, Area, ResponsiveContainer, Tooltip } from "recharts";
+import { BarChart, Bar, ResponsiveContainer, Tooltip, XAxis, YAxis, Cell } from "recharts";
 import { ScrollAnimate } from "@/components/ui/scroll-animate";
 import { motion } from "motion/react";
-const data = [{
-  name: "Ene",
-  value: 20
-}, {
-  name: "Feb",
-  value: 40
-}, {
-  name: "Mar",
-  value: 60
-}, {
-  name: "Abr",
-  value: 80
-}, {
-  name: "May",
-  value: 100
-}, {
-  name: "Jun",
-  value: 130
-}, {
-  name: "Jul",
-  value: 160
-}];
+
+const data = [
+  { name: "Ene", value: 10 },
+  { name: "Feb", value: 15 },
+  { name: "Mar", value: 20 },
+  { name: "Abr", value: 26 },
+  { name: "May", value: 32 },
+  { name: "Jun", value: 38 },
+  { name: "Jul", value: 45 },
+];
 const stats = [{
   value: "50+",
   label: "Proyectos Gestionados"
@@ -77,13 +65,26 @@ export function FeaturedStats() {
             duration: 0.3
           }}>
               <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={data}>
+                <BarChart data={data} margin={{ top: 20, right: 20, left: 0, bottom: 5 }}>
                   <defs>
-                    <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="hsl(var(--primary))" stopOpacity={0.4} />
-                      <stop offset="95%" stopColor="hsl(var(--primary))" stopOpacity={0} />
+                    <linearGradient id="barGradient" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity={1} />
+                      <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity={0.6} />
                     </linearGradient>
                   </defs>
+                  <XAxis 
+                    dataKey="name" 
+                    axisLine={false}
+                    tickLine={false}
+                    tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 12 }}
+                  />
+                  <YAxis 
+                    axisLine={false}
+                    tickLine={false}
+                    tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 12 }}
+                    tickFormatter={(value) => `${value}%`}
+                    domain={[0, 50]}
+                  />
                   <Tooltip 
                     contentStyle={{
                       backgroundColor: "hsl(var(--card))",
@@ -91,11 +92,28 @@ export function FeaturedStats() {
                       borderRadius: "8px",
                       color: "hsl(var(--foreground))"
                     }}
-                    formatter={(value: number) => [`${value}%`, "Ahorro por AI"]}
+                    formatter={(value: number) => [`${value}%`, "Ahorro en gastos operativos"]}
                     labelFormatter={(label) => `Mes: ${label}`}
+                    cursor={{ fill: "hsl(var(--primary)/0.1)" }}
                   />
-                  <Area type="monotone" dataKey="value" stroke="hsl(var(--primary))" strokeWidth={2} fillOpacity={1} fill="url(#colorValue)" />
-                </AreaChart>
+                  <Bar 
+                    dataKey="value" 
+                    fill="url(#barGradient)" 
+                    radius={[6, 6, 0, 0]}
+                    animationBegin={0}
+                    animationDuration={1500}
+                    animationEasing="ease-out"
+                  >
+                    {data.map((_, index) => (
+                      <Cell 
+                        key={`cell-${index}`}
+                        style={{
+                          filter: `drop-shadow(0 4px 8px hsl(var(--primary)/0.3))`,
+                        }}
+                      />
+                    ))}
+                  </Bar>
+                </BarChart>
               </ResponsiveContainer>
             </motion.div>
           </ScrollAnimate>
