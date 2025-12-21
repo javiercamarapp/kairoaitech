@@ -42,8 +42,8 @@ export default function CallToActionSection() {
       <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
         {/* Badge */}
         <ScrollAnimate delay={0.1} duration={0.6} y={20}>
-          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/50 backdrop-blur-sm px-4 py-2 text-sm text-muted-foreground mb-8">
-            <Sparkles className="w-4 h-4 text-primary" />
+          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/50 backdrop-blur-sm px-3 py-1.5 md:px-4 md:py-2 text-xs md:text-sm text-muted-foreground mb-8">
+            <Sparkles className="w-3 h-3 md:w-4 md:h-4 text-primary" />
             <span>Únete a más de 100+ empresas usando IA</span>
           </div>
         </ScrollAnimate>
