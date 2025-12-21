@@ -5,6 +5,7 @@ import { ScrollAnimate } from "@/components/ui/scroll-animate";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ChevronRight, Sparkles } from "lucide-react";
+import robotHandImage from "@/assets/robot-hand-cta.png";
 
 export default function CallToActionSection() {
   const [isHovered, setIsHovered] = useState(false);
@@ -65,44 +66,73 @@ export default function CallToActionSection() {
           </p>
         </ScrollAnimate>
 
-        {/* CTA Button */}
+        {/* CTA Button with Robot Hand */}
         <ScrollAnimate delay={0.4} duration={0.6} y={20}>
-          <motion.div
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            className="inline-block relative"
-          >
-            {/* Glow effect */}
+          <div className="relative inline-block">
+            {/* Robot Hand - positioned to point at button from bottom-right */}
             <motion.div
-              className="absolute inset-0 rounded-full bg-primary/20 blur-xl"
-              animate={{ 
-                scale: isHovered ? 1.3 : 1,
-                opacity: isHovered ? 0.8 : 0.4
+              className="absolute -bottom-24 -right-16 md:-bottom-32 md:-right-24 lg:-bottom-40 lg:-right-32 w-32 h-48 md:w-48 md:h-72 lg:w-64 lg:h-96 pointer-events-none z-20"
+              initial={{ y: 100, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ 
+                duration: 0.8, 
+                delay: 0.6,
+                ease: "easeOut"
               }}
-              transition={{ duration: 0.3 }}
-            />
-            
-            <Button 
-              asChild 
-              size="lg" 
-              className={cn(
-                "relative h-14 rounded-full px-8 text-lg font-medium",
-                "bg-foreground text-background hover:bg-foreground/90",
-                "active:-translate-y-1 transition-all duration-200",
-                "shadow-lg hover:shadow-xl"
-              )}
             >
-              <Link to="/contacto" className="flex items-center gap-2">
-                <span>Empezar ahora</span>
-                <motion.div
-                  animate={{ x: isHovered ? 4 : 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </motion.div>
-              </Link>
-            </Button>
-          </motion.div>
+              <motion.img
+                src={robotHandImage}
+                alt="Robot hand pointing"
+                className="w-full h-full object-contain rotate-[-15deg] md:rotate-[-10deg]"
+                animate={{ 
+                  y: [0, -8, 0],
+                }}
+                transition={{ 
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+            </motion.div>
+
+            <motion.div
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              className="inline-block relative"
+            >
+              {/* Glow effect */}
+              <motion.div
+                className="absolute inset-0 rounded-full bg-primary/20 blur-xl"
+                animate={{ 
+                  scale: isHovered ? 1.3 : 1,
+                  opacity: isHovered ? 0.8 : 0.4
+                }}
+                transition={{ duration: 0.3 }}
+              />
+              
+              <Button 
+                asChild 
+                size="lg" 
+                className={cn(
+                  "relative h-14 rounded-full px-8 text-lg font-medium",
+                  "bg-foreground text-background hover:bg-foreground/90",
+                  "active:-translate-y-1 transition-all duration-200",
+                  "shadow-lg hover:shadow-xl"
+                )}
+              >
+                <Link to="/contacto" className="flex items-center gap-2">
+                  <span>Empezar ahora</span>
+                  <motion.div
+                    animate={{ x: isHovered ? 4 : 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </motion.div>
+                </Link>
+              </Button>
+            </motion.div>
+          </div>
         </ScrollAnimate>
 
         {/* Trust indicators */}
