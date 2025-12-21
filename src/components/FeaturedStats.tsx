@@ -33,9 +33,6 @@ const stats = [{
 }, {
   value: "1,200+",
   label: "Clientes Empresariales"
-}, {
-  value: "1.2s",
-  label: "Tiempo de Respuesta Promedio"
 }];
 export function FeaturedStats() {
   return <section className="w-full bg-background overflow-hidden">
@@ -53,7 +50,7 @@ export function FeaturedStats() {
             </ScrollAnimate>
 
             {/* Stats grid */}
-            <div className="grid grid-cols-2 gap-4 md:gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
               {stats.map((stat, index) => <ScrollAnimate key={index} delay={0.2 + index * 0.1} duration={0.6} y={30}>
                   <motion.div className="bg-card border border-border rounded-xl p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow duration-300" whileHover={{
                 y: -3,
