@@ -165,17 +165,14 @@ export function HeroSection() {
     </>;
 }
 const menuItems = [{
-  name: 'Features',
-  href: '#link'
+  name: 'Soluciones',
+  href: '#soluciones'
 }, {
-  name: 'Solution',
-  href: '#link'
+  name: 'Kairo AI',
+  href: '#kairo-ai'
 }, {
-  name: 'Pricing',
-  href: '#link'
-}, {
-  name: 'About',
-  href: '#link'
+  name: 'Nosotros',
+  href: '#nosotros'
 }];
 const HeroHeader = () => {
   const [menuState, setMenuState] = React.useState(false);
