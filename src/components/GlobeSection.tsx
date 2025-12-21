@@ -4,7 +4,7 @@ import { ScrollAnimate } from "@/components/ui/scroll-animate";
 
 export function GlobeSection() {
   return (
-    <section className="relative w-full bg-zinc-950 pt-16 md:pt-24 overflow-hidden">
+    <section className="relative w-full bg-background pt-16 md:pt-24 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-12">
         <ScrollAnimate delay={0.1} duration={0.6} y={30}>
           <h2 className="text-center text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-8 md:mb-12 bg-gradient-to-b from-zinc-400 to-zinc-600 bg-clip-text text-transparent">
