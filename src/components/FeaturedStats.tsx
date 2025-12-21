@@ -19,7 +19,7 @@ const data = [
 ];
 
 const stats = [
-  { value: "50,000+", label: "Proyectos Gestionados" },
+  { value: "50+", label: "Proyectos Gestionados" },
   { value: "99.9%", label: "Garantía de Disponibilidad" },
   { value: "1,200+", label: "Clientes Empresariales" },
   { value: "1.2s", label: "Tiempo de Respuesta Promedio" },
