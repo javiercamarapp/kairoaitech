@@ -118,3 +118,14 @@ All colors MUST be HSL.
     @apply scale-x-100 origin-bottom-left;
   }
 }
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
