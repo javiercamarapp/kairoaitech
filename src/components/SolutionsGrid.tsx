@@ -92,29 +92,29 @@ interface SolutionsGridProps {
 }
 
 const SolutionCard: React.FC<{ solution: Solution }> = ({ solution }) => (
-  <CardCurtainReveal className="h-[420px] rounded-2xl border border-border/50 bg-card overflow-hidden cursor-pointer">
+  <CardCurtainReveal className="h-[420px] rounded-2xl border border-white/10 bg-black overflow-hidden cursor-pointer">
     <CardCurtainRevealBody className="h-full">
       <div className="space-y-4">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
-            <solution.icon className="h-5 w-5 text-primary" />
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10">
+            <solution.icon className="h-5 w-5 text-white" />
           </div>
-          <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+          <span className="text-xs font-medium uppercase tracking-wider text-white/60 group-hover:text-black transition-colors duration-300">
             {solution.subtitle}
           </span>
         </div>
-        <CardCurtainRevealTitle className="text-xl font-bold text-foreground">
+        <CardCurtainRevealTitle className="text-xl font-bold text-white group-hover:text-black transition-colors duration-300">
           {solution.title}
         </CardCurtainRevealTitle>
       </div>
 
       <CardCurtain className="flex-1 flex flex-col justify-between">
-        <CardCurtainRevealDescription className="text-sm leading-relaxed text-muted-foreground mt-4">
+        <CardCurtainRevealDescription className="text-sm leading-relaxed !text-black mt-4">
           <p>{solution.description}</p>
         </CardCurtainRevealDescription>
 
         <div className="mt-6">
-          <Button size="sm" className="group/btn">
+          <Button size="sm" variant="secondary" className="group/btn bg-black text-white hover:bg-black/80">
             Conocer más
             <ArrowUpRight className="ml-1 h-4 w-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
           </Button>
