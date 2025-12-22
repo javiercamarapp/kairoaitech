@@ -109,7 +109,7 @@ const SolutionCard: React.FC<{ solution: Solution }> = ({ solution }) => (
       </div>
 
       <CardCurtain className="flex-1 flex flex-col justify-between">
-        <CardCurtainRevealDescription className="text-sm leading-relaxed !text-black mt-4">
+        <CardCurtainRevealDescription className="text-sm leading-relaxed !text-white mt-4">
           <p>{solution.description}</p>
         </CardCurtainRevealDescription>
 
