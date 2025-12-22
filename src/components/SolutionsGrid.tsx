@@ -91,7 +91,12 @@ interface SolutionsGridProps {
   selectedIndustry: string;
 }
 
-const SolutionCard: React.FC<{ solution: Solution }> = ({ solution }) => {
+interface SolutionCardProps {
+  solution: Solution;
+  isActive?: boolean;
+}
+
+const SolutionCard: React.FC<SolutionCardProps> = ({ solution, isActive = false }) => {
   const handleScheduleClick = () => {
     const notes = `Servicio de interés: ${solution.title}\n\n${solution.subtitle}\n\n${solution.description}`;
     const calUrl = `https://cal.com/javier-eduardo-camara-porte-petit-hioult/30min?notes=${encodeURIComponent(notes)}`;
@@ -99,7 +104,7 @@ const SolutionCard: React.FC<{ solution: Solution }> = ({ solution }) => {
   };
 
   return (
-    <CardCurtainReveal className="h-[420px] rounded-2xl border border-white/10 bg-black overflow-hidden cursor-pointer">
+    <CardCurtainReveal forceOpen={isActive} className="h-[420px] rounded-2xl border border-white/10 bg-black overflow-hidden cursor-pointer">
       <CardCurtainRevealBody className="h-full">
         <div className="space-y-4">
           <div className="flex items-center gap-3">
@@ -201,9 +206,9 @@ export const SolutionsGrid: React.FC<SolutionsGridProps> = ({ selectedIndustry }
           className="w-full"
         >
           <CarouselContent className="">
-            {filteredSolutions.map((solution) => (
+            {filteredSolutions.map((solution, index) => (
               <CarouselItem key={solution.id} className="basis-[85%]">
-                <SolutionCard solution={solution} />
+                <SolutionCard solution={solution} isActive={current === index} />
               </CarouselItem>
             ))}
           </CarouselContent>

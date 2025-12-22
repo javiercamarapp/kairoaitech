@@ -40,16 +40,22 @@ function useCardCurtainRevealContext() {
   return context
 }
 
+interface CardCurtainRevealProps extends React.HTMLAttributes<HTMLDivElement> {
+  forceOpen?: boolean
+}
+
 const CardCurtainReveal = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ children, className, ...props }, ref) => {
+  CardCurtainRevealProps
+>(({ children, className, forceOpen = false, ...props }, ref) => {
   const [isMouseIn, setIsMouseIn] = React.useState(false)
   const handleMouseEnter = React.useCallback(() => setIsMouseIn(true), [])
   const handleMouseLeave = React.useCallback(() => setIsMouseIn(false), [])
 
+  const isOpen = forceOpen || isMouseIn
+
   return (
-    <CardCurtainRevealContext.Provider value={{ isMouseIn }}>
+    <CardCurtainRevealContext.Provider value={{ isMouseIn: isOpen }}>
       <div
         ref={ref}
         className={cn("group relative overflow-hidden", className)}
