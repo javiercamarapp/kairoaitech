@@ -150,12 +150,21 @@ function SolutionsCarousel({ robotHandImg }: { robotHandImg: string }) {
         transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
         viewport={{ once: true, margin: "-50px" }}
       >
-        <img
+        <motion.img
           src={robotHandImg}
           alt="Mano robótica de IA"
           className="w-24 sm:w-40 md:w-72 lg:w-[380px] xl:w-[450px] h-auto object-contain"
           loading="eager"
           decoding="async"
+          animate={{ 
+            y: [0, -10, 0],
+            rotate: [0, 2, 0, -2, 0]
+          }}
+          transition={{ 
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
         />
       </motion.div>
 
