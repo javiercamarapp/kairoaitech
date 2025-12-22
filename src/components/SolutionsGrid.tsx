@@ -99,11 +99,11 @@ const SolutionCard: React.FC<{ solution: Solution }> = ({ solution }) => (
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10">
             <solution.icon className="h-5 w-5 text-white" />
           </div>
-          <span className="text-xs font-medium uppercase tracking-wider text-white/60 group-hover:text-black transition-colors duration-300">
+          <span className="text-xs font-medium uppercase tracking-wider text-white/60 group-hover:text-white transition-colors duration-300">
             {solution.subtitle}
           </span>
         </div>
-        <CardCurtainRevealTitle className="text-xl font-bold text-white group-hover:text-black transition-colors duration-300">
+        <CardCurtainRevealTitle className="text-xl font-bold text-white group-hover:text-white transition-colors duration-300">
           {solution.title}
         </CardCurtainRevealTitle>
       </div>
