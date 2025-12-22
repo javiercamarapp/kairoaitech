@@ -77,7 +77,9 @@ const Soluciones = () => {
                 src="/videos/soluciones-hero.mp4"
               />
               {/* Overlay for text readability */}
-              <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/60" />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-transparent" />
+              {/* Bottom fade for text readability */}
+              <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background to-transparent" />
             </div>
             
             {/* Content overlay */}
