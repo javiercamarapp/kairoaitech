@@ -1,6 +1,7 @@
 import React from 'react';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '@/lib/utils';
+import { ChevronDown } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { 
   Building2, 
@@ -41,7 +42,7 @@ interface Industry {
 }
 
 const industries: Industry[] = [
-  { id: 'all', name: 'Todas', icon: Sparkles },
+  { id: 'all', name: 'Todas las industrias', icon: Sparkles },
   { id: 'abogados', name: 'Abogados', icon: Scale },
   { id: 'agricultura', name: 'Agricultura', icon: Leaf },
   { id: 'automotriz', name: 'Automotriz', icon: Car },
@@ -81,6 +82,29 @@ export const IndustryFilter: React.FC<IndustryFilterProps> = ({
   selectedIndustry,
   onSelectIndustry,
 }) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const dropdownRef = React.useRef<HTMLDivElement>(null);
+
+  const selectedItem = industries.find(i => i.id === selectedIndustry) || industries[0];
+  const SelectedIcon = selectedItem.icon;
+
+  // Close dropdown when clicking outside
+  React.useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleSelect = (id: string) => {
+    onSelectIndustry(id);
+    setIsOpen(false);
+  };
+
   return (
     <section className="py-8 md:py-12 px-4">
       <div className="mx-auto max-w-7xl">
@@ -89,49 +113,84 @@ export const IndustryFilter: React.FC<IndustryFilterProps> = ({
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="flex flex-col md:flex-row md:items-center gap-4 md:gap-8"
+          className="flex flex-col sm:flex-row sm:items-center gap-4"
         >
-          {/* Title - Left aligned */}
-          <h2 className="text-lg md:text-xl font-semibold text-foreground whitespace-nowrap shrink-0">
+          {/* Title */}
+          <h2 className="text-lg md:text-xl font-semibold text-foreground whitespace-nowrap">
             Filtra por industria
           </h2>
 
-          {/* Scrollable filter bar */}
-          <div className="relative flex-1 min-w-0">
-            {/* Fade edges */}
-            <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
-            <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
-            
-            {/* Scrollable container */}
-            <div className="overflow-x-auto scrollbar-hide">
-              <div className="flex gap-2 px-2" style={{ width: 'max-content' }}>
-                {industries.map((industry, index) => {
-                  const Icon = industry.icon;
-                  const isSelected = selectedIndustry === industry.id;
-                  
-                  return (
-                    <motion.button
-                      key={industry.id}
-                      onClick={() => onSelectIndustry(industry.id)}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.3, delay: index * 0.02 }}
-                      whileHover={{ scale: 1.03 }}
-                      whileTap={{ scale: 0.97 }}
-                      className={cn(
-                        "flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 border whitespace-nowrap",
-                        isSelected
-                          ? "bg-primary text-primary-foreground border-primary shadow-md"
-                          : "bg-muted/50 text-muted-foreground border-transparent hover:bg-muted hover:text-foreground"
-                      )}
-                    >
-                      <Icon className="w-4 h-4" />
-                      <span>{industry.name}</span>
-                    </motion.button>
-                  );
-                })}
+          {/* Dropdown */}
+          <div ref={dropdownRef} className="relative w-full sm:w-72">
+            <motion.button
+              onClick={() => setIsOpen(!isOpen)}
+              whileTap={{ scale: 0.98 }}
+              className={cn(
+                "w-full flex items-center justify-between gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 border bg-background",
+                isOpen 
+                  ? "border-primary ring-2 ring-primary/20" 
+                  : "border-border hover:border-primary/50"
+              )}
+            >
+              <div className="flex items-center gap-3">
+                <SelectedIcon className="w-5 h-5 text-primary" />
+                <span className="text-foreground">{selectedItem.name}</span>
               </div>
-            </div>
+              <motion.div
+                animate={{ rotate: isOpen ? 180 : 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <ChevronDown className="w-5 h-5 text-muted-foreground" />
+              </motion.div>
+            </motion.button>
+
+            {/* Dropdown list */}
+            <AnimatePresence>
+              {isOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute z-50 mt-2 w-full bg-background border border-border rounded-xl shadow-xl overflow-hidden"
+                >
+                  <div className="max-h-72 overflow-y-auto scrollbar-hide">
+                    {industries.map((industry, index) => {
+                      const Icon = industry.icon;
+                      const isSelected = selectedIndustry === industry.id;
+                      
+                      return (
+                        <motion.button
+                          key={industry.id}
+                          onClick={() => handleSelect(industry.id)}
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.15, delay: index * 0.015 }}
+                          className={cn(
+                            "w-full flex items-center gap-3 px-4 py-3 text-sm transition-all duration-200 text-left",
+                            isSelected
+                              ? "bg-primary/10 text-primary font-medium"
+                              : "text-foreground hover:bg-muted"
+                          )}
+                        >
+                          <Icon className={cn(
+                            "w-4 h-4",
+                            isSelected ? "text-primary" : "text-muted-foreground"
+                          )} />
+                          <span>{industry.name}</span>
+                          {isSelected && (
+                            <motion.div 
+                              layoutId="selected-check"
+                              className="ml-auto w-2 h-2 rounded-full bg-primary"
+                            />
+                          )}
+                        </motion.button>
+                      );
+                    })}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </motion.div>
       </div>
