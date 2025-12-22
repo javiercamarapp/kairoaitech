@@ -14,9 +14,11 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  type CarouselApi,
 } from '@/components/ui/carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { cn } from '@/lib/utils';
 
 interface Solution {
   id: string;
@@ -134,6 +136,10 @@ const SolutionCard: React.FC<{ solution: Solution }> = ({ solution }) => (
 
 export const SolutionsGrid: React.FC<SolutionsGridProps> = ({ selectedIndustry }) => {
   const isMobile = useIsMobile();
+  const [api, setApi] = React.useState<CarouselApi>();
+  const [current, setCurrent] = React.useState(0);
+  const [count, setCount] = React.useState(0);
+
   const filteredSolutions = selectedIndustry === 'all' 
     ? solutions 
     : solutions.filter(s => s.industry === selectedIndustry);
@@ -141,6 +147,17 @@ export const SolutionsGrid: React.FC<SolutionsGridProps> = ({ selectedIndustry }
   const autoplayPlugin = React.useRef(
     Autoplay({ delay: 4000, stopOnInteraction: false, stopOnMouseEnter: true })
   );
+
+  React.useEffect(() => {
+    if (!api) return;
+
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap());
+
+    api.on('select', () => {
+      setCurrent(api.selectedScrollSnap());
+    });
+  }, [api]);
 
   if (filteredSolutions.length === 0) {
     return (
@@ -164,6 +181,7 @@ export const SolutionsGrid: React.FC<SolutionsGridProps> = ({ selectedIndustry }
             loop: true,
           }}
           plugins={[autoplayPlugin.current]}
+          setApi={setApi}
           className="w-full"
         >
           <CarouselContent className="-ml-4">
@@ -174,6 +192,23 @@ export const SolutionsGrid: React.FC<SolutionsGridProps> = ({ selectedIndustry }
             ))}
           </CarouselContent>
         </Carousel>
+        
+        {/* Dot indicators */}
+        <div className="flex justify-center gap-2 mt-6">
+          {Array.from({ length: count }).map((_, index) => (
+            <button
+              key={index}
+              onClick={() => api?.scrollTo(index)}
+              className={cn(
+                "h-2 rounded-full transition-all duration-300",
+                current === index 
+                  ? "w-6 bg-primary" 
+                  : "w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50"
+              )}
+              aria-label={`Ir a slide ${index + 1}`}
+            />
+          ))}
+        </div>
       </section>
     );
   }
