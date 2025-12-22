@@ -122,7 +122,7 @@ const SolutionCard: React.FC<{ solution: Solution }> = ({ solution }) => (
       </CardCurtain>
     </CardCurtainRevealBody>
 
-    <CardCurtainRevealFooter className="relative">
+    <CardCurtainRevealFooter>
       <img
         width="100%"
         height="100%"
@@ -130,8 +130,6 @@ const SolutionCard: React.FC<{ solution: Solution }> = ({ solution }) => (
         className="h-full w-full object-cover"
         src={solution.image}
       />
-      {/* Overlay for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/70 to-white/50" />
     </CardCurtainRevealFooter>
   </CardCurtainReveal>
 );
