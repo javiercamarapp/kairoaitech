@@ -177,16 +177,16 @@ export const SolutionsGrid: React.FC<SolutionsGridProps> = ({ selectedIndustry }
       <section className="pb-16">
         <Carousel
           opts={{
-            align: 'start',
+            align: 'center',
             loop: true,
           }}
           plugins={[autoplayPlugin.current]}
           setApi={setApi}
           className="w-full"
         >
-          <CarouselContent className="-ml-4">
+          <CarouselContent className="">
             {filteredSolutions.map((solution) => (
-              <CarouselItem key={solution.id} className="pl-4 basis-[85%]">
+              <CarouselItem key={solution.id} className="basis-[85%]">
                 <SolutionCard solution={solution} />
               </CarouselItem>
             ))}
