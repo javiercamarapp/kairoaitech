@@ -9,6 +9,7 @@ import { BlurTextEffect } from '@/components/ui/blur-text-effect';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { IndustryFilter } from '@/components/IndustryFilter';
+import { SolutionsGrid } from '@/components/SolutionsGrid';
 
 const menuItems = [
   {
@@ -112,7 +113,8 @@ const Soluciones = () => {
           onSelectIndustry={setSelectedIndustry} 
         />
 
-        {/* Solutions list will be added here based on selected industry */}
+        {/* Solutions Grid */}
+        <SolutionsGrid selectedIndustry={selectedIndustry} />
         
         <Footer />
         <WhatsAppButton />
