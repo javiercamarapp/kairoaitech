@@ -123,13 +123,16 @@ const SolutionCard: React.FC<{ solution: Solution }> = ({ solution }) => (
     </CardCurtainRevealBody>
 
     <CardCurtainRevealFooter>
-      <img
-        width="100%"
-        height="100%"
-        alt={solution.title}
-        className="h-full w-full object-cover"
-        src={solution.image}
-      />
+      <div className="relative h-full w-full">
+        <img
+          width="100%"
+          height="100%"
+          alt={solution.title}
+          className="h-full w-full object-cover"
+          src={solution.image}
+        />
+        <div className="absolute inset-0 bg-black/50" />
+      </div>
     </CardCurtainRevealFooter>
   </CardCurtainReveal>
 );
