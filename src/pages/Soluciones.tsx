@@ -8,6 +8,7 @@ import logoImage from '@/assets/logo.png';
 import { BlurTextEffect } from '@/components/ui/blur-text-effect';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
+import { IndustryFilter } from '@/components/IndustryFilter';
 
 const menuItems = [
   {
@@ -29,6 +30,7 @@ const menuItems = [
 const Soluciones = () => {
   const videoRef = React.useRef<HTMLVideoElement | null>(null);
   const [videoLoaded, setVideoLoaded] = React.useState(false);
+  const [selectedIndustry, setSelectedIndustry] = React.useState('all');
 
   React.useEffect(() => {
     const v = videoRef.current;
@@ -104,7 +106,13 @@ const Soluciones = () => {
           </div>
         </section>
 
-        {/* Content sections can be added here */}
+        {/* Industry Filter Section */}
+        <IndustryFilter 
+          selectedIndustry={selectedIndustry} 
+          onSelectIndustry={setSelectedIndustry} 
+        />
+
+        {/* Solutions list will be added here based on selected industry */}
         
         <Footer />
         <WhatsAppButton />
