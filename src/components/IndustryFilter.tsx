@@ -121,7 +121,7 @@ export const IndustryFilter: React.FC<IndustryFilterProps> = ({
           </h2>
 
           {/* Dropdown */}
-          <div ref={dropdownRef} className="relative w-full sm:w-72">
+          <div ref={dropdownRef} className="relative w-full sm:flex-1">
             <motion.button
               onClick={() => setIsOpen(!isOpen)}
               whileTap={{ scale: 0.98 }}
