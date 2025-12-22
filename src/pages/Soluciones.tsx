@@ -83,14 +83,14 @@ const Soluciones = () => {
             {/* Content overlay */}
             <div className="relative z-10 flex flex-col min-h-screen">
               <div className="flex-1 flex items-center py-4 md:py-24">
-                <div className="mx-auto max-w-7xl px-6 lg:px-12 w-full">
-                  <div className="mx-auto max-w-3xl text-center">
-                    <h1 className="mt-20 text-balance text-3xl font-bold sm:text-4xl md:text-5xl lg:mt-16 xl:text-6xl text-primary-foreground">
+              <div className="mx-auto max-w-7xl px-6 lg:px-12 w-full">
+                  <div className="mx-auto max-w-lg text-center lg:ml-0 lg:max-w-full lg:text-left">
+                    <h1 className="mt-20 max-w-2xl text-balance text-3xl font-bold sm:text-4xl md:text-6xl lg:mt-16 xl:text-7xl text-primary-foreground mx-auto lg:mx-0">
                       <BlurTextEffect delay={0.2} stagger={0.02}>
                         Las mejores soluciones de inteligencia artificial
                       </BlurTextEffect>
                     </h1>
-                    <p className="mt-8 max-w-2xl mx-auto text-balance text-lg md:text-xl text-white/80">
+                    <p className="mt-8 max-w-2xl text-balance text-lg text-secondary">
                       <BlurTextEffect delay={0.5} stagger={0.01}>
                         Contamos con las mejores soluciones de inteligencia artificial para cada tipo de industria.
                       </BlurTextEffect>
