@@ -1,58 +1,55 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { InfiniteSlider } from '@/components/ui/infinite-slider';
-import { ProgressiveBlur } from '@/components/ui/progressive-blur';
-import { cn } from '@/lib/utils';
+import { motion } from 'motion/react';
 import { Menu, X, ChevronRight } from 'lucide-react';
-import { useScroll, motion } from 'motion/react';
+import { useScroll } from 'motion/react';
+import { cn } from '@/lib/utils';
+import logoImage from '@/assets/logo.png';
 import { BlurTextEffect } from '@/components/ui/blur-text-effect';
-import { ScrollAnimate } from '@/components/ui/scroll-animate';
-import { AnimatedSearchBar } from '@/components/AnimatedSearchBar';
-import { AIBenefitsSection } from '@/components/AIBenefitsSection';
-import { BusinessShowcaseSection } from '@/components/BusinessShowcaseSection';
-import { ProcessSection } from '@/components/ProcessSection';
-import IntegrationHero from '@/components/ui/integration-hero';
-import { FeaturedStats } from '@/components/FeaturedStats';
-import { GlobeSection } from '@/components/GlobeSection';
-import CallToActionSection from '@/components/ui/call-to-action-section';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
-import logoImage from '@/assets/logo.png';
-import logoTaquitos from '@/assets/logos/taquitos.png';
-import logoAmerica from '@/assets/logos/america.png';
-import logoMonterrey from '@/assets/logos/monterrey.png';
-import logoKing from '@/assets/logos/king.png';
-import logoParadise from '@/assets/logos/paradise.png';
-import logoDropin from '@/assets/logos/dropin.png';
-import logoPolloLoco from '@/assets/logos/polloloco.png';
 
-export function HeroSection() {
+const menuItems = [
+  {
+    name: 'Soluciones',
+    href: '/soluciones',
+    isRoute: true
+  },
+  {
+    name: 'Kairo AI',
+    href: '/kairo-ai',
+    isRoute: true
+  },
+  {
+    name: 'Nosotros',
+    href: '/#nosotros'
+  }
+];
+
+const Soluciones = () => {
   const videoRef = React.useRef<HTMLVideoElement | null>(null);
   const [videoLoaded, setVideoLoaded] = React.useState(false);
 
   React.useEffect(() => {
-    // Start playback ASAP; if autoplay is blocked, the poster/first frame still shows.
     const v = videoRef.current;
     if (!v) return;
     v.muted = true;
     (v as any).playsInline = true;
     const p = v.play?.();
     if (p && typeof (p as Promise<void>).catch === 'function') {
-      (p as Promise<void>).catch(() => {
-        // Autoplay can be blocked until user interaction on some devices.
-      });
+      (p as Promise<void>).catch(() => {});
     }
   }, []);
 
-  return <>
-      <HeroHeader />
+  return (
+    <>
+      <SolucionesHeader />
       <main className="overflow-x-hidden">
         <section>
           <div className="relative min-h-screen">
             {/* Video background container */}
             <div className="absolute inset-0 overflow-hidden rounded-3xl border border-border/10 lg:rounded-[3rem] mx-1">
-              {/* Fallback background - always visible until video loads */}
+              {/* Fallback background */}
               <div 
                 className={cn(
                   "absolute inset-0 bg-zinc-900 transition-opacity duration-500",
@@ -67,7 +64,6 @@ export function HeroSection() {
                 muted 
                 playsInline
                 preload="metadata"
-                poster=""
                 onLoadedData={() => setVideoLoaded(true)}
                 onCanPlay={() => setVideoLoaded(true)}
                 onTimeUpdate={(e) => {
@@ -75,108 +71,47 @@ export function HeroSection() {
                   if (!videoLoaded && v.currentTime > 0) setVideoLoaded(true);
                 }}
                 className={cn(
-                  "absolute inset-0 h-full w-full object-cover object-[55%_center] sm:object-center transition-opacity duration-700",
+                  "absolute inset-0 h-full w-full object-cover transition-opacity duration-700",
                   videoLoaded ? "opacity-100" : "opacity-0"
                 )}
-                src="/videos/hero-background.mp4"
+                src="/videos/soluciones-hero.mp4"
               />
               {/* Overlay for text readability */}
-              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-transparent" />
-              {/* Bottom fade for text readability */}
-              <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/60" />
             </div>
             
             {/* Content overlay */}
             <div className="relative z-10 flex flex-col min-h-screen">
               <div className="flex-1 flex items-center py-4 md:py-24">
                 <div className="mx-auto max-w-7xl px-6 lg:px-12 w-full">
-                  <div className="mx-auto max-w-lg text-center lg:ml-0 lg:max-w-full lg:text-left">
-                    <h1 className="mt-20 max-w-2xl text-balance text-3xl font-bold sm:text-4xl md:text-6xl lg:mt-16 xl:text-7xl text-primary-foreground mx-auto lg:mx-0">
+                  <div className="mx-auto max-w-3xl text-center">
+                    <h1 className="mt-20 text-balance text-3xl font-bold sm:text-4xl md:text-5xl lg:mt-16 xl:text-6xl text-primary-foreground">
                       <BlurTextEffect delay={0.2} stagger={0.02}>
-                        Empieza a ahorrar dentro de tu empresa usando IA
+                        Las mejores soluciones de inteligencia artificial
                       </BlurTextEffect>
                     </h1>
-                    <p className="mt-8 max-w-2xl text-balance text-lg text-secondary">
+                    <p className="mt-8 max-w-2xl mx-auto text-balance text-lg md:text-xl text-white/80">
                       <BlurTextEffect delay={0.5} stagger={0.01}>
-                        Construimos soluciones impulsadas por IA que automatizan, escalan y transforman la forma en que las empresas operan.
+                        Contamos con las mejores soluciones de inteligencia artificial para cada tipo de industria.
                       </BlurTextEffect>
                     </p>
-
-                    <ScrollAnimate 
-                      className="mt-12 sm:mt-12 flex flex-col items-center justify-center gap-2 sm:flex-row lg:justify-start"
-                      delay={0.8}
-                      duration={0.7}
-                      y={40}
-                    >
-                      <Button asChild size="lg" className="h-12 rounded-full pl-5 pr-3 text-base bg-black text-white hover:bg-black/90 active:-translate-y-1 transition-all duration-150">
-                        <Link to="/contacto">
-                          <span className="text-nowrap">Ponerse en contacto</span>
-                          <ChevronRight className="ml-1" />
-                        </Link>
-                      </Button>
-                      <Button asChild size="lg" variant="ghost" className="h-12 rounded-full px-5 text-base hover:bg-transparent active:-translate-y-1 active:shadow-lg active:shadow-white/40 transition-all duration-150 bg-white/20 sm:bg-transparent backdrop-blur-sm sm:backdrop-blur-none">
-                        <Link to="/soluciones">
-                          <span className="text-nowrap text-gray-300 font-medium sm:font-normal sm:text-primary-foreground">Ver soluciones</span>
-                        </Link>
-                      </Button>
-                    </ScrollAnimate>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
-        <motion.section 
-          className="bg-background"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 2 }}
-        >
-          {/* Search Bar */}
-          <ScrollAnimate className="py-6 px-3 relative z-[100]" delay={0.3} duration={0.7} y={30}>
-            <AnimatedSearchBar placeholder="Busca tu negocio..." />
-          </ScrollAnimate>
-        </motion.section>
+
+        {/* Content sections can be added here */}
         
-        {/* AI Benefits Section */}
-        <AIBenefitsSection />
-        
-        {/* Business Showcase Section */}
-        <BusinessShowcaseSection />
-        
-        {/* Integration Hero Section */}
-        <IntegrationHero />
-        
-        {/* Featured Stats Section */}
-        <FeaturedStats />
-        
-        {/* Globe Section */}
-        <GlobeSection />
-        
-        {/* Call to Action Section */}
-        <CallToActionSection />
-        
-        {/* Footer */}
         <Footer />
-        
-        {/* Floating Buttons */}
         <WhatsAppButton />
       </main>
-    </>;
-}
-const menuItems = [{
-  name: 'Soluciones',
-  href: '/soluciones',
-  isRoute: true
-}, {
-  name: 'Kairo AI',
-  href: '/kairo-ai',
-  isRoute: true
-}, {
-  name: 'Nosotros',
-  href: '#nosotros'
-}];
-const HeroHeader = () => {
+    </>
+  );
+};
+
+const SolucionesHeader = () => {
   const [menuState, setMenuState] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
   const { scrollYProgress } = useScroll();
@@ -211,13 +146,20 @@ const HeroHeader = () => {
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 >
-                  <Logo inverted={scrolled} />
+                  <img 
+                    src={logoImage} 
+                    alt="Logo" 
+                    className={cn(
+                      'h-6 w-auto sm:h-8 transition-all duration-300',
+                      scrolled && '[filter:brightness(0)_saturate(100%)]'
+                    )}
+                  />
                 </motion.div>
               </Link>
 
               <button onClick={() => setMenuState(!menuState)} aria-label={menuState ? 'Close Menu' : 'Open Menu'} className="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 lg:hidden">
-                <Menu className="m-auto size-6 duration-200 group-data-[state=active]:rotate-180 group-data-[state=active]:scale-0 group-data-[state=active]:opacity-0" />
-                <X className="absolute inset-0 m-auto size-6 -rotate-180 scale-0 opacity-0 duration-200 group-data-[state=active]:rotate-0 group-data-[state=active]:scale-100 group-data-[state=active]:opacity-100" />
+                <Menu className="m-auto size-6 duration-200 text-white group-data-[state=active]:rotate-180 group-data-[state=active]:scale-0 group-data-[state=active]:opacity-0" />
+                <X className="absolute inset-0 m-auto size-6 text-white -rotate-180 scale-0 opacity-0 duration-200 group-data-[state=active]:rotate-0 group-data-[state=active]:scale-100 group-data-[state=active]:opacity-100" />
               </button>
 
               <div className="hidden lg:block">
@@ -269,23 +211,5 @@ const HeroHeader = () => {
     </motion.header>
   );
 };
-const Logo = ({
-  className,
-  inverted = false
-}: {
-  className?: string;
-  inverted?: boolean;
-}) => {
-  return (
-    <img 
-      src={logoImage} 
-      alt="Logo" 
-      className={cn(
-        'h-6 w-auto sm:h-8 transition-all duration-300',
-        inverted && '[filter:brightness(0)_saturate(100%)]',
-        className
-      )}
-    />
-  );
-};
-export default HeroSection;
+
+export default Soluciones;
