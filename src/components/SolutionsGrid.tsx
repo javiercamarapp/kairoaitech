@@ -10,6 +10,13 @@ import {
   CardCurtain,
 } from '@/components/ui/card-curtain-reveal';
 import { motion } from 'motion/react';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from '@/components/ui/carousel';
+import Autoplay from 'embla-carousel-autoplay';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface Solution {
   id: string;
@@ -82,14 +89,62 @@ interface SolutionsGridProps {
   selectedIndustry: string;
 }
 
+const SolutionCard: React.FC<{ solution: Solution }> = ({ solution }) => (
+  <CardCurtainReveal className="h-[420px] rounded-2xl border border-border/50 bg-card overflow-hidden cursor-pointer">
+    <CardCurtainRevealBody className="h-full">
+      <div className="space-y-4">
+        <div className="flex items-center gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
+            <solution.icon className="h-5 w-5 text-primary" />
+          </div>
+          <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+            {solution.subtitle}
+          </span>
+        </div>
+        <CardCurtainRevealTitle className="text-xl font-bold text-foreground">
+          {solution.title}
+        </CardCurtainRevealTitle>
+      </div>
+
+      <CardCurtain className="flex-1 flex flex-col justify-between">
+        <CardCurtainRevealDescription className="text-sm leading-relaxed text-muted-foreground mt-4">
+          <p>{solution.description}</p>
+        </CardCurtainRevealDescription>
+
+        <div className="mt-6">
+          <Button size="sm" className="group/btn">
+            Conocer más
+            <ArrowUpRight className="ml-1 h-4 w-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+          </Button>
+        </div>
+      </CardCurtain>
+    </CardCurtainRevealBody>
+
+    <CardCurtainRevealFooter>
+      <img
+        width="100%"
+        height="100%"
+        alt={solution.title}
+        className="h-full w-full object-cover"
+        src={solution.image}
+      />
+    </CardCurtainRevealFooter>
+  </CardCurtainReveal>
+);
+
 export const SolutionsGrid: React.FC<SolutionsGridProps> = ({ selectedIndustry }) => {
+  const isMobile = useIsMobile();
   const filteredSolutions = selectedIndustry === 'all' 
     ? solutions 
     : solutions.filter(s => s.industry === selectedIndustry);
 
+  const autoplayPlugin = React.useRef(
+    Autoplay({ delay: 4000, stopOnInteraction: false, stopOnMouseEnter: true })
+  );
+
   if (filteredSolutions.length === 0) {
     return (
-      <section className="py-16 px-6 lg:px-12">
+      <section className="pb-16 px-6 lg:px-12">
         <div className="mx-auto max-w-7xl text-center">
           <p className="text-muted-foreground text-lg">
             No hay soluciones disponibles para esta industria todavía.
@@ -99,8 +154,33 @@ export const SolutionsGrid: React.FC<SolutionsGridProps> = ({ selectedIndustry }
     );
   }
 
+  // Mobile: Carousel
+  if (isMobile) {
+    return (
+      <section className="pb-16">
+        <Carousel
+          opts={{
+            align: 'start',
+            loop: true,
+          }}
+          plugins={[autoplayPlugin.current]}
+          className="w-full"
+        >
+          <CarouselContent className="-ml-4">
+            {filteredSolutions.map((solution) => (
+              <CarouselItem key={solution.id} className="pl-4 basis-[85%]">
+                <SolutionCard solution={solution} />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
+      </section>
+    );
+  }
+
+  // Desktop: Grid
   return (
-    <section className="py-16 px-6 lg:px-12">
+    <section className="pb-16 px-6 lg:px-12">
       <div className="mx-auto max-w-7xl">
         <motion.div 
           className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
@@ -116,7 +196,7 @@ export const SolutionsGrid: React.FC<SolutionsGridProps> = ({ selectedIndustry }
             },
           }}
         >
-          {filteredSolutions.map((solution, index) => (
+          {filteredSolutions.map((solution) => (
             <motion.div
               key={solution.id}
               variants={{
@@ -125,46 +205,7 @@ export const SolutionsGrid: React.FC<SolutionsGridProps> = ({ selectedIndustry }
               }}
               transition={{ duration: 0.4, ease: 'easeOut' }}
             >
-              <CardCurtainReveal className="h-[420px] rounded-2xl border border-border/50 bg-card overflow-hidden cursor-pointer">
-                <CardCurtainRevealBody className="h-full">
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
-                        <solution.icon className="h-5 w-5 text-primary" />
-                      </div>
-                      <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                        {solution.subtitle}
-                      </span>
-                    </div>
-                    <CardCurtainRevealTitle className="text-xl font-bold text-foreground">
-                      {solution.title}
-                    </CardCurtainRevealTitle>
-                  </div>
-
-                  <CardCurtain className="flex-1 flex flex-col justify-between">
-                    <CardCurtainRevealDescription className="text-sm leading-relaxed text-muted-foreground mt-4">
-                      <p>{solution.description}</p>
-                    </CardCurtainRevealDescription>
-
-                    <div className="mt-6">
-                      <Button size="sm" className="group/btn">
-                        Conocer más
-                        <ArrowUpRight className="ml-1 h-4 w-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
-                      </Button>
-                    </div>
-                  </CardCurtain>
-                </CardCurtainRevealBody>
-
-                <CardCurtainRevealFooter>
-                  <img
-                    width="100%"
-                    height="100%"
-                    alt={solution.title}
-                    className="h-full w-full object-cover"
-                    src={solution.image}
-                  />
-                </CardCurtainRevealFooter>
-              </CardCurtainReveal>
+              <SolutionCard solution={solution} />
             </motion.div>
           ))}
         </motion.div>
