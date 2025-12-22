@@ -160,12 +160,12 @@ const SolucionesHeader = () => {
               </Link>
 
               <button onClick={() => setMenuState(!menuState)} aria-label={menuState ? 'Close Menu' : 'Open Menu'} className="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 lg:hidden">
-                <Menu className="m-auto size-6 duration-200 text-white group-data-[state=active]:rotate-180 group-data-[state=active]:scale-0 group-data-[state=active]:opacity-0" />
-                <X className="absolute inset-0 m-auto size-6 text-white -rotate-180 scale-0 opacity-0 duration-200 group-data-[state=active]:rotate-0 group-data-[state=active]:scale-100 group-data-[state=active]:opacity-100" />
+                <Menu className={cn("m-auto size-6 duration-200 group-data-[state=active]:rotate-180 group-data-[state=active]:scale-0 group-data-[state=active]:opacity-0", scrolled ? "text-foreground" : "text-white")} />
+                <X className={cn("absolute inset-0 m-auto size-6 -rotate-180 scale-0 opacity-0 duration-200 group-data-[state=active]:rotate-0 group-data-[state=active]:scale-100 group-data-[state=active]:opacity-100", scrolled ? "text-foreground" : "text-white")} />
               </button>
 
               <div className="hidden lg:block">
-                <ul className="flex gap-8 text-sm text-primary-foreground border-primary-foreground">
+                <ul className={cn("flex gap-8 text-sm transition-colors duration-300", scrolled ? "text-foreground" : "text-primary-foreground")}>
                   {menuItems.map((item, index) => (
                     <motion.li 
                       key={index}
@@ -174,12 +174,12 @@ const SolucionesHeader = () => {
                       transition={{ delay: 0.1 * index + 0.3 }}
                     >
                       {'isRoute' in item && item.isRoute ? (
-                        <Link to={item.href} className="block text-muted-foreground duration-150 hover:text-accent-foreground active:-translate-y-1 transition-all">
-                          <span className="text-primary-foreground">{item.name}</span>
+                        <Link to={item.href} className="block duration-150 hover:opacity-70 active:-translate-y-1 transition-all">
+                          <span>{item.name}</span>
                         </Link>
                       ) : (
-                        <a href={item.href} className="block text-muted-foreground duration-150 hover:text-accent-foreground active:-translate-y-1 transition-all">
-                          <span className="text-primary-foreground">{item.name}</span>
+                        <a href={item.href} className="block duration-150 hover:opacity-70 active:-translate-y-1 transition-all">
+                          <span>{item.name}</span>
                         </a>
                       )}
                     </motion.li>
