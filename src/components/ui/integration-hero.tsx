@@ -54,14 +54,14 @@ export default function IntegrationHero() {
             {/* Row 1 */}
             <div className="mb-2 md:mb-3 flex animate-scroll-left">
               {repeatedIcons(ICONS_ROW1, 4).map((src, i) => <div key={`row1-${i}`} className="mx-1.5 md:mx-2 flex h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 flex-shrink-0 items-center justify-center rounded-lg md:rounded-xl bg-card border border-border shadow-sm">
-                  <img src={src} alt="" loading="lazy" decoding="async" className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7 object-contain" />
+                  <img src={src} alt="" className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7 object-contain" />
                 </div>)}
             </div>
 
             {/* Row 2 */}
             <div className="flex animate-scroll-right">
               {repeatedIcons(ICONS_ROW2, 4).map((src, i) => <div key={`row2-${i}`} className="mx-1.5 md:mx-2 flex h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 flex-shrink-0 items-center justify-center rounded-lg md:rounded-xl bg-card border border-border shadow-sm">
-                  <img src={src} alt="" loading="lazy" decoding="async" className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7 object-contain" />
+                  <img src={src} alt="" className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7 object-contain" />
                 </div>)}
             </div>
 

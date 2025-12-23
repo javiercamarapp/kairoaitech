@@ -1,4 +1,4 @@
-import React, { useRef, lazy, Suspense } from "react";
+import React, { useRef } from "react";
 import { motion } from "motion/react";
 import { SectionHeader } from "@/components/ui/section-header";
 import { ScrollAnimate } from "@/components/ui/scroll-animate";
@@ -10,7 +10,6 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight } from "lucide-react";
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
-import { OptimizedImage } from "@/components/ui/optimized-image";
 
 // Import business images
 import restaurantImg from "@/assets/businesses/restaurant.png";
@@ -186,10 +185,12 @@ function SolutionsCarousel({ robotHandImg }: { robotHandImg: string }) {
                 }}
                 transition={{ duration: 0.4 }}
               >
-                <OptimizedImage
+                <img
                   src={card.imgSrc}
                   alt={card.title}
-                  className="h-full w-full opacity-70 transition-opacity duration-300 group-hover:opacity-50"
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-cover opacity-70 transition-opacity duration-300 group-hover:opacity-50"
                 />
               </motion.div>
 
@@ -267,10 +268,12 @@ export function BusinessShowcaseSection() {
                 className="w-[260px] sm:w-[280px] md:w-[320px] h-[340px] sm:h-[380px] md:h-[420px] flex-shrink-0 rounded-xl md:rounded-2xl overflow-hidden shadow-lg border border-border"
               >
                 <CardHoverRevealMain className="w-full h-full">
-                  <OptimizedImage
+                  <img
                     src={business.image}
                     alt={business.name}
-                    className="w-full h-full pointer-events-none"
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover pointer-events-none"
                     draggable={false}
                   />
                 </CardHoverRevealMain>
