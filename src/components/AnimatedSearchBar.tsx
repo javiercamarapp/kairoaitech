@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Search, Sparkles, Loader2, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -16,22 +16,39 @@ interface SearchResult {
 
 interface AnimatedSearchBarProps {
   className?: string;
-  placeholder?: string;
 }
 
 const SEARCH_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/search-solutions`;
 
+const ROTATING_PLACEHOLDERS = [
+  "¿Qué problema tienes en tu negocio?",
+  "¿Qué te gustaría optimizar?",
+  "Digitaliza tu marca",
+  "Automatiza procesos"
+];
+
 export function AnimatedSearchBar({ 
-  className, 
-  placeholder = "¿Qué problema tienes?" 
+  className
 }: AnimatedSearchBarProps) {
   const [isFocused, setIsFocused] = useState(false);
   const [value, setValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState<SearchResult | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [placeholderIndex, setPlaceholderIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
   const debounceRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Rotate placeholder text
+  useEffect(() => {
+    if (isFocused || value) return; // Don't rotate when focused or has value
+    
+    const interval = setInterval(() => {
+      setPlaceholderIndex((prev) => (prev + 1) % ROTATING_PLACEHOLDERS.length);
+    }, 3000);
+    
+    return () => clearInterval(interval);
+  }, [isFocused, value]);
 
   const searchSolutions = useCallback(async (query: string) => {
     if (query.trim().length < 3) {
@@ -118,7 +135,7 @@ export function AnimatedSearchBar({
           onChange={handleChange}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setTimeout(() => setIsFocused(false), 200)}
-          placeholder={placeholder}
+          placeholder={ROTATING_PLACEHOLDERS[placeholderIndex]}
           className="flex-1 bg-transparent py-3 px-3 text-sm md:text-base text-foreground placeholder:text-muted-foreground focus:outline-none"
         />
         {isLoading && (
