@@ -23,7 +23,7 @@ const SEARCH_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/search-sol
 
 export function AnimatedSearchBar({ 
   className, 
-  placeholder = "Buscar soluciones con IA para tu empresa..." 
+  placeholder = "¿Qué problema quieres resolver en tu negocio?" 
 }: AnimatedSearchBarProps) {
   const [isFocused, setIsFocused] = useState(false);
   const [value, setValue] = useState('');
