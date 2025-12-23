@@ -126,7 +126,7 @@ export function AnimatedSearchBar({
       >
         <div className="ml-3 md:ml-4 flex items-center gap-1 md:gap-2">
           <Sparkles className="h-4 w-4 text-primary" />
-          <Search className="h-4 w-4 text-muted-foreground hidden sm:block" />
+          <Search className="h-4 w-4 text-muted-foreground" />
         </div>
         <input
           ref={inputRef}
