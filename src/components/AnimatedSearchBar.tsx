@@ -23,7 +23,7 @@ const SEARCH_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/search-sol
 
 export function AnimatedSearchBar({ 
   className, 
-  placeholder = "¿Qué problema quieres resolver en tu negocio?" 
+  placeholder = "¿Qué problema tienes?" 
 }: AnimatedSearchBarProps) {
   const [isFocused, setIsFocused] = useState(false);
   const [value, setValue] = useState('');
@@ -107,9 +107,9 @@ export function AnimatedSearchBar({
         }}
         transition={{ duration: 0.2 }}
       >
-        <div className="ml-4 flex items-center gap-2">
+        <div className="ml-3 md:ml-4 flex items-center gap-1 md:gap-2">
           <Sparkles className="h-4 w-4 text-primary" />
-          <Search className="h-4 w-4 text-muted-foreground" />
+          <Search className="h-4 w-4 text-muted-foreground hidden sm:block" />
         </div>
         <input
           ref={inputRef}
