@@ -53,7 +53,7 @@ We move quickly, iterate intelligently, and deploy with confidence.
 ## Project Information
 
 This repository contains the source code for Kairotec’s web platform.
-The project is built using modern web technologies and follows best practices for scalability, maintainability, and performance.
+It is built using modern web technologies and follows best practices for scalability, maintainability, and performance.
 
 **Website:**
 [https://kairotec.io](https://kairotec.io)
@@ -62,33 +62,17 @@ The project is built using modern web technologies and follows best practices fo
 
 ## Getting Started
 
-There are multiple ways to work with this codebase, depending on your preferred workflow.
-
----
-
-### Work Locally Using Your Preferred IDE
-
-You can clone the repository and run the project locally.
+### Local Development
 
 **Requirements**
 
 * Node.js
-* npm
-  (Recommended installation via nvm: [https://github.com/nvm-sh/nvm](https://github.com/nvm-sh/nvm))
+* npm (recommended via nvm: [https://github.com/nvm-sh/nvm](https://github.com/nvm-sh/nvm))
 
-**Setup Steps**
+**Run locally**
 
 ```sh
-# Clone the repository
-git clone <YOUR_GIT_URL>
-
-# Navigate to the project directory
-cd <YOUR_PROJECT_NAME>
-
-# Install dependencies
 npm install
-
-# Start the development server
 npm run dev
 ```
 
@@ -96,36 +80,13 @@ The development server includes hot reloading for an efficient development exper
 
 ---
 
-### Edit Files Directly on GitHub
-
-For quick changes or documentation updates:
-
-* Navigate to the file you want to edit.
-* Click the **Edit** (pencil) icon.
-* Commit your changes directly to the repository.
-
----
-
-### Use GitHub Codespaces
-
-GitHub Codespaces allows you to work in a cloud-based development environment without local setup.
-
-* Open the repository main page.
-* Click **Code** → **Codespaces**.
-* Select **New codespace**.
-* Edit, commit, and push changes directly from the browser.
-
----
-
 ## Technology Stack
 
-This project is built using the following technologies:
-
-* **Vite**
-* **TypeScript**
-* **React**
-* **Tailwind CSS**
-* **shadcn/ui**
+* Vite
+* TypeScript
+* React
+* Tailwind CSS
+* shadcn/ui
 * Artificial Intelligence & Machine Learning
 * Cloud-native infrastructure
 * API-first architectures
@@ -134,32 +95,23 @@ This project is built using the following technologies:
 
 ## Build & Deployment
 
-To generate a production-ready build:
-
 ```sh
 npm run build
 ```
 
-The output will be generated in the `dist` directory and can be deployed on any modern hosting or cloud infrastructure provider.
-
----
-
-## Custom Domain & Hosting
-
-This project supports deployment on any platform that supports modern frontend frameworks.
-Custom domains can be configured directly through the selected hosting provider.
+The production build is generated in the `dist` directory and can be deployed on any modern hosting provider.
 
 ---
 
 ## License
 
-Specify the applicable license for this project here.
+This project is proprietary and confidential.
+All rights reserved © Kairotec.
 
 ---
 
 ## Contact
 
-If you are interested in working with Kairotec or learning more about our AI solutions:
-
 **Email:** [hello@kairotec.io](mailto:hello@kairotec.io)
 **Website:** [https://kairotec.io](https://kairotec.io)
+
